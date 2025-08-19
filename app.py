@@ -567,7 +567,7 @@ def create_performance_chart(performance_data, asset_name, ui_text):
     )
     
     # Add reference line at 0%
-    fig.add_hline(y=0, line_dash="dash", line_color="red", alpha=0.5)
+    fig.add_hline(y=0, line_dash="dash", line_color="rgba(255, 0, 0, 0.5)")
     
     return fig
 
@@ -702,7 +702,7 @@ def create_performance_comparison_chart(asset_data, selected_assets, ui_text):
     )
     
     # Add reference line at 0%
-    fig.add_hline(y=0, line_dash="dash", line_color="red", alpha=0.5)
+    fig.add_hline(y=0, line_dash="dash", line_color="rgba(255, 0, 0, 0.5)")
     
     return fig
 
