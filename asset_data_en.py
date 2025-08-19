@@ -1,585 +1,585 @@
-# Asset data in Italian
-ASSET_DATA_IT = {
-    "Azioni Globali (Market Cap)": {
-        "descrizione": "Investimenti azionari diversificati a livello mondiale ponderati per capitalizzazione di mercato, che rappresentano quote di proprietà nelle maggiori aziende quotate globalmente.",
+# Asset data in English
+ASSET_DATA_EN = {
+    "Global Equities (Market Cap)": {
+        "descrizione": "Globally diversified equity investments weighted by market capitalization, representing ownership stakes in the world's largest publicly traded companies.",
         "punti_forza": [
-            "Potenziale di crescita a lungo termine",
-            "Protezione storica contro l'inflazione",
-            "Liquidità elevata",
-            "Diversificazione geografica e settoriale automatica",
-            "Potenziali dividendi",
-            "Esposizione alle aziende più grandi e stabili"
+            "Long-term growth potential",
+            "Historical inflation protection",
+            "High liquidity",
+            "Automatic geographic and sectoral diversification",
+            "Dividend potential",
+            "Exposure to largest and most stable companies"
         ],
         "punti_debolezza": [
-            "Volatilità elevata nel breve periodo",
-            "Rischio di perdite significative",
-            "Dipendenza dai cicli economici",
-            "Rischio valutario per investitori locali",
-            "Concentrazione verso mega-cap"
+            "High short-term volatility",
+            "Risk of significant losses",
+            "Economic cycle dependency",
+            "Currency risk for local investors",
+            "Concentration towards mega-cap stocks"
         ],
         "scenari": {
-            "Crescita economica": "Performance positiva (+8-12% annuo)",
-            "Recessione": "Performance negativa (-15-30%)",
-            "Inflazione elevata": "Performance mista (dipende dalla capacità di pricing power)",
-            "Politiche restrittive": "Pressione negativa per tassi più alti",
-            "Politiche espansive": "Supporto positivo per liquidità abbondante"
+            "Economic growth": "Positive performance (+8-12% annually)",
+            "Recession": "Negative performance (-15-30%)",
+            "High inflation": "Mixed performance (depends on pricing power capability)",
+            "Restrictive policies": "Negative pressure from higher rates",
+            "Expansive policies": "Positive support from abundant liquidity"
         },
-        "allocazione_range": "40-70% per investitori con orizzonte lungo termine",
-        "correlazioni": "Correlazione negativa con obbligazioni lunghe, positiva con materie prime"
+        "allocazione_range": "40-70% for long-term horizon investors",
+        "correlazioni": "Negative correlation with long bonds, positive with commodities"
     },
 
-    "Azioni Momentum": {
-        "descrizione": "Strategia che investe in azioni che hanno mostrato performance positive nel recente passato, sfruttando la tendenza dei titoli vincenti a continuare a sovraperformare nel breve-medio termine.",
+    "Momentum Equities": {
+        "descrizione": "Strategy that invests in stocks that have shown positive performance in the recent past, exploiting the tendency of winning stocks to continue outperforming in the short-medium term.",
         "punti_forza": [
-            "Sfrutta trend di mercato consolidati",
-            "Potenziale outperformance in mercati rialzisti",
-            "Adattamento dinamico alle condizioni di mercato",
-            "Disciplina sistematica nell'approccio"
+            "Exploits established market trends",
+            "Potential outperformance in bull markets",
+            "Dynamic adaptation to market conditions",
+            "Systematic approach discipline"
         ],
         "punti_debolezza": [
-            "Alta volatilità",
-            "Rischio di inversioni improvvise di trend",
-            "Maggiori costi di transazione per rotazione",
-            "Performance negativa nei mercati laterali",
-            "Rischio di acquistare sui massimi"
+            "High volatility",
+            "Risk of sudden trend reversals",
+            "Higher transaction costs due to turnover",
+            "Poor performance in sideways markets",
+            "Risk of buying at peaks"
         ],
         "scenari": {
-            "Crescita economica": "Performance molto positiva (+12-18% annuo)",
-            "Recessione": "Performance molto negativa (-25-35%)",
-            "Inflazione elevata": "Performance mista, dipende dai settori",
-            "Politiche restrittive": "Pressione negativa significativa",
-            "Politiche espansive": "Forte supporto positivo"
+            "Economic growth": "Very positive performance (+12-18% annually)",
+            "Recession": "Very negative performance (-25-35%)",
+            "High inflation": "Mixed performance, depends on sectors",
+            "Restrictive policies": "Significant negative pressure",
+            "Expansive policies": "Strong positive support"
         },
-        "allocazione_range": "10-25% come componente satellite tattica",
-        "correlazioni": "Alta correlazione con azioni globali, amplifica i movimenti di mercato"
+        "allocazione_range": "10-25% as tactical satellite component",
+        "correlazioni": "High correlation with global equities, amplifies market movements"
     },
 
-    "Azioni Quality": {
-        "descrizione": "Investimenti in aziende con fondamentali solidi: alta redditività, bassa leva finanziaria, crescita stabile degli utili e gestione efficiente.",
+    "Quality Equities": {
+        "descrizione": "Investments in companies with strong fundamentals: high profitability, low financial leverage, stable earnings growth, and efficient management.",
         "punti_forza": [
-            "Minore volatilità rispetto al mercato generale",
-            "Migliore resistenza nelle recessioni",
-            "Qualità gestionale superiore",
-            "Crescita sostenibile degli utili",
-            "Bilanci solidi"
+            "Lower volatility than general market",
+            "Better recession resistance",
+            "Superior management quality",
+            "Sustainable earnings growth",
+            "Strong balance sheets"
         ],
         "punti_debolezza": [
-            "Valutazioni spesso elevate",
-            "Possibile underperformance in mercati speculativi",
-            "Crescita potenzialmente più lenta",
-            "Concentrazione settoriale (tech, healthcare)",
-            "Sensibilità ai tassi di interesse"
+            "Often high valuations",
+            "Possible underperformance in speculative markets",
+            "Potentially slower growth",
+            "Sector concentration (tech, healthcare)",
+            "Interest rate sensitivity"
         ],
         "scenari": {
-            "Crescita economica": "Performance positiva ma moderata (+6-10% annuo)",
-            "Recessione": "Outperformance relativa (-5-15%)",
-            "Inflazione elevata": "Performance relativamente buona",
-            "Politiche restrittive": "Pressione moderata",
-            "Politiche espansive": "Benefici modesti"
+            "Economic growth": "Positive but moderate performance (+6-10% annually)",
+            "Recession": "Relative outperformance (-5-15%)",
+            "High inflation": "Relatively good performance",
+            "Restrictive policies": "Moderate pressure",
+            "Expansive policies": "Modest benefits"
         },
-        "allocazione_range": "15-30% come componente core difensiva",
-        "correlazioni": "Correlazione moderata con azioni globali, correlazione negativa con volatilità"
+        "allocazione_range": "15-30% as defensive core component",
+        "correlazioni": "Moderate correlation with global equities, negative correlation with volatility"
     },
 
-    "Azioni Value": {
-        "descrizione": "Strategia che investe in azioni considerate sottovalutate dal mercato rispetto ai loro fondamentali, spesso con P/E bassi e rendimenti da dividendi elevati.",
+    "Value Equities": {
+        "descrizione": "Strategy that invests in stocks considered undervalued by the market relative to their fundamentals, often with low P/E ratios and high dividend yields.",
         "punti_forza": [
-            "Potenziale di recupero di valore",
-            "Valutazioni attraenti",
-            "Rendimenti da dividendi spesso elevati",
-            "Performance storicamente solida nel lungo periodo",
-            "Protezione contro bolle speculative"
+            "Value recovery potential",
+            "Attractive valuations",
+            "Often high dividend yields",
+            "Historically solid long-term performance",
+            "Protection against speculative bubbles"
         ],
         "punti_debolezza": [
-            "Possibili 'value traps'",
-            "Underperformance prolungata possibile",
-            "Esposizione a settori in declino",
-            "Sensibilità ai cicli economici",
-            "Crescita limitata"
+            "Possible value traps",
+            "Possible prolonged underperformance",
+            "Exposure to declining sectors",
+            "Economic cycle sensitivity",
+            "Limited growth"
         ],
         "scenari": {
-            "Crescita economica": "Performance positiva (+8-14% annuo)",
-            "Recessione": "Performance negativa ma migliore del growth (-10-20%)",
-            "Inflazione elevata": "Performance generalmente positiva",
-            "Politiche restrittive": "Benefici relativi",
-            "Politiche espansive": "Underperformance vs growth"
+            "Economic growth": "Positive performance (+8-14% annually)",
+            "Recession": "Negative but better than growth (-10-20%)",
+            "High inflation": "Generally positive performance",
+            "Restrictive policies": "Relative benefits",
+            "Expansive policies": "Underperformance vs growth"
         },
-        "allocazione_range": "15-35% come componente core contrarian",
-        "correlazioni": "Correlazione moderata con azioni globali, inversa con growth"
+        "allocazione_range": "15-35% as contrarian core component",
+        "correlazioni": "Moderate correlation with global equities, inverse with growth"
     },
 
-    "Azioni Minimum Volatility": {
-        "descrizione": "Strategia che seleziona azioni con la minore volatilità storica, mirando a ridurre il rischio complessivo del portafoglio azionario.",
+    "Minimum Volatility Equities": {
+        "descrizione": "Strategy that selects stocks with the lowest historical volatility, aiming to reduce the overall risk of the equity portfolio.",
         "punti_forza": [
-            "Volatilità significativamente ridotta",
-            "Migliore risk-adjusted return",
-            "Outperformance in mercati ribassisti",
-            "Approccio sistematico alla riduzione del rischio",
-            "Drawdown contenuti"
+            "Significantly reduced volatility",
+            "Better risk-adjusted returns",
+            "Outperformance in bear markets",
+            "Systematic approach to risk reduction",
+            "Contained drawdowns"
         ],
         "punti_debolezza": [
-            "Underperformance in mercati fortemente rialzisti",
-            "Possibile concentrazione settoriale (utilities, staples)",
-            "Costi di gestione più elevati",
-            "Rendimenti potenzialmente più bassi nel lungo termine"
+            "Underperformance in strong bull markets",
+            "Possible sector concentration (utilities, staples)",
+            "Higher management costs",
+            "Potentially lower long-term returns"
         ],
         "scenari": {
-            "Crescita economica": "Performance moderata (+4-8% annuo)",
-            "Recessione": "Outperformance significativa (-5-12%)",
-            "Inflazione elevata": "Performance difensiva moderata",
-            "Politiche restrittive": "Resilienza superiore",
-            "Politiche espansive": "Underperformance relativa"
+            "Economic growth": "Moderate performance (+4-8% annually)",
+            "Recession": "Significant outperformance (-5-12%)",
+            "High inflation": "Moderate defensive performance",
+            "Restrictive policies": "Superior resilience",
+            "Expansive policies": "Relative underperformance"
         },
-        "allocazione_range": "10-25% per riduzione del rischio azionario",
-        "correlazioni": "Correlazione positiva ma ridotta con azioni globali"
+        "allocazione_range": "10-25% for equity risk reduction",
+        "correlazioni": "Positive but reduced correlation with global equities"
     },
 
-    "Azioni Small Cap": {
-        "descrizione": "Investimenti in aziende a piccola capitalizzazione con maggiore potenziale di crescita ma anche maggiore rischio e volatilità.",
+    "Small Cap Equities": {
+        "descrizione": "Investments in small capitalization companies with greater growth potential but also higher risk and volatility.",
         "punti_forza": [
-            "Maggiore potenziale di crescita",
-            "Possibilità di scoprire aziende prima del mercato",
-            "Minore copertura analisti (inefficienze)",
-            "Maggiore agilità gestionale",
-            "Diversificazione rispetto alle large cap"
+            "Higher growth potential",
+            "Possibility to discover companies before the market",
+            "Lower analyst coverage (inefficiencies)",
+            "Greater management agility",
+            "Diversification vs large caps"
         ],
         "punti_debolezza": [
-            "Volatilità molto elevata",
-            "Liquidità inferiore",
-            "Maggiore rischio di fallimento",
-            "Sensibilità ai cicli economici",
-            "Costi di transazione più elevati"
+            "Very high volatility",
+            "Lower liquidity",
+            "Higher bankruptcy risk",
+            "Economic cycle sensitivity",
+            "Higher transaction costs"
         ],
         "scenari": {
-            "Crescita economica": "Outperformance significativa (+12-20% annuo)",
-            "Recessione": "Underperformance marcata (-30-45%)",
-            "Inflazione elevata": "Performance molto variabile",
-            "Politiche restrittive": "Pressione significativa",
-            "Politiche espansive": "Forte supporto"
+            "Economic growth": "Significant outperformance (+12-20% annually)",
+            "Recession": "Marked underperformance (-30-45%)",
+            "High inflation": "Very variable performance",
+            "Restrictive policies": "Significant pressure",
+            "Expansive policies": "Strong support"
         },
-        "allocazione_range": "5-15% come componente satellite ad alto rischio/rendimento",
-        "correlazioni": "Alta correlazione con azioni globali ma amplificata"
+        "allocazione_range": "5-15% as high risk/return satellite component",
+        "correlazioni": "High correlation with global equities but amplified"
     },
     
-    "Mercati Emergenti": {
-        "descrizione": "Azioni di aziende localizzate in paesi in via di sviluppo con economie in rapida crescita.",
+    "Emerging Markets": {
+        "descrizione": "Equities from companies located in developing countries with rapidly growing economies.",
         "punti_forza": [
-            "Potenziale di crescita superiore ai mercati sviluppati",
-            "Valutazioni spesso più attraenti",
-            "Benefici demografici (popolazione giovane)",
-            "Diversificazione geografica",
-            "Esposizione a trend di crescita globali"
+            "Higher growth potential than developed markets",
+            "Often more attractive valuations",
+            "Demographic benefits (young population)",
+            "Geographic diversification",
+            "Exposure to global growth trends"
         ],
         "punti_debolezza": [
-            "Volatilità molto elevata",
-            "Rischi politici e regolamentari",
-            "Liquidità inferiore",
-            "Rischio valutario significativo",
-            "Correlazione elevata nei momenti di stress"
+            "Very high volatility",
+            "Political and regulatory risks",
+            "Lower liquidity",
+            "Significant currency risk",
+            "High correlation during stress periods"
         ],
         "scenari": {
-            "Crescita economica": "Outperformance vs mercati sviluppati (+10-15%)",
-            "Recessione": "Underperformance significativa (-25-40%)",
-            "Inflazione elevata": "Performance mista, alcuni paesi beneficiano",
-            "Politiche restrittive": "Pressione per deflussi di capitali",
-            "Politiche espansive": "Forte attrattiva per yield hunting"
+            "Economic growth": "Outperformance vs developed markets (+10-15%)",
+            "Recession": "Significant underperformance (-25-40%)",
+            "High inflation": "Mixed performance, some countries benefit",
+            "Restrictive policies": "Pressure from capital outflows",
+            "Expansive policies": "Strong appeal for yield hunting"
         },
-        "allocazione_range": "5-15% come componente satellite del portafoglio",
-        "correlazioni": "Alta correlazione con azioni globali, sensibili al dollaro USA"
+        "allocazione_range": "5-15% as satellite portfolio component",
+        "correlazioni": "High correlation with global equities, sensitive to USD"
     },
 
-    "Oro": {
-        "descrizione": "Metallo prezioso considerato riserva di valore e copertura contro la svalutazione valutaria e l'instabilità geopolitica.",
+    "Gold": {
+        "descrizione": "Precious metal considered a store of value and hedge against currency debasement and geopolitical instability.",
         "punti_forza": [
-            "Copertura storica contro l'inflazione",
-            "Riserva di valore durante le crisi",
-            "Diversificazione del portafoglio",
-            "Nessun rischio di controparte",
-            "Riconoscimento e liquidità globali"
+            "Historical inflation hedge",
+            "Store of value during crises",
+            "Portfolio diversification",
+            "No counterparty risk",
+            "Global recognition and liquidity"
         ],
         "punti_debolezza": [
-            "Nessuna generazione di reddito",
-            "Alta volatilità nel breve termine",
-            "Costi di stoccaggio e assicurazione",
-            "Sensibile ai tassi di interesse reali",
-            "Rischio valutario (denominato in USD)"
+            "No income generation",
+            "High short-term volatility",
+            "Storage and insurance costs",
+            "Sensitive to real interest rates",
+            "Currency risk (USD-denominated)"
         ],
         "scenari": {
-            "Crescita economica": "Performance moderatamente negativa",
-            "Recessione": "Performance fortemente positiva (bene rifugio)",
-            "Inflazione elevata": "Performance storicamente positiva",
-            "Politiche restrittive": "Pressione negativa per tassi reali più alti",
-            "Politiche espansive": "Positivo per timori di svalutazione valutaria"
+            "Economic growth": "Moderate negative performance",
+            "Recession": "Strong positive performance (safe haven)",
+            "High inflation": "Historically positive performance",
+            "Restrictive policies": "Negative pressure from higher real rates",
+            "Expansive policies": "Positive from currency debasement fears"
         },
-        "allocazione_range": "5-10% come copertura del portafoglio",
-        "correlazioni": "Bassa correlazione con altri asset, inversa con USD"
+        "allocazione_range": "5-10% as portfolio hedge",
+        "correlazioni": "Low correlation with other assets, inverse with USD"
     },
 
-    "Argento": {
-        "descrizione": "Metallo prezioso con doppia natura di bene rifugio e commodity industriale, più volatile dell'oro.",
+    "Silver": {
+        "descrizione": "Precious metal with dual nature as safe haven and industrial commodity, more volatile than gold.",
         "punti_forza": [
-            "Doppia domanda: investimento e industriale",
-            "Maggiore volatilità può offrire opportunità",
-            "Rapporto oro/argento storicamente ciclico",
-            "Utilizzi tecnologici in crescita",
-            "Prezzo relativamente più accessibile"
+            "Dual demand: investment and industrial",
+            "Higher volatility can offer opportunities",
+            "Gold/silver ratio historically cyclical",
+            "Growing technological uses",
+            "Relatively more accessible price"
         ],
         "punti_debolezza": [
-            "Volatilità molto elevata",
-            "Più sensibile ai cicli industriali dell'oro",
-            "Mercato più piccolo e meno liquido",
-            "Maggiori costi di stoccaggio relativi",
-            "Performance storicamente inferiore all'oro"
+            "Very high volatility",
+            "More sensitive to industrial cycles than gold",
+            "Smaller and less liquid market",
+            "Higher relative storage costs",
+            "Historically inferior performance to gold"
         ],
         "scenari": {
-            "Crescita economica": "Performance positiva per domanda industriale",
-            "Recessione": "Performance mista (rifugio vs domanda industriale)",
-            "Inflazione elevata": "Performance molto positiva",
-            "Politiche restrittive": "Pressione da tassi reali alti",
-            "Politiche espansive": "Forte supporto specialmente se supera l'oro"
+            "Economic growth": "Positive performance from industrial demand",
+            "Recession": "Mixed performance (safe haven vs industrial demand)",
+            "High inflation": "Very positive performance",
+            "Restrictive policies": "Pressure from high real rates",
+            "Expansive policies": "Strong support especially if outperforming gold"
         },
-        "allocazione_range": "2-5% come satellite dell'oro",
-        "correlazioni": "Alta correlazione con oro ma maggiore volatilità"
+        "allocazione_range": "2-5% as gold satellite",
+        "correlazioni": "High correlation with gold but higher volatility"
     },
 
-    "Materie Prime": {
-        "descrizione": "Materie prime e prodotti agricoli primari negoziati sui mercati globali, inclusi energia, metalli industriali e prodotti agricoli.",
+    "Commodities": {
+        "descrizione": "Raw materials and primary agricultural products traded on global exchanges, including energy, industrial metals, and agricultural products.",
         "punti_forza": [
-            "Protezione dall'inflazione",
-            "Benefici di diversificazione",
-            "Dinamiche domanda/offerta",
-            "Esposizione all'economia globale",
-            "Supporto di asset tangibili"
+            "Inflation protection",
+            "Diversification benefits",
+            "Supply/demand dynamics",
+            "Global economic exposure",
+            "Tangible asset backing"
         ],
         "punti_debolezza": [
-            "Volatilità elevata",
-            "Nessuna generazione di reddito",
-            "Costi di stoccaggio e trasporto",
-            "Natura ciclica",
-            "Rischi meteorologici e geopolitici"
+            "High volatility",
+            "No income generation",
+            "Storage and transportation costs",
+            "Cyclical nature",
+            "Weather and geopolitical risks"
         ],
         "scenari": {
-            "Crescita economica": "Performance fortemente positiva",
-            "Recessione": "Performance negativa per distruzione della domanda",
-            "Inflazione elevata": "Performance fortemente positiva",
-            "Politiche restrittive": "Impatto misto a seconda degli effetti economici",
-            "Politiche espansive": "Positivo per aspettative di maggiore domanda"
+            "Economic growth": "Strong positive performance",
+            "Recession": "Negative performance from demand destruction",
+            "High inflation": "Strong positive performance",
+            "Restrictive policies": "Mixed impact depending on economic effects",
+            "Expansive policies": "Positive from increased demand expectations"
         },
-        "allocazione_range": "5-15% per protezione dall'inflazione",
-        "correlazioni": "Correlazione positiva con inflazione, mista con azioni"
+        "allocazione_range": "5-15% for inflation protection",
+        "correlazioni": "Positive correlation with inflation, mixed with equities"
     },
 
-    "REIT": {
-        "descrizione": "Real Estate Investment Trust che forniscono esposizione ai mercati immobiliari attraverso titoli quotati in borsa.",
+    "REITs": {
+        "descrizione": "Real Estate Investment Trusts providing exposure to real estate markets through publicly traded securities.",
         "punti_forza": [
-            "Reddito regolare da dividendi",
-            "Esposizione immobiliare senza proprietà diretta",
-            "Gestione professionale",
-            "Liquidità rispetto al mattone",
-            "Potenziale copertura dall'inflazione"
+            "Regular dividend income",
+            "Real estate exposure without direct ownership",
+            "Professional management",
+            "Liquidity compared to direct real estate",
+            "Inflation hedge potential"
         ],
         "punti_debolezza": [
-            "Sensibilità ai tassi di interesse",
-            "Dipendenza dai cicli immobiliari",
-            "Diversificazione inferiore alle aspettative",
-            "Commissioni di gestione",
-            "Complessità fiscale"
+            "Interest rate sensitivity",
+            "Real estate cycle dependency",
+            "Lower diversification than expected",
+            "Management fees",
+            "Tax complexity"
         ],
         "scenari": {
-            "Crescita economica": "Performance positiva per occupazione e crescita affitti",
-            "Recessione": "Performance negativa per debolezza economica",
-            "Inflazione elevata": "Performance mista (costi input vs aumenti affitti)",
-            "Politiche restrittive": "Pressione negativa per tassi di sconto più alti",
-            "Politiche espansive": "Supporto positivo per tassi più bassi"
+            "Economic growth": "Positive performance from occupancy and rent growth",
+            "Recession": "Negative performance from economic weakness",
+            "High inflation": "Mixed performance (input costs vs rent increases)",
+            "Restrictive policies": "Negative pressure from higher discount rates",
+            "Expansive policies": "Positive support from lower rates"
         },
-        "allocazione_range": "5-15% per esposizione immobiliare",
-        "correlazioni": "Correlazione moderata con azioni, sensibili ai tassi di interesse"
+        "allocazione_range": "5-15% for real estate exposure",
+        "correlazioni": "Moderate correlation with equities, sensitive to interest rates"
     },
 
-    "Obbligazioni 0-1 anni": {
-        "descrizione": "Titoli di debito governativi e corporate a brevissimo termine con scadenza entro un anno, minimal duration risk.",
+    "Bonds 0-1 Years": {
+        "descrizione": "Government and corporate debt securities with very short-term maturity within one year, minimal duration risk.",
         "punti_forza": [
-            "Rischio di tasso di interesse minimo",
-            "Alta liquidità",
-            "Bassa volatilità",
-            "Protezione del capitale",
-            "Reinvestimento frequente ai tassi correnti"
+            "Minimal interest rate risk",
+            "High liquidity",
+            "Low volatility",
+            "Capital protection",
+            "Frequent reinvestment at current rates"
         ],
         "punti_debolezza": [
-            "Rendimenti molto bassi",
-            "Nessuna protezione dall'inflazione se tassi reali negativi",
-            "Rischio di reinvestimento",
-            "Opportunità costo in ambienti di tassi crescenti"
+            "Very low yields",
+            "No inflation protection if real rates negative",
+            "Reinvestment risk",
+            "Opportunity cost in rising rate environments"
         ],
         "scenari": {
-            "Crescita economica": "Performance stabile ma rendimenti bassi",
-            "Recessione": "Outperformance relativa per stabilità",
-            "Inflazione elevata": "Performance negativa per tassi reali negativi",
-            "Politiche restrittive": "Benefici graduali dal reinvestimento",
-            "Politiche espansive": "Performance stabile ma rendimenti in calo"
+            "Economic growth": "Stable performance but low yields",
+            "Recession": "Relative outperformance for stability",
+            "High inflation": "Negative performance from negative real rates",
+            "Restrictive policies": "Gradual benefits from reinvestment",
+            "Expansive policies": "Stable performance but declining yields"
         },
-        "allocazione_range": "10-30% per liquidità e stabilità",
-        "correlazioni": "Correlazione molto bassa con azioni, correlazione alta con tassi a breve"
+        "allocazione_range": "10-30% for liquidity and stability",
+        "correlazioni": "Very low correlation with equities, high correlation with short-term rates"
     },
 
-    "Obbligazioni 1-3 anni": {
-        "descrizione": "Titoli di debito governativi e corporate a breve termine con duration limitata e buon compromesso rischio/rendimento.",
+    "Bonds 1-3 Years": {
+        "descrizione": "Government and corporate debt securities with short-term maturity offering limited duration and good risk/return compromise.",
         "punti_forza": [
-            "Rischio di tasso contenuto",
-            "Rendimenti superiori al brevissimo termine",
-            "Buona liquidità",
-            "Volatilità moderata",
-            "Diversificazione efficace"
+            "Contained interest rate risk",
+            "Higher yields than very short-term",
+            "Good liquidity",
+            "Moderate volatility",
+            "Effective diversification"
         ],
         "punti_debolezza": [
-            "Sensibilità ai tassi di interesse",
-            "Rendimenti ancora limitati",
-            "Rischio di credito per corporate",
-            "Performance negativa con rialzi rapidi dei tassi"
+            "Interest rate sensitivity",
+            "Still limited yields",
+            "Credit risk for corporates",
+            "Negative performance with rapid rate rises"
         ],
         "scenari": {
-            "Crescita economica": "Performance moderatamente negativa",
-            "Recessione": "Performance positiva (flight to quality)",
-            "Inflazione elevata": "Performance negativa ma limitata",
-            "Politiche restrittive": "Pressione negativa contenuta",
-            "Politiche espansive": "Performance moderatamente positiva"
+            "Economic growth": "Moderately negative performance",
+            "Recession": "Positive performance (flight to quality)",
+            "High inflation": "Negative but limited performance",
+            "Restrictive policies": "Contained negative pressure",
+            "Expansive policies": "Moderately positive performance"
         },
-        "allocazione_range": "15-35% per bilanciamento rischio/rendimento",
-        "correlazioni": "Correlazione negativa moderata con azioni"
+        "allocazione_range": "15-35% for risk/return balance",
+        "correlazioni": "Moderate negative correlation with equities"
     },
 
-    "Obbligazioni 3-7 anni": {
-        "descrizione": "Titoli di debito governativi e corporate a medio termine che offrono rendimenti più elevati ma con maggiore sensibilità ai tassi.",
+    "Bonds 3-7 Years": {
+        "descrizione": "Government and corporate debt securities with medium-term maturity offering higher yields but with greater rate sensitivity.",
         "punti_forza": [
-            "Rendimenti più interessanti",
-            "Sweet spot duration/rendimento",
-            "Diversificazione del portafoglio",
-            "Liquidità ancora buona",
-            "Potenziali capital gain se tassi scendono"
+            "More interesting yields",
+            "Duration/yield sweet spot",
+            "Portfolio diversification",
+            "Still good liquidity",
+            "Potential capital gains if rates fall"
         ],
         "punti_debolezza": [
-            "Sensibilità significativa ai tassi di interesse",
-            "Volatilità moderata-alta",
-            "Rischio di duration",
-            "Performance negativa con rialzo tassi"
+            "Significant interest rate sensitivity",
+            "Moderate-high volatility",
+            "Duration risk",
+            "Negative performance with rising rates"
         ],
         "scenari": {
-            "Crescita economica": "Performance negativa per aspettative rialzo tassi",
-            "Recessione": "Performance fortemente positiva",
-            "Inflazione elevata": "Performance significativamente negativa",
-            "Politiche restrittive": "Pressione negativa significativa",
-            "Politiche espansive": "Performance positiva"
+            "Economic growth": "Negative performance from rate rise expectations",
+            "Recession": "Strong positive performance",
+            "High inflation": "Significantly negative performance",
+            "Restrictive policies": "Significant negative pressure",
+            "Expansive policies": "Positive performance"
         },
-        "allocazione_range": "10-25% per rendimento con rischio controllato",
-        "correlazioni": "Correlazione negativa con azioni, alta sensibilità ai tassi"
+        "allocazione_range": "10-25% for yield with controlled risk",
+        "correlazioni": "Negative correlation with equities, high rate sensitivity"
     },
 
-    "Obbligazioni 7-10 anni": {
-        "descrizione": "Titoli di debito governativi e corporate a medio-lungo termine con duration significativa e maggiore sensibilità alle aspettative di politica monetaria.",
+    "Bonds 7-10 Years": {
+        "descrizione": "Government and corporate debt securities with medium-long term maturity with significant duration and greater sensitivity to monetary policy expectations.",
         "punti_forza": [
-            "Rendimenti potenzialmente attraenti",
-            "Forti capital gain potenziali se tassi scendono",
-            "Diversificazione significativa vs azioni",
-            "Copertura deflazionistica",
-            "Benchmark per molti fondi pensione"
+            "Potentially attractive yields",
+            "Strong potential capital gains if rates fall",
+            "Significant diversification vs equities",
+            "Deflationary hedge",
+            "Benchmark for many pension funds"
         ],
         "punti_debolezza": [
-            "Alta sensibilità ai tassi di interesse",
-            "Volatilità significativa",
-            "Rischio di duration elevato",
-            "Performance molto negativa con inflazione/rialzo tassi"
+            "High interest rate sensitivity",
+            "Significant volatility",
+            "High duration risk",
+            "Very negative performance with inflation/rising rates"
         ],
         "scenari": {
-            "Crescita economica": "Performance significativamente negativa",
-            "Recessione": "Performance molto positiva (+10-20%)",
-            "Inflazione elevata": "Performance molto negativa (-10-20%)",
-            "Politiche restrittive": "Performance molto negativa",
-            "Politiche espansive": "Performance fortemente positiva"
+            "Economic growth": "Significantly negative performance",
+            "Recession": "Very positive performance (+10-20%)",
+            "High inflation": "Very negative performance (-10-20%)",
+            "Restrictive policies": "Very negative performance",
+            "Expansive policies": "Strong positive performance"
         },
-        "allocazione_range": "5-20% per diversificazione duration",
-        "correlazioni": "Correlazione negativa forte con azioni, correlazione negativa con tassi"
+        "allocazione_range": "5-20% for duration diversification",
+        "correlazioni": "Strong negative correlation with equities, negative correlation with rates"
     },
 
-    "Obbligazioni >10 anni": {
-        "descrizione": "Titoli di debito governativi e corporate a lungo termine con duration massima e massima sensibilità alle variazioni dei tassi di interesse.",
+    "Bonds >10 Years": {
+        "descrizione": "Government and corporate debt securities with long-term maturity with maximum duration and maximum sensitivity to interest rate changes.",
         "punti_forza": [
-            "Rendimenti potenzialmente più alti",
-            "Massimi capital gain potenziali",
-            "Diversificazione massima vs azioni",
-            "Copertura deflazione/recessione",
+            "Potentially highest yields",
+            "Maximum potential capital gains",
+            "Maximum diversification vs equities",
+            "Deflation/recession hedge",
             "Matching long-term liabilities"
         ],
         "punti_debolezza": [
-            "Volatilità molto elevata",
-            "Rischio di duration massimo",
-            "Sensibilità estrema ai tassi",
-            "Rischio reinvestimento lontano",
-            "Liquidità potenzialmente inferiore"
+            "Very high volatility",
+            "Maximum duration risk",
+            "Extreme rate sensitivity",
+            "Distant reinvestment risk",
+            "Potentially lower liquidity"
         ],
         "scenari": {
-            "Crescita economica": "Performance molto negativa",
-            "Recessione": "Performance eccezionale (+15-30%)",
-            "Inflazione elevata": "Performance disastrosa (-15-30%)",
-            "Politiche restrittive": "Performance molto negativa",
-            "Politiche espansive": "Performance eccellente"
+            "Economic growth": "Very negative performance",
+            "Recession": "Exceptional performance (+15-30%)",
+            "High inflation": "Disastrous performance (-15-30%)",
+            "Restrictive policies": "Very negative performance",
+            "Expansive policies": "Excellent performance"
         },
-        "allocazione_range": "0-15% solo per investitori con obiettivi specifici",
-        "correlazioni": "Correlazione negativa massima con azioni, inversa perfetta con tassi"
+        "allocazione_range": "0-15% only for investors with specific objectives",
+        "correlazioni": "Maximum negative correlation with equities, perfect inverse with rates"
     },
 
-    "Bond High Yield": {
-        "descrizione": "Obbligazioni societarie ad alto rendimento emesse da aziende con rating creditizio inferiore (junk bonds), che offrono rendimenti superiori per compensare il maggiore rischio di credito.",
+    "High Yield Bonds": {
+        "descrizione": "High-yield corporate bonds issued by companies with lower credit ratings (junk bonds), offering higher yields to compensate for greater credit risk.",
         "punti_forza": [
-            "Rendimenti significativamente più alti",
-            "Minore sensibilità ai tassi di interesse",
-            "Comportamento simile agli asset rischiosi",
-            "Diversificazione geografica e settoriale",
-            "Potenziale di capital appreciation"
+            "Significantly higher yields",
+            "Lower interest rate sensitivity",
+            "Behavior similar to risky assets",
+            "Geographic and sector diversification",
+            "Capital appreciation potential"
         ],
         "punti_debolezza": [
-            "Rischio di credito elevato",
-            "Alta correlazione con azioni nei momenti di stress",
-            "Liquidità inferiore nei periodi di crisi",
-            "Volatilità superiore alle obbligazioni investment grade",
-            "Rischio di default significativo"
+            "High credit risk",
+            "High correlation with equities during stress",
+            "Lower liquidity during crisis periods",
+            "Higher volatility than investment grade bonds",
+            "Significant default risk"
         ],
         "scenari": {
-            "Crescita economica": "Performance molto positiva (+6-10% annuo)",
-            "Recessione": "Performance molto negativa (-15-25%)",
-            "Inflazione elevata": "Performance relativamente buona se economia tiene",
-            "Politiche restrittive": "Pressione negativa ma limitata",
-            "Politiche espansive": "Performance molto positiva"
+            "Economic growth": "Very positive performance (+6-10% annually)",
+            "Recession": "Very negative performance (-15-25%)",
+            "High inflation": "Relatively good performance if economy holds",
+            "Restrictive policies": "Negative but limited pressure",
+            "Expansive policies": "Very positive performance"
         },
-        "allocazione_range": "5-15% per incremento del rendimento con rischio controllato",
-        "correlazioni": "Correlazione moderata-alta con azioni, bassa con tassi di interesse"
+        "allocazione_range": "5-15% for yield enhancement with controlled risk",
+        "correlazioni": "Moderate-high correlation with equities, low with interest rates"
     },
 
-    "Bond Inflation Linked": {
-        "descrizione": "Obbligazioni il cui capitale e cedole sono indicizzati all'inflazione, progettate per proteggere il potere d'acquisto dell'investitore (TIPS, BTP€i).",
+    "Inflation Linked Bonds": {
+        "descrizione": "Bonds whose principal and coupons are indexed to inflation, designed to protect the investor's purchasing power (TIPS, inflation-linked gilts).",
         "punti_forza": [
-            "Protezione diretta dall'inflazione",
-            "Rendimento reale garantito",
-            "Diversificazione nei portafogli",
-            "Basso rischio di credito (governative)",
-            "Correlazione negativa con inflazione breakeven"
+            "Direct inflation protection",
+            "Guaranteed real return",
+            "Portfolio diversification",
+            "Low credit risk (government)",
+            "Negative correlation with inflation breakeven"
         ],
         "punti_debolezza": [
-            "Performance negativa se inflazione scende",
-            "Volatilità da variazioni aspettative inflazione",
-            "Rendimenti reali spesso bassi",
-            "Complessità di pricing",
-            "Liquidità inferiore alle obbligazioni tradizionali"
+            "Negative performance if inflation falls",
+            "Volatility from inflation expectation changes",
+            "Often low real yields",
+            "Pricing complexity",
+            "Lower liquidity than conventional bonds"
         ],
         "scenari": {
-            "Crescita economica": "Performance positiva se accompagnata da inflazione",
-            "Recessione": "Performance mista (deflazione negativa, flight to quality positivo)",
-            "Inflazione elevata": "Performance eccellente (+5-15%)",
-            "Politiche restrittive": "Performance negativa per aspettative disinflazione",
-            "Politiche espansive": "Performance molto positiva per aspettative inflazione"
+            "Economic growth": "Positive performance if accompanied by inflation",
+            "Recession": "Mixed performance (deflation negative, flight to quality positive)",
+            "High inflation": "Excellent performance (+5-15%)",
+            "Restrictive policies": "Negative performance from disinflation expectations",
+            "Expansive policies": "Very positive performance from inflation expectations"
         },
-        "allocazione_range": "5-20% per protezione specifica dall'inflazione",
-        "correlazioni": "Correlazione positiva con aspettative di inflazione, negativa con bond nominali"
+        "allocazione_range": "5-20% for specific inflation protection",
+        "correlazioni": "Positive correlation with inflation expectations, negative with nominal bonds"
     },
 
-    "Bond Convertibili": {
-        "descrizione": "Obbligazioni che possono essere convertite in azioni della società emittente a condizioni predeterminate, offrendo caratteristiche ibride debt/equity.",
+    "Convertible Bonds": {
+        "descrizione": "Bonds that can be converted into shares of the issuing company under predetermined conditions, offering hybrid debt/equity characteristics.",
         "punti_forza": [
-            "Partecipazione all'upside azionario",
-            "Protezione downside rispetto alle azioni",
-            "Rendimento cedolare",
-            "Potenziale di capital appreciation significativo",
-            "Diversificazione ibrida"
+            "Participation in equity upside",
+            "Downside protection vs equities",
+            "Coupon income",
+            "Significant capital appreciation potential",
+            "Hybrid diversification"
         ],
         "punti_debolezza": [
-            "Complessità di valutazione",
-            "Sensibilità alla volatilità implicita",
-            "Underperformance se azioni laterali",
-            "Rischio di credito dell'emittente",
-            "Liquidità spesso limitata"
+            "Valuation complexity",
+            "Sensitivity to implied volatility",
+            "Underperformance if stocks sideways",
+            "Issuer credit risk",
+            "Often limited liquidity"
         ],
         "scenari": {
-            "Crescita economica": "Performance molto positiva (equity upside)",
-            "Recessione": "Performance negativa ma migliore delle azioni (-8-18%)",
-            "Inflazione elevata": "Performance mista dipende da settori sottostanti",
-            "Politiche restrittive": "Pressione negativa per tassi e equity",
-            "Politiche espansive": "Performance molto positiva (equity rally + tassi bassi)"
+            "Economic growth": "Very positive performance (equity upside)",
+            "Recession": "Negative but better than equities (-8-18%)",
+            "High inflation": "Mixed performance depends on underlying sectors",
+            "Restrictive policies": "Negative pressure from rates and equity",
+            "Expansive policies": "Very positive performance (equity rally + low rates)"
         },
-        "allocazione_range": "3-10% per esposizione ibrida debt/equity",
-        "correlazioni": "Correlazione moderata-alta con azioni, sensibile alla volatilità"
+        "allocazione_range": "3-10% for hybrid debt/equity exposure",
+        "correlazioni": "Moderate-high correlation with equities, sensitive to volatility"
     },
 
-    "Obbligazioni Subordinate": {
-        "descrizione": "Titoli di debito che in caso di liquidazione vengono rimborsati dopo i creditori senior, offrendo rendimenti più alti per il maggiore rischio (Tier 2, AT1).",
+    "Subordinated Bonds": {
+        "descrizione": "Debt securities that in case of liquidation are repaid after senior creditors, offering higher yields for greater risk (Tier 2, AT1).",
         "punti_forza": [
-            "Rendimenti significativamente superiori",
-            "Emittenti spesso di alta qualità (banche, utilities)",
-            "Trattamento regolamentare favorevole per banche",
-            "Diversificazione del rischio di credito",
-            "Liquidità ragionevole nei mercati sviluppati"
+            "Significantly higher yields",
+            "Often high-quality issuers (banks, utilities)",
+            "Favorable regulatory treatment for banks",
+            "Credit risk diversification",
+            "Reasonable liquidity in developed markets"
         ],
         "punti_debolezza": [
-            "Rischio di subordinazione",
-            "Possibilità di cancellazione cedole o conversione",
-            "Complessità strutturale",
-            "Rischio regolamentare (Basel III)",
-            "Correlazione con settore finanziario"
+            "Subordination risk",
+            "Possibility of coupon cancellation or conversion",
+            "Structural complexity",
+            "Regulatory risk (Basel III)",
+            "Correlation with financial sector"
         ],
         "scenari": {
-            "Crescita economica": "Performance positiva (+4-8% annuo)",
-            "Recessione": "Performance negativa significativa (-10-20%)",
-            "Inflazione elevata": "Performance mista dipende dalla salute finanziaria emittenti",
-            "Politiche restrittive": "Pressione negativa per stress settore bancario",
-            "Politiche espansive": "Performance positiva per supporto al settore finanziario"
+            "Economic growth": "Positive performance (+4-8% annually)",
+            "Recession": "Significant negative performance (-10-20%)",
+            "High inflation": "Mixed performance depends on issuer financial health",
+            "Restrictive policies": "Negative pressure from banking sector stress",
+            "Expansive policies": "Positive performance from financial sector support"
         },
-        "allocazione_range": "2-8% per investitori sofisticati che comprendono i rischi",
-        "correlazioni": "Alta correlazione con settore finanziario, moderata con azioni"
+        "allocazione_range": "2-8% for sophisticated investors who understand risks",
+        "correlazioni": "High correlation with financial sector, moderate with equities"
     },
 
-    "Azionario High Dividend": {
-        "descrizione": "Strategia che investe in azioni di società che distribuiscono dividendi elevati e sostenibili, spesso società mature con flussi di cassa stabili.",
+    "High Dividend Equities": {
+        "descrizione": "Strategy that invests in stocks of companies that distribute high and sustainable dividends, often mature companies with stable cash flows.",
         "punti_forza": [
-            "Reddito corrente elevato e regolare",
-            "Minore volatilità rispetto al mercato generale",
-            "Protezione parziale nei mercati ribassisti",
-            "Potenziale crescita dei dividendi nel tempo",
-            "Disciplina gestionale delle aziende"
+            "High and regular current income",
+            "Lower volatility than general market",
+            "Partial protection in bear markets",
+            "Potential dividend growth over time",
+            "Management discipline of companies"
         ],
         "punti_debolezza": [
-            "Crescita del capitale limitata",
-            "Concentrazione settoriale (utilities, REIT, energia)",
-            "Sensibilità ai tassi di interesse",
-            "Rischio di taglio dividendi in crisi",
-            "Possibile value trap"
+            "Limited capital growth",
+            "Sector concentration (utilities, REITs, energy)",
+            "Interest rate sensitivity",
+            "Risk of dividend cuts in crisis",
+            "Possible value trap"
         ],
         "scenari": {
-            "Crescita economica": "Performance moderatamente positiva (+5-9% annuo)",
-            "Recessione": "Performance negativa ma limitata (-8-15%)",
-            "Inflazione elevata": "Performance mista (utilities positive, altri settori pressione)",
-            "Politiche restrittive": "Pressione negativa per competizione con bond",
-            "Politiche espansive": "Performance positiva per search for yield"
+            "Economic growth": "Moderately positive performance (+5-9% annually)",
+            "Recession": "Negative but limited performance (-8-15%)",
+            "High inflation": "Mixed performance (utilities positive, other sectors pressure)",
+            "Restrictive policies": "Negative pressure from bond competition",
+            "Expansive policies": "Positive performance from search for yield"
         },
-        "allocazione_range": "15-30% per investitori orientati al reddito",
-        "correlazioni": "Correlazione moderata con azioni, correlazione negativa con tassi di interesse"
+        "allocazione_range": "15-30% for income-oriented investors",
+        "correlazioni": "Moderate correlation with equities, negative correlation with interest rates"
     }
 }
 
-# UI text in Italian
-UI_TEXT_IT = {
-    "title": "Analizzatore Asset Finanziari",
-    "subtitle": "Analisi educativa di diversi asset finanziari",
-    "sidebar_title": "Selezione Asset",
-    "language_label": "Lingua",
-    "asset_label": "Seleziona Asset",
-    "analysis_title": "Analisi Asset: ",
-    "description_header": "📖 Descrizione",
-    "strengths_header": "✅ Punti di Forza",
-    "weaknesses_header": "⚠️ Punti di Debolezza",
-    "scenarios_header": "📊 Performance negli Scenari di Mercato",
-    "allocation_header": "💼 Range di Allocazione Indicativo",
-    "correlations_header": "🔗 Correlazioni con Altri Asset",
-    "summary_header": "📝 Riassunto Educativo",
-    "warning": "⚠️ **Importante Disclaimer**: Queste informazioni sono a scopo puramente educativo e non costituiscono consigli finanziari personalizzati.",
-    "visualization_title": "📈 Visualizzazione Performance",
-    "heatmap_title": "Heatmap Performance Asset per Scenario di Mercato",
-    "allocation_pie_title": "Allocazione Portfolio di Esempio"
+# UI text in English
+UI_TEXT_EN = {
+    "title": "Financial Asset Analyzer",
+    "subtitle": "Educational analysis of different financial assets",
+    "sidebar_title": "Asset Selection",
+    "language_label": "Language",
+    "asset_label": "Select Asset",
+    "analysis_title": "Asset Analysis: ",
+    "description_header": "📖 Description",
+    "strengths_header": "✅ Strengths",
+    "weaknesses_header": "⚠️ Weaknesses", 
+    "scenarios_header": "📊 Market Scenarios Performance",
+    "allocation_header": "💼 Indicative Allocation Range",
+    "correlations_header": "🔗 Correlations with Other Assets",
+    "summary_header": "📝 Educational Summary",
+    "warning": "⚠️ **Important Disclaimer**: This information is for educational purposes only and does not constitute personalized financial advice.",
+    "visualization_title": "📈 Performance Visualization",
+    "heatmap_title": "Asset Performance Heatmap by Market Scenario",
+    "allocation_pie_title": "Sample Portfolio Allocation"
 }
