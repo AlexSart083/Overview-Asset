@@ -425,6 +425,141 @@ ASSET_DATA_IT = {
         },
         "allocazione_range": "0-15% solo per investitori con obiettivi specifici",
         "correlazioni": "Correlazione negativa massima con azioni, inversa perfetta con tassi"
+    },
+
+    "Bond High Yield": {
+        "descrizione": "Obbligazioni societarie ad alto rendimento emesse da aziende con rating creditizio inferiore (junk bonds), che offrono rendimenti superiori per compensare il maggiore rischio di credito.",
+        "punti_forza": [
+            "Rendimenti significativamente più alti",
+            "Minore sensibilità ai tassi di interesse",
+            "Comportamento simile agli asset rischiosi",
+            "Diversificazione geografica e settoriale",
+            "Potenziale di capital appreciation"
+        ],
+        "punti_debolezza": [
+            "Rischio di credito elevato",
+            "Alta correlazione con azioni nei momenti di stress",
+            "Liquidità inferiore nei periodi di crisi",
+            "Volatilità superiore alle obbligazioni investment grade",
+            "Rischio di default significativo"
+        ],
+        "scenari": {
+            "Crescita economica": "Performance molto positiva (+6-10% annuo)",
+            "Recessione": "Performance molto negativa (-15-25%)",
+            "Inflazione elevata": "Performance relativamente buona se economia tiene",
+            "Politiche restrittive": "Pressione negativa ma limitata",
+            "Politiche espansive": "Performance molto positiva"
+        },
+        "allocazione_range": "5-15% per incremento del rendimento con rischio controllato",
+        "correlazioni": "Correlazione moderata-alta con azioni, bassa con tassi di interesse"
+    },
+
+    "Bond Inflation Linked": {
+        "descrizione": "Obbligazioni il cui capitale e cedole sono indicizzati all'inflazione, progettate per proteggere il potere d'acquisto dell'investitore (TIPS, BTP€i).",
+        "punti_forza": [
+            "Protezione diretta dall'inflazione",
+            "Rendimento reale garantito",
+            "Diversificazione nei portafogli",
+            "Basso rischio di credito (governative)",
+            "Correlazione negativa con inflazione breakeven"
+        ],
+        "punti_debolezza": [
+            "Performance negativa se inflazione scende",
+            "Volatilità da variazioni aspettative inflazione",
+            "Rendimenti reali spesso bassi",
+            "Complessità di pricing",
+            "Liquidità inferiore alle obbligazioni tradizionali"
+        ],
+        "scenari": {
+            "Crescita economica": "Performance positiva se accompagnata da inflazione",
+            "Recessione": "Performance mista (deflazione negativa, flight to quality positivo)",
+            "Inflazione elevata": "Performance eccellente (+5-15%)",
+            "Politiche restrittive": "Performance negativa per aspettative disinflazione",
+            "Politiche espansive": "Performance molto positiva per aspettative inflazione"
+        },
+        "allocazione_range": "5-20% per protezione specifica dall'inflazione",
+        "correlazioni": "Correlazione positiva con aspettative di inflazione, negativa con bond nominali"
+    },
+
+    "Bond Convertibili": {
+        "descrizione": "Obbligazioni che possono essere convertite in azioni della società emittente a condizioni predeterminate, offrendo caratteristiche ibride debt/equity.",
+        "punti_forza": [
+            "Partecipazione all'upside azionario",
+            "Protezione downside rispetto alle azioni",
+            "Rendimento cedolare",
+            "Potenziale di capital appreciation significativo",
+            "Diversificazione ibrida"
+        ],
+        "punti_debolezza": [
+            "Complessità di valutazione",
+            "Sensibilità alla volatilità implicita",
+            "Underperformance se azioni laterali",
+            "Rischio di credito dell'emittente",
+            "Liquidità spesso limitata"
+        ],
+        "scenari": {
+            "Crescita economica": "Performance molto positiva (equity upside)",
+            "Recessione": "Performance negativa ma migliore delle azioni (-8-18%)",
+            "Inflazione elevata": "Performance mista dipende da settori sottostanti",
+            "Politiche restrittive": "Pressione negativa per tassi e equity",
+            "Politiche espansive": "Performance molto positiva (equity rally + tassi bassi)"
+        },
+        "allocazione_range": "3-10% per esposizione ibrida debt/equity",
+        "correlazioni": "Correlazione moderata-alta con azioni, sensibile alla volatilità"
+    },
+
+    "Obbligazioni Subordinate": {
+        "descrizione": "Titoli di debito che in caso di liquidazione vengono rimborsati dopo i creditori senior, offrendo rendimenti più alti per il maggiore rischio (Tier 2, AT1).",
+        "punti_forza": [
+            "Rendimenti significativamente superiori",
+            "Emittenti spesso di alta qualità (banche, utilities)",
+            "Trattamento regolamentare favorevole per banche",
+            "Diversificazione del rischio di credito",
+            "Liquidità ragionevole nei mercati sviluppati"
+        ],
+        "punti_debolezza": [
+            "Rischio di subordinazione",
+            "Possibilità di cancellazione cedole o conversione",
+            "Complessità strutturale",
+            "Rischio regolamentare (Basel III)",
+            "Correlazione con settore finanziario"
+        ],
+        "scenari": {
+            "Crescita economica": "Performance positiva (+4-8% annuo)",
+            "Recessione": "Performance negativa significativa (-10-20%)",
+            "Inflazione elevata": "Performance mista dipende dalla salute finanziaria emittenti",
+            "Politiche restrittive": "Pressione negativa per stress settore bancario",
+            "Politiche espansive": "Performance positiva per supporto al settore finanziario"
+        },
+        "allocazione_range": "2-8% per investitori sofisticati che comprendono i rischi",
+        "correlazioni": "Alta correlazione con settore finanziario, moderata con azioni"
+    },
+
+    "Azionario High Dividend": {
+        "descrizione": "Strategia che investe in azioni di società che distribuiscono dividendi elevati e sostenibili, spesso società mature con flussi di cassa stabili.",
+        "punti_forza": [
+            "Reddito corrente elevato e regolare",
+            "Minore volatilità rispetto al mercato generale",
+            "Protezione parziale nei mercati ribassisti",
+            "Potenziale crescita dei dividendi nel tempo",
+            "Disciplina gestionale delle aziende"
+        ],
+        "punti_debolezza": [
+            "Crescita del capitale limitata",
+            "Concentrazione settoriale (utilities, REIT, energia)",
+            "Sensibilità ai tassi di interesse",
+            "Rischio di taglio dividendi in crisi",
+            "Possibile value trap"
+        ],
+        "scenari": {
+            "Crescita economica": "Performance moderatamente positiva (+5-9% annuo)",
+            "Recessione": "Performance negativa ma limitata (-8-15%)",
+            "Inflazione elevata": "Performance mista (utilities positive, altri settori pressione)",
+            "Politiche restrittive": "Pressione negativa per competizione con bond",
+            "Politiche espansive": "Performance positiva per search for yield"
+        },
+        "allocazione_range": "15-30% per investitori orientati al reddito",
+        "correlazioni": "Correlazione moderata con azioni, correlazione negativa con tassi di interesse"
     }
 }
 
