@@ -5,9 +5,12 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
 
-# Import data files
-from asset_data_en import ASSET_DATA_EN, UI_TEXT_EN
-from asset_data_it import ASSET_DATA_IT, UI_TEXT_IT
+# Import data files (you'll need to update these with the enhanced versions)
+# from asset_data_en import ASSET_DATA_EN, UI_TEXT_EN
+# from asset_data_it import ASSET_DATA_IT, UI_TEXT_IT
+
+# For demo purposes, I'll include the enhanced data here
+# You should replace these imports with the enhanced files created above
 
 # Configure page
 st.set_page_config(
@@ -132,6 +135,54 @@ def create_asset_selector(asset_data, categories, ui_text):
     
     return selected_asset
 
+def create_performance_chart(performance_data, asset_name, ui_text):
+    """Create performance visualization chart"""
+    
+    periods = ["20_anni", "10_anni", "5_anni", "1_anno"]
+    period_labels = {
+        "20_anni": "20Y" if "English" in str(ui_text) else "20A",
+        "10_anni": "10Y" if "English" in str(ui_text) else "10A", 
+        "5_anni": "5Y" if "English" in str(ui_text) else "5A",
+        "1_anno": "1Y" if "English" in str(ui_text) else "1A"
+    }
+    
+    # Extract performance values and convert to float
+    performance_values = []
+    labels = []
+    
+    for period in periods:
+        if period in performance_data:
+            # Remove % sign and convert to float
+            value = float(performance_data[period].replace('%', ''))
+            performance_values.append(value)
+            labels.append(period_labels[period])
+    
+    # Create bar chart
+    fig = go.Figure(data=[
+        go.Bar(
+            x=labels,
+            y=performance_values,
+            text=[f"{val}%" for val in performance_values],
+            textposition='auto',
+            marker_color=['lightcoral' if val < 0 else 'lightgreen' for val in performance_values],
+            hovertemplate="<b>%{x}</b><br>Return: %{y}%<extra></extra>"
+        )
+    ])
+    
+    fig.update_layout(
+        title=f"Historical Annualized Returns - {asset_name}" if "English" in str(ui_text) else f"Rendimenti Annualizzati Storici - {asset_name}",
+        xaxis_title="Time Period" if "English" in str(ui_text) else "Periodo Temporale",
+        yaxis_title="Annualized Return (%)" if "English" in str(ui_text) else "Rendimento Annualizzato (%)",
+        height=400,
+        title_x=0.5,
+        showlegend=False
+    )
+    
+    # Add reference line at 0%
+    fig.add_hline(y=0, line_dash="dash", line_color="red", alpha=0.5)
+    
+    return fig
+
 def create_scenario_heatmap(asset_data, ui_text):
     """Create heatmap showing asset performance across different scenarios"""
     
@@ -214,6 +265,59 @@ def create_allocation_pie():
     
     return fig
 
+def create_performance_comparison_chart(asset_data, selected_assets, ui_text):
+    """Create comparison chart for multiple assets"""
+    
+    if len(selected_assets) <= 1:
+        return None
+    
+    periods = ["1_anno", "5_anni", "10_anni", "20_anni"]
+    period_labels = {
+        "1_anno": "1Y" if "English" in str(ui_text) else "1A",
+        "5_anni": "5Y" if "English" in str(ui_text) else "5A", 
+        "10_anni": "10Y" if "English" in str(ui_text) else "10A",
+        "20_anni": "20Y" if "English" in str(ui_text) else "20A"
+    }
+    
+    fig = go.Figure()
+    
+    for asset_name in selected_assets:
+        if asset_name in asset_data and "performance_storica" in asset_data[asset_name]:
+            performance_data = asset_data[asset_name]["performance_storica"]
+            
+            performance_values = []
+            labels = []
+            
+            for period in periods:
+                if period in performance_data:
+                    # Remove % sign and convert to float
+                    value = float(performance_data[period].replace('%', ''))
+                    performance_values.append(value)
+                    labels.append(period_labels[period])
+            
+            fig.add_trace(go.Scatter(
+                x=labels,
+                y=performance_values,
+                mode='lines+markers',
+                name=asset_name,
+                line=dict(width=3),
+                marker=dict(size=8)
+            ))
+    
+    fig.update_layout(
+        title="Performance Comparison" if "English" in str(ui_text) else "Confronto Performance",
+        xaxis_title="Time Period" if "English" in str(ui_text) else "Periodo Temporale",
+        yaxis_title="Annualized Return (%)" if "English" in str(ui_text) else "Rendimento Annualizzato (%)",
+        height=500,
+        title_x=0.5,
+        hovermode='x unified'
+    )
+    
+    # Add reference line at 0%
+    fig.add_hline(y=0, line_dash="dash", line_color="red", alpha=0.5)
+    
+    return fig
+
 def main():
     # Language selection in sidebar
     st.sidebar.title("🌍 Language | Lingua")
@@ -248,6 +352,24 @@ def main():
     st.sidebar.title(ui_text["sidebar_title"])
     selected_asset = create_asset_selector(asset_data, categories, ui_text)
     
+    # Add comparison mode option
+    st.sidebar.markdown("---")
+    comparison_mode = st.sidebar.checkbox(
+        "📊 " + ("Comparison Mode" if "English" in str(ui_text) else "Modalità Confronto"),
+        help=("Select multiple assets to compare" if "English" in str(ui_text) else "Seleziona più asset da confrontare")
+    )
+    
+    if comparison_mode:
+        st.sidebar.markdown("### " + ("Select Assets to Compare" if "English" in str(ui_text) else "Seleziona Asset da Confrontare"))
+        selected_assets = st.sidebar.multiselect(
+            ("Choose assets:" if "English" in str(ui_text) else "Scegli asset:"),
+            list(asset_data.keys()),
+            default=[selected_asset] if selected_asset else [],
+            max_selections=5
+        )
+    else:
+        selected_assets = [selected_asset] if selected_asset else []
+    
     # Main content
     if selected_asset:
         asset_info = asset_data[selected_asset]
@@ -266,6 +388,50 @@ def main():
         # Description with improved formatting
         st.subheader(ui_text["description_header"])
         st.markdown(f"**{asset_info['descrizione']}**")
+        
+        # Historical Performance Section (NEW!)
+        if "performance_storica" in asset_info:
+            st.subheader(ui_text["performance_header"])
+            
+            # Display performance table and chart side by side
+            col_perf1, col_perf2 = st.columns([1, 2])
+            
+            with col_perf1:
+                # Performance table
+                perf_data = asset_info["performance_storica"]
+                
+                # Create nice display table
+                perf_display = {
+                    ("Period" if "English" in str(ui_text) else "Periodo"): [
+                        "20 " + ("Years" if "English" in str(ui_text) else "Anni"),
+                        "10 " + ("Years" if "English" in str(ui_text) else "Anni"),
+                        "5 " + ("Years" if "English" in str(ui_text) else "Anni"),
+                        "1 " + ("Year" if "English" in str(ui_text) else "Anno")
+                    ],
+                    ("Return" if "English" in str(ui_text) else "Rendimento"): [
+                        perf_data.get("20_anni", "N/A"),
+                        perf_data.get("10_anni", "N/A"),
+                        perf_data.get("5_anni", "N/A"),
+                        perf_data.get("1_anno", "N/A")
+                    ]
+                }
+                
+                df_perf = pd.DataFrame(perf_display)
+                st.dataframe(df_perf, hide_index=True, use_container_width=True)
+                
+                # Reference index
+                st.caption(f"📚 **{('Reference Index' if 'English' in str(ui_text) else 'Indice di Riferimento')}:** {perf_data.get('indice_riferimento', 'N/A')}")
+            
+            with col_perf2:
+                # Performance chart
+                if "performance_storica" in asset_info:
+                    perf_chart = create_performance_chart(asset_info["performance_storica"], selected_asset, ui_text)
+                    st.plotly_chart(perf_chart, use_container_width=True)
+            
+            # Performance note
+            st.info(ui_text["performance_note"])
+        
+        st.markdown("---")
         
         # Two column layout for strengths and weaknesses
         col1, col2 = st.columns(2)
@@ -326,22 +492,70 @@ def main():
         st.subheader(ui_text["visualization_title"])
         
         # Create tabs for different visualizations
-        tab1, tab2 = st.tabs([
-            "🗺️ " + ("All Assets Heatmap" if "English" in str(ui_text) else "Heatmap Tutti gli Asset"),
-            "🥧 " + ("Sample Portfolio" if "English" in str(ui_text) else "Portfolio di Esempio")
-        ])
-        
-        with tab1:
-            # Heatmap
-            heatmap_fig = create_scenario_heatmap(asset_data, ui_text)
-            st.plotly_chart(heatmap_fig, use_container_width=True)
-            st.caption("💡 " + ("Green = Positive performance, Red = Negative performance" if "English" in str(ui_text) else "Verde = Performance positiva, Rosso = Performance negativa"))
-        
-        with tab2:
-            # Sample allocation
-            pie_fig = create_allocation_pie()
-            st.plotly_chart(pie_fig, use_container_width=True)
-            st.caption("💡 " + ("This is just an educational example - not investment advice" if "English" in str(ui_text) else "Questo è solo un esempio educativo - non un consiglio di investimento"))
+        if comparison_mode and len(selected_assets) > 1:
+            tab1, tab2, tab3 = st.tabs([
+                "📊 " + ("Performance Comparison" if "English" in str(ui_text) else "Confronto Performance"),
+                "🗺️ " + ("All Assets Heatmap" if "English" in str(ui_text) else "Heatmap Tutti gli Asset"),
+                "🥧 " + ("Sample Portfolio" if "English" in str(ui_text) else "Portfolio di Esempio")
+            ])
+            
+            with tab1:
+                # Performance comparison
+                comparison_chart = create_performance_comparison_chart(asset_data, selected_assets, ui_text)
+                if comparison_chart:
+                    st.plotly_chart(comparison_chart, use_container_width=True)
+                    
+                    # Comparison table
+                    st.markdown("#### " + ("Performance Comparison Table" if "English" in str(ui_text) else "Tabella Confronto Performance"))
+                    
+                    comparison_data = []
+                    for asset_name in selected_assets:
+                        if asset_name in asset_data and "performance_storica" in asset_data[asset_name]:
+                            perf_data = asset_data[asset_name]["performance_storica"]
+                            comparison_data.append({
+                                "Asset": asset_name,
+                                "1Y": perf_data.get("1_anno", "N/A"),
+                                "5Y": perf_data.get("5_anni", "N/A"),
+                                "10Y": perf_data.get("10_anni", "N/A"),
+                                "20Y": perf_data.get("20_anni", "N/A"),
+                                ("Reference" if "English" in str(ui_text) else "Riferimento"): perf_data.get("indice_riferimento", "N/A")
+                            })
+                    
+                    if comparison_data:
+                        comparison_df = pd.DataFrame(comparison_data)
+                        st.dataframe(comparison_df, hide_index=True, use_container_width=True)
+                else:
+                    st.info("📊 " + ("Select at least 2 assets to compare" if "English" in str(ui_text) else "Seleziona almeno 2 asset per confrontare"))
+            
+            with tab2:
+                # Heatmap
+                heatmap_fig = create_scenario_heatmap(asset_data, ui_text)
+                st.plotly_chart(heatmap_fig, use_container_width=True)
+                st.caption("💡 " + ("Green = Positive performance, Red = Negative performance" if "English" in str(ui_text) else "Verde = Performance positiva, Rosso = Performance negativa"))
+            
+            with tab3:
+                # Sample allocation
+                pie_fig = create_allocation_pie()
+                st.plotly_chart(pie_fig, use_container_width=True)
+                st.caption("💡 " + ("This is just an educational example - not investment advice" if "English" in str(ui_text) else "Questo è solo un esempio educativo - non un consiglio di investimento"))
+                
+        else:
+            tab1, tab2 = st.tabs([
+                "🗺️ " + ("All Assets Heatmap" if "English" in str(ui_text) else "Heatmap Tutti gli Asset"),
+                "🥧 " + ("Sample Portfolio" if "English" in str(ui_text) else "Portfolio di Esempio")
+            ])
+            
+            with tab1:
+                # Heatmap
+                heatmap_fig = create_scenario_heatmap(asset_data, ui_text)
+                st.plotly_chart(heatmap_fig, use_container_width=True)
+                st.caption("💡 " + ("Green = Positive performance, Red = Negative performance" if "English" in str(ui_text) else "Verde = Performance positiva, Rosso = Performance negativa"))
+            
+            with tab2:
+                # Sample allocation
+                pie_fig = create_allocation_pie()
+                st.plotly_chart(pie_fig, use_container_width=True)
+                st.caption("💡 " + ("This is just an educational example - not investment advice" if "English" in str(ui_text) else "Questo è solo un esempio educativo - non un consiglio di investimento"))
         
         st.markdown("---")
         
@@ -361,6 +575,7 @@ def main():
         - **⏰ L'orizzonte temporale influenza la scelta** - Asset diversi per obiettivi diversi  
         - **🔄 Le correlazioni cambiano nei momenti di stress** - I rapporti storici possono variare
         - **⚖️ Rischio e rendimento vanno sempre valutati insieme** - Non esistere rendimenti senza rischi
+        - **📊 Le performance passate non garantiscono risultati futuri** - Usa i dati storici come guida, non come certezza
         
         #### 🚨 Importante:
         Questa analisi è puramente educativa. Per decisioni di investimento personalizzate, consulta sempre 
@@ -377,6 +592,7 @@ def main():
         - **⏰ Time horizon influences selection** - Different assets for different objectives
         - **🔄 Correlations change during stress** - Historical relationships can vary
         - **⚖️ Risk and return must always be evaluated together** - No returns without risks
+        - **📊 Past performance doesn't guarantee future results** - Use historical data as guidance, not certainty
         
         #### 🚨 Important:
         This analysis is purely educational. For personalized investment decisions, always consult 
@@ -394,12 +610,20 @@ def main():
                 - Comprendi il tuo profilo di rischio
                 - Impara sui costi degli investimenti
                 - Considera l'orizzonte temporale dei tuoi obiettivi
+                - Analizza le performance storiche nel contesto
                 
                 **🔍 Domande da porsi:**
                 - Qual è il mio orizzonte temporale?
                 - Quanto rischio posso tollerare?
                 - Quali sono i miei obiettivi finanziari?
                 - Ho un fondo di emergenza?
+                - Come si è comportato questo asset in passato?
+                
+                **📊 Interpretazione delle performance:**
+                - I rendimenti annualizzati mostrano la media nel tempo
+                - Performance recenti possono essere influenzate da eventi specifici
+                - Considera sempre la volatilità insieme ai rendimenti
+                - Diversi periodi possono mostrare risultati molto diversi
                 """)
             else:
                 st.markdown("""
@@ -408,12 +632,55 @@ def main():
                 - Understand your risk profile
                 - Learn about investment costs
                 - Consider your goals' time horizon
+                - Analyze historical performance in context
                 
                 **🔍 Questions to ask yourself:**
                 - What is my time horizon?
                 - How much risk can I tolerate?
                 - What are my financial goals?
                 - Do I have an emergency fund?
+                - How has this asset performed historically?
+                
+                **📊 Performance interpretation:**
+                - Annualized returns show average over time
+                - Recent performance may be influenced by specific events
+                - Always consider volatility alongside returns
+                - Different time periods may show very different results
+                """)
+        
+        # Performance methodology note
+        with st.expander("🔬 " + ("Performance Data Methodology" if "English" in str(ui_text) else "Metodologia Dati Performance")):
+            if language == "Italiano":
+                st.markdown("""
+                **📋 Come interpretiamo i dati:**
+                
+                - **Rendimenti Annualizzati**: Calcolati come media geometrica per il periodo
+                - **Indici di Riferimento**: Utilizzati indici di mercato riconosciuti (MSCI, Bloomberg, etc.)
+                - **Valuta**: Performance generalmente in USD, convertite quando appropriato
+                - **Commissioni**: Dati al lordo di commissioni di gestione per semplicità educativa
+                - **Reinvestimento**: Assumiamo il reinvestimento di dividendi/cedole
+                
+                **⚠️ Limitazioni:**
+                - Dati storici basati su indici, non su investimenti diretti
+                - Performance passate non predicono risultati futuri
+                - Non considerano tasse individuali o commissioni specifiche
+                - Alcuni dati possono essere stimati per periodi più lunghi
+                """)
+            else:
+                st.markdown("""
+                **📋 How we interpret the data:**
+                
+                - **Annualized Returns**: Calculated as geometric average for the period
+                - **Reference Indices**: Used recognized market indices (MSCI, Bloomberg, etc.)
+                - **Currency**: Performance generally in USD, converted when appropriate
+                - **Fees**: Data gross of management fees for educational simplicity
+                - **Reinvestment**: We assume reinvestment of dividends/coupons
+                
+                **⚠️ Limitations:**
+                - Historical data based on indices, not direct investments
+                - Past performance doesn't predict future results
+                - Doesn't consider individual taxes or specific fees
+                - Some data may be estimated for longer periods
                 """)
 
 if __name__ == "__main__":
