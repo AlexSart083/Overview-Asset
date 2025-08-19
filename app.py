@@ -5,12 +5,400 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
 
-# Import data files (you'll need to update these with the enhanced versions)
-# from asset_data_en import ASSET_DATA_EN, UI_TEXT_EN
-# from asset_data_it import ASSET_DATA_IT, UI_TEXT_IT
+# Import data files
+try:
+    from asset_data_en import ASSET_DATA_EN, UI_TEXT_EN
+    from asset_data_it import ASSET_DATA_IT, UI_TEXT_IT
+except ImportError:
+    # Fallback - include basic data directly in app
+    ASSET_DATA_EN = {
+        "Global Equities (Market Cap)": {
+            "descrizione": "Globally diversified equity investments weighted by market capitalization, representing ownership stakes in the world's largest publicly traded companies.",
+            "performance_storica": {
+                "20_anni": "7.0%",
+                "10_anni": "10.6%",
+                "5_anni": "14.4%",
+                "1_anno": "14.9%",
+                "indice_riferimento": "MSCI World Index"
+            },
+            "punti_forza": [
+                "Long-term growth potential",
+                "Historical inflation protection",
+                "High liquidity",
+                "Automatic geographic and sectoral diversification",
+                "Dividend potential",
+                "Exposure to largest and most stable companies"
+            ],
+            "punti_debolezza": [
+                "High short-term volatility",
+                "Risk of significant losses",
+                "Economic cycle dependency",
+                "Currency risk for local investors",
+                "Concentration towards mega-cap stocks"
+            ],
+            "scenari": {
+                "Economic growth": "Positive performance (+8-12% annually)",
+                "Recession": "Negative performance (-15-30%)",
+                "High inflation": "Mixed performance (depends on pricing power capability)",
+                "Restrictive policies": "Negative pressure from higher rates",
+                "Expansive policies": "Positive support from abundant liquidity"
+            },
+            "allocazione_range": "40-70% for long-term horizon investors",
+            "correlazioni": "Negative correlation with long bonds, positive with commodities"
+        },
+        
+        "Emerging Markets": {
+            "descrizione": "Equities from companies located in developing countries with rapidly growing economies.",
+            "performance_storica": {
+                "20_anni": "4.3%",
+                "10_anni": "6.1%",
+                "5_anni": "5.6%",
+                "1_anno": "15.9%",
+                "indice_riferimento": "MSCI Emerging Markets Index"
+            },
+            "punti_forza": [
+                "Higher growth potential than developed markets",
+                "Often more attractive valuations",
+                "Demographic benefits (young population)",
+                "Geographic diversification",
+                "Exposure to global growth trends"
+            ],
+            "punti_debolezza": [
+                "Very high volatility",
+                "Political and regulatory risks",
+                "Lower liquidity",
+                "Significant currency risk",
+                "High correlation during stress periods"
+            ],
+            "scenari": {
+                "Economic growth": "Outperformance vs developed markets (+10-15%)",
+                "Recession": "Significant underperformance (-25-40%)",
+                "High inflation": "Mixed performance, some countries benefit",
+                "Restrictive policies": "Pressure from capital outflows",
+                "Expansive policies": "Strong appeal for yield hunting"
+            },
+            "allocazione_range": "5-15% as satellite portfolio component",
+            "correlazioni": "High correlation with global equities, sensitive to USD"
+        },
 
-# For demo purposes, I'll include the enhanced data here
-# You should replace these imports with the enhanced files created above
+        "Gold": {
+            "descrizione": "Precious metal considered a store of value and hedge against currency debasement and geopolitical instability.",
+            "performance_storica": {
+                "20_anni": "8.4%",
+                "10_anni": "4.2%",
+                "5_anni": "7.8%",
+                "1_anno": "27.0%",
+                "indice_riferimento": "Gold Spot Price (USD)"
+            },
+            "punti_forza": [
+                "Historical inflation hedge",
+                "Store of value during crises",
+                "Portfolio diversification",
+                "No counterparty risk",
+                "Global recognition and liquidity"
+            ],
+            "punti_debolezza": [
+                "No income generation",
+                "High short-term volatility",
+                "Storage and insurance costs",
+                "Sensitive to real interest rates",
+                "Currency risk (USD-denominated)"
+            ],
+            "scenari": {
+                "Economic growth": "Moderate negative performance",
+                "Recession": "Strong positive performance (safe haven)",
+                "High inflation": "Historically positive performance",
+                "Restrictive policies": "Negative pressure from higher real rates",
+                "Expansive policies": "Positive from currency debasement fears"
+            },
+            "allocazione_range": "5-10% as portfolio hedge",
+            "correlazioni": "Low correlation with other assets, inverse with USD"
+        },
+
+        "Bonds 7-10 Years": {
+            "descrizione": "Government and corporate debt securities with medium-long term maturity with significant duration and greater sensitivity to monetary policy expectations.",
+            "performance_storica": {
+                "20_anni": "4.8%",
+                "10_anni": "3.2%",
+                "5_anni": "0.8%",
+                "1_anno": "1.4%",
+                "indice_riferimento": "10-Year Treasury Note"
+            },
+            "punti_forza": [
+                "Potentially attractive yields",
+                "Strong potential capital gains if rates fall",
+                "Significant diversification vs equities",
+                "Deflationary hedge",
+                "Benchmark for many pension funds"
+            ],
+            "punti_debolezza": [
+                "High interest rate sensitivity",
+                "Significant volatility",
+                "High duration risk",
+                "Very negative performance with inflation/rising rates"
+            ],
+            "scenari": {
+                "Economic growth": "Significantly negative performance",
+                "Recession": "Very positive performance (+10-20%)",
+                "High inflation": "Very negative performance (-10-20%)",
+                "Restrictive policies": "Very negative performance",
+                "Expansive policies": "Strong positive performance"
+            },
+            "allocazione_range": "5-20% for duration diversification",
+            "correlazioni": "Strong negative correlation with equities, negative correlation with rates"
+        },
+
+        "REITs": {
+            "descrizione": "Real Estate Investment Trusts providing exposure to real estate markets through publicly traded securities.",
+            "performance_storica": {
+                "20_anni": "7.2%",
+                "10_anni": "8.4%",
+                "5_anni": "5.8%",
+                "1_anno": "11.2%",
+                "indice_riferimento": "FTSE Nareit All REITs Index"
+            },
+            "punti_forza": [
+                "Regular dividend income",
+                "Real estate exposure without direct ownership",
+                "Professional management",
+                "Liquidity compared to direct real estate",
+                "Inflation hedge potential"
+            ],
+            "punti_debolezza": [
+                "Interest rate sensitivity",
+                "Real estate cycle dependency",
+                "Lower diversification than expected",
+                "Management fees",
+                "Tax complexity"
+            ],
+            "scenari": {
+                "Economic growth": "Positive performance from occupancy and rent growth",
+                "Recession": "Negative performance from economic weakness",
+                "High inflation": "Mixed performance (input costs vs rent increases)",
+                "Restrictive policies": "Negative pressure from higher discount rates",
+                "Expansive policies": "Positive support from lower rates"
+            },
+            "allocazione_range": "5-15% for real estate exposure",
+            "correlazioni": "Moderate correlation with equities, sensitive to interest rates"
+        }
+    }
+
+    ASSET_DATA_IT = {
+        "Azioni Globali (Market Cap)": {
+            "descrizione": "Investimenti azionari diversificati a livello mondiale ponderati per capitalizzazione di mercato, che rappresentano quote di proprietà nelle maggiori aziende quotate globalmente.",
+            "performance_storica": {
+                "20_anni": "7.0%",
+                "10_anni": "10.6%",
+                "5_anni": "14.4%",
+                "1_anno": "14.9%",
+                "indice_riferimento": "MSCI World Index"
+            },
+            "punti_forza": [
+                "Potenziale di crescita a lungo termine",
+                "Protezione storica contro l'inflazione",
+                "Liquidità elevata",
+                "Diversificazione geografica e settoriale automatica",
+                "Potenziali dividendi",
+                "Esposizione alle aziende più grandi e stabili"
+            ],
+            "punti_debolezza": [
+                "Volatilità elevata nel breve periodo",
+                "Rischio di perdite significative",
+                "Dipendenza dai cicli economici",
+                "Rischio valutario per investitori locali",
+                "Concentrazione verso mega-cap"
+            ],
+            "scenari": {
+                "Crescita economica": "Performance positiva (+8-12% annuo)",
+                "Recessione": "Performance negativa (-15-30%)",
+                "Inflazione elevata": "Performance mista (dipende dalla capacità di pricing power)",
+                "Politiche restrittive": "Pressione negativa per tassi più alti",
+                "Politiche espansive": "Supporto positivo per liquidità abbondante"
+            },
+            "allocazione_range": "40-70% per investitori con orizzonte lungo termine",
+            "correlazioni": "Correlazione negativa con obbligazioni lunghe, positiva con materie prime"
+        },
+        
+        "Mercati Emergenti": {
+            "descrizione": "Azioni di aziende localizzate in paesi in via di sviluppo con economie in rapida crescita.",
+            "performance_storica": {
+                "20_anni": "4.3%",
+                "10_anni": "6.1%",
+                "5_anni": "5.6%",
+                "1_anno": "15.9%",
+                "indice_riferimento": "MSCI Emerging Markets Index"
+            },
+            "punti_forza": [
+                "Potenziale di crescita superiore ai mercati sviluppati",
+                "Valutazioni spesso più attraenti",
+                "Benefici demografici (popolazione giovane)",
+                "Diversificazione geografica",
+                "Esposizione a trend di crescita globali"
+            ],
+            "punti_debolezza": [
+                "Volatilità molto elevata",
+                "Rischi politici e regolamentari",
+                "Liquidità inferiore",
+                "Rischio valutario significativo",
+                "Correlazione elevata nei momenti di stress"
+            ],
+            "scenari": {
+                "Crescita economica": "Outperformance vs mercati sviluppati (+10-15%)",
+                "Recessione": "Underperformance significativa (-25-40%)",
+                "Inflazione elevata": "Performance mista, alcuni paesi beneficiano",
+                "Politiche restrittive": "Pressione per deflussi di capitali",
+                "Politiche espansive": "Forte attrattiva per yield hunting"
+            },
+            "allocazione_range": "5-15% come componente satellite del portafoglio",
+            "correlazioni": "Alta correlazione con azioni globali, sensibili al dollaro USA"
+        },
+
+        "Oro": {
+            "descrizione": "Metallo prezioso considerato riserva di valore e copertura contro la svalutazione valutaria e l'instabilità geopolitica.",
+            "performance_storica": {
+                "20_anni": "8.4%",
+                "10_anni": "4.2%",
+                "5_anni": "7.8%",
+                "1_anno": "27.0%",
+                "indice_riferimento": "Prezzo Spot Oro (USD)"
+            },
+            "punti_forza": [
+                "Copertura storica contro l'inflazione",
+                "Riserva di valore durante le crisi",
+                "Diversificazione del portafoglio",
+                "Nessun rischio di controparte",
+                "Riconoscimento e liquidità globali"
+            ],
+            "punti_debolezza": [
+                "Nessuna generazione di reddito",
+                "Alta volatilità nel breve termine",
+                "Costi di stoccaggio e assicurazione",
+                "Sensibile ai tassi di interesse reali",
+                "Rischio valutario (denominato in USD)"
+            ],
+            "scenari": {
+                "Crescita economica": "Performance moderatamente negativa",
+                "Recessione": "Performance fortemente positiva (bene rifugio)",
+                "Inflazione elevata": "Performance storicamente positiva",
+                "Politiche restrittive": "Pressione negativa per tassi reali più alti",
+                "Politiche espansive": "Positivo per timori di svalutazione valutaria"
+            },
+            "allocazione_range": "5-10% come copertura del portafoglio",
+            "correlazioni": "Bassa correlazione con altri asset, inversa con USD"
+        },
+
+        "Obbligazioni 7-10 anni": {
+            "descrizione": "Titoli di debito governativi e corporate a medio-lungo termine con duration significativa e maggiore sensibilità alle aspettative di politica monetaria.",
+            "performance_storica": {
+                "20_anni": "4.8%",
+                "10_anni": "3.2%",
+                "5_anni": "0.8%",
+                "1_anno": "1.4%",
+                "indice_riferimento": "BTP 10 anni"
+            },
+            "punti_forza": [
+                "Rendimenti potenzialmente attraenti",
+                "Forti capital gain potenziali se tassi scendono",
+                "Diversificazione significativa vs azioni",
+                "Copertura deflazionistica",
+                "Benchmark per molti fondi pensione"
+            ],
+            "punti_debolezza": [
+                "Alta sensibilità ai tassi di interesse",
+                "Volatilità significativa",
+                "Rischio di duration elevato",
+                "Performance molto negativa con inflazione/rialzo tassi"
+            ],
+            "scenari": {
+                "Crescita economica": "Performance significativamente negativa",
+                "Recessione": "Performance molto positiva (+10-20%)",
+                "Inflazione elevata": "Performance molto negativa (-10-20%)",
+                "Politiche restrittive": "Performance molto negativa",
+                "Politiche espansive": "Performance fortemente positiva"
+            },
+            "allocazione_range": "5-20% per diversificazione duration",
+            "correlazioni": "Correlazione negativa forte con azioni, correlazione negativa con tassi"
+        },
+
+        "REIT": {
+            "descrizione": "Real Estate Investment Trust che forniscono esposizione ai mercati immobiliari attraverso titoli quotati in borsa.",
+            "performance_storica": {
+                "20_anni": "7.2%",
+                "10_anni": "8.4%",
+                "5_anni": "5.8%",
+                "1_anno": "11.2%",
+                "indice_riferimento": "FTSE Nareit All REITs Index"
+            },
+            "punti_forza": [
+                "Reddito regolare da dividendi",
+                "Esposizione immobiliare senza proprietà diretta",
+                "Gestione professionale",
+                "Liquidità rispetto al mattone",
+                "Potenziale copertura dall'inflazione"
+            ],
+            "punti_debolezza": [
+                "Sensibilità ai tassi di interesse",
+                "Dipendenza dai cicli immobiliari",
+                "Diversificazione inferiore alle aspettative",
+                "Commissioni di gestione",
+                "Complessità fiscale"
+            ],
+            "scenari": {
+                "Crescita economica": "Performance positiva per occupazione e crescita affitti",
+                "Recessione": "Performance negativa per debolezza economica",
+                "Inflazione elevata": "Performance mista (costi input vs aumenti affitti)",
+                "Politiche restrittive": "Pressione negativa per tassi di sconto più alti",
+                "Politiche espansive": "Supporto positivo per tassi più bassi"
+            },
+            "allocazione_range": "5-15% per esposizione immobiliare",
+            "correlazioni": "Correlazione moderata con azioni, sensibili ai tassi di interesse"
+        }
+    }
+
+    # UI text
+    UI_TEXT_EN = {
+        "title": "Financial Asset Analyzer",
+        "subtitle": "Educational analysis of different financial assets",
+        "sidebar_title": "Asset Selection",
+        "language_label": "Language",
+        "asset_label": "Select Asset",
+        "analysis_title": "Asset Analysis: ",
+        "description_header": "📖 Description",
+        "performance_header": "📊 Historical Performance (Annualized)",
+        "strengths_header": "✅ Strengths",
+        "weaknesses_header": "⚠️ Weaknesses", 
+        "scenarios_header": "📊 Market Scenarios Performance",
+        "allocation_header": "💼 Indicative Allocation Range",
+        "correlations_header": "🔗 Correlations with Other Assets",
+        "summary_header": "📝 Educational Summary",
+        "warning": "⚠️ **Important Disclaimer**: This information is for educational purposes only and does not constitute personalized financial advice.",
+        "visualization_title": "📈 Performance Visualization",
+        "heatmap_title": "Asset Performance Heatmap by Market Scenario",
+        "allocation_pie_title": "Sample Portfolio Allocation",
+        "performance_note": "📌 **Note**: Historical performance data is based on relevant market indices and is not a guarantee of future results. Past performance does not predict future returns."
+    }
+
+    UI_TEXT_IT = {
+        "title": "Analizzatore Asset Finanziari",
+        "subtitle": "Analisi educativa di diversi asset finanziari",
+        "sidebar_title": "Selezione Asset",
+        "language_label": "Lingua",
+        "asset_label": "Seleziona Asset",
+        "analysis_title": "Analisi Asset: ",
+        "description_header": "📖 Descrizione",
+        "performance_header": "📊 Performance Storica (Annualizzata)",
+        "strengths_header": "✅ Punti di Forza",
+        "weaknesses_header": "⚠️ Punti di Debolezza",
+        "scenarios_header": "📊 Performance negli Scenari di Mercato",
+        "allocation_header": "💼 Range di Allocazione Indicativo",
+        "correlations_header": "🔗 Correlazioni con Altri Asset",
+        "summary_header": "📝 Riassunto Educativo",
+        "warning": "⚠️ **Importante Disclaimer**: Queste informazioni sono a scopo puramente educativo e non costituiscono consigli finanziari personalizzati.",
+        "visualization_title": "📈 Visualizzazione Performance",
+        "heatmap_title": "Heatmap Performance Asset per Scenario di Mercato",
+        "allocation_pie_title": "Allocazione Portfolio di Esempio",
+        "performance_note": "📌 **Nota**: I dati di performance storica sono basati su indici di mercato rilevanti e non garantiscono risultati futuri. Le performance passate non predicono i rendimenti futuri."
+    }
 
 # Configure page
 st.set_page_config(
