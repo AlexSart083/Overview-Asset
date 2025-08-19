@@ -1,7 +1,14 @@
-# Asset data in Italian
+# Enhanced asset_data_it.py with historical performance data
 ASSET_DATA_IT = {
     "Azioni Globali (Market Cap)": {
         "descrizione": "Investimenti azionari diversificati a livello mondiale ponderati per capitalizzazione di mercato, che rappresentano quote di proprietà nelle maggiori aziende quotate globalmente.",
+        "performance_storica": {
+            "20_anni": "7.0%",
+            "10_anni": "10.6%",
+            "5_anni": "14.4%",
+            "1_anno": "14.9%",
+            "indice_riferimento": "MSCI World Index"
+        },
         "punti_forza": [
             "Potenziale di crescita a lungo termine",
             "Protezione storica contro l'inflazione",
@@ -30,6 +37,13 @@ ASSET_DATA_IT = {
 
     "Azioni Momentum": {
         "descrizione": "Strategia che investe in azioni che hanno mostrato performance positive nel recente passato, sfruttando la tendenza dei titoli vincenti a continuare a sovraperformare nel breve-medio termine.",
+        "performance_storica": {
+            "20_anni": "8.5%",
+            "10_anni": "12.8%",
+            "5_anni": "16.2%",
+            "1_anno": "18.5%",
+            "indice_riferimento": "MSCI World Momentum Index"
+        },
         "punti_forza": [
             "Sfrutta trend di mercato consolidati",
             "Potenziale outperformance in mercati rialzisti",
@@ -56,6 +70,13 @@ ASSET_DATA_IT = {
 
     "Azioni Quality": {
         "descrizione": "Investimenti in aziende con fondamentali solidi: alta redditività, bassa leva finanziaria, crescita stabile degli utili e gestione efficiente.",
+        "performance_storica": {
+            "20_anni": "7.8%",
+            "10_anni": "11.2%",
+            "5_anni": "13.8%",
+            "1_anno": "12.4%",
+            "indice_riferimento": "MSCI World Quality Index"
+        },
         "punti_forza": [
             "Minore volatilità rispetto al mercato generale",
             "Migliore resistenza nelle recessioni",
@@ -83,6 +104,13 @@ ASSET_DATA_IT = {
 
     "Azioni Value": {
         "descrizione": "Strategia che investe in azioni considerate sottovalutate dal mercato rispetto ai loro fondamentali, spesso con P/E bassi e rendimenti da dividendi elevati.",
+        "performance_storica": {
+            "20_anni": "6.2%",
+            "10_anni": "8.9%",
+            "5_anni": "11.5%",
+            "1_anno": "13.7%",
+            "indice_riferimento": "MSCI World Value Index"
+        },
         "punti_forza": [
             "Potenziale di recupero di valore",
             "Valutazioni attraenti",
@@ -110,6 +138,13 @@ ASSET_DATA_IT = {
 
     "Azioni Minimum Volatility": {
         "descrizione": "Strategia che seleziona azioni con la minore volatilità storica, mirando a ridurre il rischio complessivo del portafoglio azionario.",
+        "performance_storica": {
+            "20_anni": "6.8%",
+            "10_anni": "9.4%",
+            "5_anni": "11.2%",
+            "1_anno": "10.8%",
+            "indice_riferimento": "MSCI World Minimum Volatility Index"
+        },
         "punti_forza": [
             "Volatilità significativamente ridotta",
             "Migliore risk-adjusted return",
@@ -136,6 +171,13 @@ ASSET_DATA_IT = {
 
     "Azioni Small Cap": {
         "descrizione": "Investimenti in aziende a piccola capitalizzazione con maggiore potenziale di crescita ma anche maggiore rischio e volatilità.",
+        "performance_storica": {
+            "20_anni": "8.2%",
+            "10_anni": "11.8%",
+            "5_anni": "13.4%",
+            "1_anno": "15.2%",
+            "indice_riferimento": "MSCI World Small Cap Index"
+        },
         "punti_forza": [
             "Maggiore potenziale di crescita",
             "Possibilità di scoprire aziende prima del mercato",
@@ -163,6 +205,13 @@ ASSET_DATA_IT = {
     
     "Mercati Emergenti": {
         "descrizione": "Azioni di aziende localizzate in paesi in via di sviluppo con economie in rapida crescita.",
+        "performance_storica": {
+            "20_anni": "4.3%",
+            "10_anni": "6.1%",
+            "5_anni": "5.6%",
+            "1_anno": "15.9%",
+            "indice_riferimento": "MSCI Emerging Markets Index"
+        },
         "punti_forza": [
             "Potenziale di crescita superiore ai mercati sviluppati",
             "Valutazioni spesso più attraenti",
@@ -190,6 +239,13 @@ ASSET_DATA_IT = {
 
     "Oro": {
         "descrizione": "Metallo prezioso considerato riserva di valore e copertura contro la svalutazione valutaria e l'instabilità geopolitica.",
+        "performance_storica": {
+            "20_anni": "8.4%",
+            "10_anni": "4.2%",
+            "5_anni": "7.8%",
+            "1_anno": "27.0%",
+            "indice_riferimento": "Prezzo Spot Oro (USD)"
+        },
         "punti_forza": [
             "Copertura storica contro l'inflazione",
             "Riserva di valore durante le crisi",
@@ -217,6 +273,13 @@ ASSET_DATA_IT = {
 
     "Argento": {
         "descrizione": "Metallo prezioso con doppia natura di bene rifugio e commodity industriale, più volatile dell'oro.",
+        "performance_storica": {
+            "20_anni": "6.8%",
+            "10_anni": "2.1%",
+            "5_anni": "9.2%",
+            "1_anno": "32.5%",
+            "indice_riferimento": "Prezzo Spot Argento (USD)"
+        },
         "punti_forza": [
             "Doppia domanda: investimento e industriale",
             "Maggiore volatilità può offrire opportunità",
@@ -244,6 +307,13 @@ ASSET_DATA_IT = {
 
     "Materie Prime": {
         "descrizione": "Materie prime e prodotti agricoli primari negoziati sui mercati globali, inclusi energia, metalli industriali e prodotti agricoli.",
+        "performance_storica": {
+            "20_anni": "4.8%",
+            "10_anni": "3.2%",
+            "5_anni": "8.1%",
+            "1_anno": "12.4%",
+            "indice_riferimento": "Bloomberg Commodity Index"
+        },
         "punti_forza": [
             "Protezione dall'inflazione",
             "Benefici di diversificazione",
@@ -271,6 +341,13 @@ ASSET_DATA_IT = {
 
     "REIT": {
         "descrizione": "Real Estate Investment Trust che forniscono esposizione ai mercati immobiliari attraverso titoli quotati in borsa.",
+        "performance_storica": {
+            "20_anni": "7.2%",
+            "10_anni": "8.4%",
+            "5_anni": "5.8%",
+            "1_anno": "11.2%",
+            "indice_riferimento": "FTSE Nareit All REITs Index"
+        },
         "punti_forza": [
             "Reddito regolare da dividendi",
             "Esposizione immobiliare senza proprietà diretta",
@@ -298,6 +375,13 @@ ASSET_DATA_IT = {
 
     "Obbligazioni 0-1 anni": {
         "descrizione": "Titoli di debito governativi e corporate a brevissimo termine con scadenza entro un anno, minimal duration risk.",
+        "performance_storica": {
+            "20_anni": "2.8%",
+            "10_anni": "1.2%",
+            "5_anni": "2.1%",
+            "1_anno": "4.8%",
+            "indice_riferimento": "Tasso BOT 3 mesi"
+        },
         "punti_forza": [
             "Rischio di tasso di interesse minimo",
             "Alta liquidità",
@@ -324,6 +408,13 @@ ASSET_DATA_IT = {
 
     "Obbligazioni 1-3 anni": {
         "descrizione": "Titoli di debito governativi e corporate a breve termine con duration limitata e buon compromesso rischio/rendimento.",
+        "performance_storica": {
+            "20_anni": "3.2%",
+            "10_anni": "1.8%",
+            "5_anni": "2.4%",
+            "1_anno": "4.2%",
+            "indice_riferimento": "BTP 2 anni"
+        },
         "punti_forza": [
             "Rischio di tasso contenuto",
             "Rendimenti superiori al brevissimo termine",
@@ -350,6 +441,13 @@ ASSET_DATA_IT = {
 
     "Obbligazioni 3-7 anni": {
         "descrizione": "Titoli di debito governativi e corporate a medio termine che offrono rendimenti più elevati ma con maggiore sensibilità ai tassi.",
+        "performance_storica": {
+            "20_anni": "4.1%",
+            "10_anni": "2.8%",
+            "5_anni": "1.2%",
+            "1_anno": "2.8%",
+            "indice_riferimento": "BTP 5 anni"
+        },
         "punti_forza": [
             "Rendimenti più interessanti",
             "Sweet spot duration/rendimento",
@@ -376,6 +474,13 @@ ASSET_DATA_IT = {
 
     "Obbligazioni 7-10 anni": {
         "descrizione": "Titoli di debito governativi e corporate a medio-lungo termine con duration significativa e maggiore sensibilità alle aspettative di politica monetaria.",
+        "performance_storica": {
+            "20_anni": "4.8%",
+            "10_anni": "3.2%",
+            "5_anni": "0.8%",
+            "1_anno": "1.4%",
+            "indice_riferimento": "BTP 10 anni"
+        },
         "punti_forza": [
             "Rendimenti potenzialmente attraenti",
             "Forti capital gain potenziali se tassi scendono",
@@ -402,6 +507,13 @@ ASSET_DATA_IT = {
 
     "Obbligazioni >10 anni": {
         "descrizione": "Titoli di debito governativi e corporate a lungo termine con duration massima e massima sensibilità alle variazioni dei tassi di interesse.",
+        "performance_storica": {
+            "20_anni": "5.2%",
+            "10_anni": "4.1%",
+            "5_anni": "-0.2%",
+            "1_anno": "0.8%",
+            "indice_riferimento": "BTP 30 anni"
+        },
         "punti_forza": [
             "Rendimenti potenzialmente più alti",
             "Massimi capital gain potenziali",
@@ -429,6 +541,13 @@ ASSET_DATA_IT = {
 
     "Bond High Yield": {
         "descrizione": "Obbligazioni societarie ad alto rendimento emesse da aziende con rating creditizio inferiore (junk bonds), che offrono rendimenti superiori per compensare il maggiore rischio di credito.",
+        "performance_storica": {
+            "20_anni": "6.8%",
+            "10_anni": "5.4%",
+            "5_anni": "4.2%",
+            "1_anno": "8.9%",
+            "indice_riferimento": "Bloomberg High Yield Corporate Bond Index"
+        },
         "punti_forza": [
             "Rendimenti significativamente più alti",
             "Minore sensibilità ai tassi di interesse",
@@ -456,6 +575,13 @@ ASSET_DATA_IT = {
 
     "Bond Inflation Linked": {
         "descrizione": "Obbligazioni il cui capitale e cedole sono indicizzati all'inflazione, progettate per proteggere il potere d'acquisto dell'investitore (TIPS, BTP€i).",
+        "performance_storica": {
+            "20_anni": "3.8%",
+            "10_anni": "2.1%",
+            "5_anni": "3.4%",
+            "1_anno": "1.8%",
+            "indice_riferimento": "BTP€i / TIPS Index"
+        },
         "punti_forza": [
             "Protezione diretta dall'inflazione",
             "Rendimento reale garantito",
@@ -483,6 +609,13 @@ ASSET_DATA_IT = {
 
     "Bond Convertibili": {
         "descrizione": "Obbligazioni che possono essere convertite in azioni della società emittente a condizioni predeterminate, offrendo caratteristiche ibride debt/equity.",
+        "performance_storica": {
+            "20_anni": "5.8%",
+            "10_anni": "7.2%",
+            "5_anni": "8.4%",
+            "1_anno": "12.1%",
+            "indice_riferimento": "Refinitiv Global Convertible Bond Index"
+        },
         "punti_forza": [
             "Partecipazione all'upside azionario",
             "Protezione downside rispetto alle azioni",
@@ -510,6 +643,13 @@ ASSET_DATA_IT = {
 
     "Obbligazioni Subordinate": {
         "descrizione": "Titoli di debito che in caso di liquidazione vengono rimborsati dopo i creditori senior, offrendo rendimenti più alti per il maggiore rischio (Tier 2, AT1).",
+        "performance_storica": {
+            "20_anni": "5.2%",
+            "10_anni": "4.8%",
+            "5_anni": "3.1%",
+            "1_anno": "7.4%",
+            "indice_riferimento": "Bank Subordinated Debt Index"
+        },
         "punti_forza": [
             "Rendimenti significativamente superiori",
             "Emittenti spesso di alta qualità (banche, utilities)",
@@ -537,6 +677,13 @@ ASSET_DATA_IT = {
 
     "Azionario High Dividend": {
         "descrizione": "Strategia che investe in azioni di società che distribuiscono dividendi elevati e sostenibili, spesso società mature con flussi di cassa stabili.",
+        "performance_storica": {
+            "20_anni": "6.8%",
+            "10_anni": "9.2%",
+            "5_anni": "10.4%",
+            "1_anno": "11.8%",
+            "indice_riferimento": "MSCI World High Dividend Yield Index"
+        },
         "punti_forza": [
             "Reddito corrente elevato e regolare",
             "Minore volatilità rispetto al mercato generale",
@@ -572,6 +719,7 @@ UI_TEXT_IT = {
     "asset_label": "Seleziona Asset",
     "analysis_title": "Analisi Asset: ",
     "description_header": "📖 Descrizione",
+    "performance_header": "📊 Performance Storica (Annualizzata)",
     "strengths_header": "✅ Punti di Forza",
     "weaknesses_header": "⚠️ Punti di Debolezza",
     "scenarios_header": "📊 Performance negli Scenari di Mercato",
@@ -581,5 +729,6 @@ UI_TEXT_IT = {
     "warning": "⚠️ **Importante Disclaimer**: Queste informazioni sono a scopo puramente educativo e non costituiscono consigli finanziari personalizzati.",
     "visualization_title": "📈 Visualizzazione Performance",
     "heatmap_title": "Heatmap Performance Asset per Scenario di Mercato",
-    "allocation_pie_title": "Allocazione Portfolio di Esempio"
+    "allocation_pie_title": "Allocazione Portfolio di Esempio",
+    "performance_note": "📌 **Nota**: I dati di performance storica sono basati su indici di mercato rilevanti e non garantiscono risultati futuri. Le performance passate non predicono i rendimenti futuri."
 }
