@@ -16,15 +16,25 @@ def load_all_assets(language: str = "english") -> Dict[str, Any]:
     Load all asset data for specified language
     
     Args:
-        language: "english" or "italian"
+        language: "english", "italian", "italiano", or "inglese"
         
     Returns:
         Dictionary containing all asset data
     """
     all_assets = {}
     
+    # Normalize language input
+    lang_lower = language.lower()
+    if lang_lower in ["italiano", "italian", "it"]:
+        target_language = "italian"
+    elif lang_lower in ["english", "inglese", "en"]:
+        target_language = "english"
+    else:
+        logger.error(f"Unsupported language: {language}")
+        raise ValueError(f"Language '{language}' not supported. Use 'english' or 'italiano'")
+    
     try:
-        if language.lower() == "english":
+        if target_language == "english":
             from .english.equity_assets_en import EQUITY_ASSETS_EN
             from .english.bond_assets_en import BOND_ASSETS_EN  
             from .english.alternative_assets_en import ALTERNATIVE_ASSETS_EN
@@ -33,7 +43,7 @@ def load_all_assets(language: str = "english") -> Dict[str, Any]:
             all_assets.update(BOND_ASSETS_EN)
             all_assets.update(ALTERNATIVE_ASSETS_EN)
             
-        elif language.lower() == "italian":
+        elif target_language == "italian":
             from .italian.equity_assets_it import EQUITY_ASSETS_IT
             from .italian.bond_assets_it import BOND_ASSETS_IT
             from .italian.alternative_assets_it import ALTERNATIVE_ASSETS_IT
@@ -42,18 +52,14 @@ def load_all_assets(language: str = "english") -> Dict[str, Any]:
             all_assets.update(BOND_ASSETS_IT)
             all_assets.update(ALTERNATIVE_ASSETS_IT)
             
-        else:
-            logger.error(f"Unsupported language: {language}")
-            raise ValueError(f"Language '{language}' not supported")
-            
     except ImportError as e:
-        logger.error(f"Error loading data for language {language}: {e}")
+        logger.error(f"Error loading data for language {target_language}: {e}")
         raise
     except Exception as e:
         logger.error(f"Unexpected error loading assets: {e}")
         raise
         
-    logger.info(f"Loaded {len(all_assets)} assets for language: {language}")
+    logger.info(f"Loaded {len(all_assets)} assets for language: {target_language}")
     return all_assets
 
 def load_ui_text(language: str = "english") -> Dict[str, str]:
@@ -61,24 +67,31 @@ def load_ui_text(language: str = "english") -> Dict[str, str]:
     Load UI text for specified language
     
     Args:
-        language: "english" or "italian"
+        language: "english", "italian", "italiano", or "inglese"
         
     Returns:
         Dictionary containing UI text
     """
+    # Normalize language input
+    lang_lower = language.lower()
+    if lang_lower in ["italiano", "italian", "it"]:
+        target_language = "italian"
+    elif lang_lower in ["english", "inglese", "en"]:
+        target_language = "english"
+    else:
+        logger.error(f"Unsupported language: {language}")
+        raise ValueError(f"Language '{language}' not supported. Use 'english' or 'italiano'")
+    
     try:
-        if language.lower() == "english":
+        if target_language == "english":
             from .english.ui_text_en import UI_TEXT_EN
             return UI_TEXT_EN
-        elif language.lower() == "italian":
+        elif target_language == "italian":
             from .italian.ui_text_it import UI_TEXT_IT
             return UI_TEXT_IT
-        else:
-            logger.error(f"Unsupported language: {language}")
-            raise ValueError(f"Language '{language}' not supported")
             
     except ImportError as e:
-        logger.error(f"Error loading UI text for language {language}: {e}")
+        logger.error(f"Error loading UI text for language {target_language}: {e}")
         raise
     except Exception as e:
         logger.error(f"Unexpected error loading UI text: {e}")
@@ -126,12 +139,21 @@ def get_asset_categories(language: str = "english") -> Dict[str, list]:
     Get asset categories for navigation with Government/Corporate separation
     
     Args:
-        language: "english" or "italian"
+        language: "english", "italian", "italiano", or "inglese"
         
     Returns:
         Dictionary with asset categories
     """
-    if language.lower() == "english":
+    # Normalize language input
+    lang_lower = language.lower()
+    if lang_lower in ["italiano", "italian", "it"]:
+        target_language = "italian"
+    elif lang_lower in ["english", "inglese", "en"]:
+        target_language = "english"
+    else:
+        target_language = "english"  # Default fallback
+    
+    if target_language == "english":
         return {
             "📈 Equity Strategies": [
                 "Global Equities (Market Cap)", "Momentum Equities", "Quality Equities", 
@@ -181,12 +203,19 @@ def get_bond_risk_explanation(language: str = "english") -> Dict[str, str]:
     Provide educational explanation of Government vs Corporate bond differences
     
     Args:
-        language: "english" or "italian"
+        language: "english", "italian", "italiano", or "inglese"
         
     Returns:
         Dictionary with explanatory text
     """
-    if language.lower() == "english":
+    # Normalize language input
+    lang_lower = language.lower()
+    if lang_lower in ["italiano", "italian", "it"]:
+        target_language = "italian"
+    else:
+        target_language = "english"
+    
+    if target_language == "english":
         return {
             "government_explanation": """
             **🏛️ Government Bonds** represent debt issued by European governments (Germany, France, Italy, etc.). 
@@ -237,12 +266,19 @@ def get_bond_allocation_guidance(language: str = "english") -> Dict[str, str]:
     Provide allocation guidance for Government vs Corporate bonds
     
     Args:
-        language: "english" or "italian"
+        language: "english", "italian", "italiano", or "inglese"
         
     Returns:
         Dictionary with allocation guidance
     """
-    if language.lower() == "english":
+    # Normalize language input
+    lang_lower = language.lower()
+    if lang_lower in ["italiano", "italian", "it"]:
+        target_language = "italian"
+    else:
+        target_language = "english"
+    
+    if target_language == "english":
         return {
             "conservative_portfolio": """
             **Conservative Portfolio (Low Risk Tolerance)**:
@@ -312,6 +348,80 @@ def get_bond_allocation_guidance(language: str = "english") -> Dict[str, str]:
         }
 
 def get_educational_content(language: str = "english") -> Dict[str, str]:
+    """
+    Provide educational content about bond investing
+    
+    Args:
+        language: "english", "italian", "italiano", or "inglese"
+        
+    Returns:
+        Dictionary with educational content
+    """
+    # Normalize language input
+    lang_lower = language.lower()
+    if lang_lower in ["italiano", "italian", "it"]:
+        target_language = "italian"
+    else:
+        target_language = "english"
+    
+    if target_language == "english":
+        return {
+            "duration_risk": """
+            **Understanding Duration Risk**:
+            Duration measures how much a bond's price will change when interest rates move. 
+            - **Short Duration (0-3 years)**: Small price changes, lower risk
+            - **Medium Duration (3-7 years)**: Moderate price changes, balanced risk/return
+            - **Long Duration (7+ years)**: Large price changes, higher risk but potential for bigger gains
+            """,
+            "credit_risk": """
+            **Understanding Credit Risk**:
+            Credit risk is the chance that the bond issuer won't be able to make payments.
+            - **Government bonds**: Virtually no credit risk (governments can print money)
+            - **Investment Grade Corporate**: Low credit risk (strong companies)
+            - **High Yield**: Higher credit risk but higher yields to compensate
+            """,
+            "interest_rate_environment": """
+            **Interest Rate Scenarios**:
+            - **Rising Rates**: Bond prices fall (longer duration bonds fall more)
+            - **Falling Rates**: Bond prices rise (longer duration bonds rise more)
+            - **Stable Rates**: Bonds earn their coupon/yield to maturity
+            """,
+            "diversification_strategy": """
+            **Diversification Strategy**:
+            - Mix government and corporate bonds for balance of safety and yield
+            - Spread across different durations to manage interest rate risk
+            - Consider adding specialized bonds (inflation-linked, convertible) for specific risks
+            """
+        }
+    else:  # Italian
+        return {
+            "duration_risk": """
+            **Comprendere il Rischio Duration**:
+            La duration misura quanto cambia il prezzo di un'obbligazione al variare dei tassi di interesse.
+            - **Duration Breve (0-3 anni)**: Piccole variazioni di prezzo, rischio basso
+            - **Duration Media (3-7 anni)**: Variazioni moderate, rischio/rendimento bilanciato
+            - **Duration Lunga (7+ anni)**: Grandi variazioni di prezzo, rischio alto ma potenziali guadagni maggiori
+            """,
+            "credit_risk": """
+            **Comprendere il Rischio di Credito**:
+            Il rischio di credito è la probabilità che l'emittente non riesca a effettuare i pagamenti.
+            - **Obbligazioni governative**: Rischio di credito praticamente nullo (i governi possono stampare moneta)
+            - **Corporate Investment Grade**: Basso rischio di credito (aziende solide)
+            - **High Yield**: Rischio di credito più alto ma rendimenti superiori come compenso
+            """,
+            "interest_rate_environment": """
+            **Scenari dei Tassi di Interesse**:
+            - **Tassi in Rialzo**: I prezzi delle obbligazioni scendono (duration lunghe scendono di più)
+            - **Tassi in Ribasso**: I prezzi delle obbligazioni salgono (duration lunghe salgono di più)
+            - **Tassi Stabili**: Le obbligazioni rendono la loro cedola/rendimento a scadenza
+            """,
+            "diversification_strategy": """
+            **Strategia di Diversificazione**:
+            - Mescola obbligazioni governative e corporate per bilanciare sicurezza e rendimento
+            - Distribuisci su diverse duration per gestire il rischio tassi di interesse
+            - Considera l'aggiunta di obbligazioni specializzate (inflation-linked, convertibili) per rischi specifici
+            """
+        }_content(language: str = "english") -> Dict[str, str]:
     """
     Provide educational content about bond investing
     
@@ -387,7 +497,14 @@ _education_cache = {}
 
 def load_with_cache(language: str, force_reload: bool = False):
     """Load data with caching for better performance"""
-    cache_key = language.lower()
+    # Normalize language input
+    lang_lower = language.lower()
+    if lang_lower in ["italiano", "italian", "it"]:
+        cache_key = "italian"
+    elif lang_lower in ["english", "inglese", "en"]:
+        cache_key = "english"
+    else:
+        cache_key = "english"  # Default fallback
     
     if force_reload or cache_key not in _asset_cache:
         _asset_cache[cache_key] = load_all_assets(language)
@@ -405,12 +522,19 @@ def get_bond_comparison_matrix(language: str = "english") -> Dict[str, Any]:
     Create a comparison matrix for different bond types
     
     Args:
-        language: "english" or "italian"
+        language: "english", "italian", "italiano", or "inglese"
         
     Returns:
         Dictionary with comparison matrix data
     """
-    if language.lower() == "english":
+    # Normalize language input
+    lang_lower = language.lower()
+    if lang_lower in ["italiano", "italian", "it"]:
+        target_language = "italian"
+    else:
+        target_language = "english"
+    
+    if target_language == "english":
         bond_types = [
             "Government Bonds 0-1 Years", "Government Bonds 1-3 Years", "Government Bonds 3-7 Years",
             "Corporate Bonds 0-1 Years", "Corporate Bonds 1-3 Years", "Corporate Bonds 3-7 Years",
@@ -442,3 +566,71 @@ def get_bond_comparison_matrix(language: str = "english") -> Dict[str, Any]:
         }
     
     return comparison_matrix
+
+# Language mapping for debugging
+LANGUAGE_MAPPING = {
+    "english": "english",
+    "inglese": "english", 
+    "en": "english",
+    "italiano": "italian",
+    "italian": "italian",
+    "it": "italian"
+}
+
+def normalize_language(language: str) -> str:
+    """
+    Normalize language input to standard format
+    
+    Args:
+        language: Input language string
+        
+    Returns:
+        Normalized language string
+    """
+    lang_lower = language.lower().strip()
+    return LANGUAGE_MAPPING.get(lang_lower, "english")
+
+def debug_language_loading(language: str) -> Dict[str, Any]:
+    """
+    Debug function to check language loading
+    
+    Args:
+        language: Input language
+        
+    Returns:
+        Debug information
+    """
+    normalized = normalize_language(language)
+    
+    debug_info = {
+        "input_language": language,
+        "normalized_language": normalized,
+        "supported_languages": list(LANGUAGE_MAPPING.keys()),
+        "cache_keys": list(_asset_cache.keys()),
+        "available_modules": []
+    }
+    
+    # Check available modules
+    try:
+        if normalized == "english":
+            from .english.equity_assets_en import EQUITY_ASSETS_EN
+            from .english.bond_assets_en import BOND_ASSETS_EN
+            from .english.alternative_assets_en import ALTERNATIVE_ASSETS_EN
+            from .english.ui_text_en import UI_TEXT_EN
+            debug_info["available_modules"].extend([
+                "english.equity_assets_en", "english.bond_assets_en", 
+                "english.alternative_assets_en", "english.ui_text_en"
+            ])
+        elif normalized == "italian":
+            from .italian.equity_assets_it import EQUITY_ASSETS_IT
+            from .italian.bond_assets_it import BOND_ASSETS_IT
+            from .italian.alternative_assets_it import ALTERNATIVE_ASSETS_IT
+            from .italian.ui_text_it import UI_TEXT_IT
+            debug_info["available_modules"].extend([
+                "italian.equity_assets_it", "italian.bond_assets_it", 
+                "italian.alternative_assets_it", "italian.ui_text_it"
+            ])
+    except ImportError as e:
+        debug_info["import_error"] = str(e)
+    
+    return debug_info
