@@ -75,16 +75,20 @@ def categorize_assets(asset_data, language):
                 "Value Equities", "Minimum Volatility Equities", "Small Cap Equities", 
                 "Emerging Markets", "High Dividend Equities"
             ],
-            "💰 Government & Corporate Bonds": [
-                "Bonds 0-1 Years", "Bonds 1-3 Years", "Bonds 3-7 Years", 
-                "Bonds 7-10 Years", "Bonds >10 Years"
+            "🏛️ Government Bonds": [
+                "Government Bonds 0-1 Years", "Government Bonds 1-3 Years", "Government Bonds 3-7 Years", 
+                "Government Bonds 7-10 Years", "Government Bonds >10 Years"
+            ],
+            "🏢 Corporate Bonds": [
+                "Corporate Bonds 0-1 Years", "Corporate Bonds 1-3 Years", "Corporate Bonds 3-7 Years", 
+                "Corporate Bonds 7-10 Years", "Corporate Bonds >10 Years"
             ],
             "🔸 Specialized Bonds": [
                 "High Yield Bonds", "Inflation Linked Bonds", "Convertible Bonds", 
                 "Subordinated Bonds"
             ],
             "🥇 Precious Metals": ["Gold", "Silver"],
-            "🏢 Alternative Assets": ["Commodities", "REITs"]
+            "🏗️ Alternative Assets": ["Commodities", "REITs"]
         }
     else:
         return {
@@ -93,16 +97,20 @@ def categorize_assets(asset_data, language):
                 "Azioni Value", "Azioni Minimum Volatility", "Azioni Small Cap", 
                 "Mercati Emergenti", "Azionario High Dividend"
             ],
-            "💰 Obbligazioni Gov. & Corporate": [
-                "Obbligazioni 0-1 anni", "Obbligazioni 1-3 anni", "Obbligazioni 3-7 anni", 
-                "Obbligazioni 7-10 anni", "Obbligazioni >10 anni"
+            "🏛️ Obbligazioni Governative": [
+                "Bond Governativi 0-1 anni", "Bond Governativi 1-3 anni", "Bond Governativi 3-7 anni", 
+                "Bond Governativi 7-10 anni", "Bond Governativi >10 anni"
+            ],
+            "🏢 Obbligazioni Corporate": [
+                "Bond Corporate 0-1 anni", "Bond Corporate 1-3 anni", "Bond Corporate 3-7 anni", 
+                "Bond Corporate 7-10 anni", "Bond Corporate >10 anni"
             ],
             "🔸 Obbligazioni Specializzate": [
                 "Bond High Yield", "Bond Inflation Linked", "Bond Convertibili", 
                 "Obbligazioni Subordinate"
             ],
             "🥇 Metalli Preziosi": ["Oro", "Argento"],
-            "🏢 Asset Alternativi": ["Materie Prime", "REIT"]
+            "🏗️ Asset Alternativi": ["Materie Prime", "REIT"]
         }
 
 def create_asset_selector(asset_data, categories, ui_text):
@@ -178,7 +186,7 @@ def create_asset_selector(asset_data, categories, ui_text):
     return selected_asset
 
 def create_performance_chart(performance_data, asset_name, ui_text):
-    """Create performance visualization chart"""
+    """Create performance visualization chart with data date"""
     
     periods = ["20_anni", "10_anni", "5_anni", "1_anno"]
     period_labels = {
@@ -218,13 +226,88 @@ def create_performance_chart(performance_data, asset_name, ui_text):
         )
     ])
     
+    # Get data calculation date
+    data_date = performance_data.get('data_calcolo', 'Date not specified')
+    
     fig.update_layout(
         title=f"{ui_text.get('historical_returns', 'Historical Annualized Returns')} - {asset_name}",
         xaxis_title=ui_text.get("time_period", "Time Period"),
         yaxis_title=ui_text.get("annualized_return", "Annualized Return (%)"),
         height=400,
         title_x=0.5,
-        showlegend=False
+        showlegend=False,
+        # Add data date annotation
+        annotations=[
+            dict(
+                x=0.99,
+                y=0.01,
+                xref="paper",
+                yref="paper",
+                text=f"📅 {data_date}",
+                showarrow=False,
+                font=dict(size=10, color="gray"),
+                xanchor="right",
+                yanchor="bottom"
+            )
+        ]
+    )
+    
+    # Add reference line at 0%
+    fig.add_hline(y=0, line_dash="dash", line_color="rgba(255, 0, 0, 0.5)")
+    
+    return fig
+
+def create_performance_comparison_chart(asset_data, selected_assets, ui_text):
+    """Create comparison chart for multiple assets without data dates"""
+    
+    if len(selected_assets) <= 1:
+        return None
+    
+    periods = ["1_anno", "5_anni", "10_anni", "20_anni"]
+    period_labels = {
+        "1_anno": ui_text.get("years_1", "1Y"),
+        "5_anni": ui_text.get("years_5", "5Y"), 
+        "10_anni": ui_text.get("years_10", "10Y"),
+        "20_anni": ui_text.get("years_20", "20Y")
+    }
+    
+    fig = go.Figure()
+    
+    for asset_name in selected_assets:
+        if asset_name in asset_data and "performance_storica" in asset_data[asset_name]:
+            performance_data = asset_data[asset_name]["performance_storica"]
+            
+            performance_values = []
+            labels = []
+            
+            for period in periods:
+                if period in performance_data:
+                    try:
+                        # Remove % sign and convert to float
+                        value = float(performance_data[period].replace('%', ''))
+                        performance_values.append(value)
+                        labels.append(period_labels[period])
+                    except (ValueError, AttributeError):
+                        continue
+            
+            if performance_values:
+                fig.add_trace(go.Scatter(
+                    x=labels,
+                    y=performance_values,
+                    mode='lines+markers',
+                    name=asset_name,
+                    line=dict(width=3),
+                    marker=dict(size=8),
+                    hovertemplate=f"<b>{asset_name}</b><br>%{{x}}: %{{y}}%<extra></extra>"
+                ))
+    
+    fig.update_layout(
+        title=ui_text.get("performance_comparison", "Performance Comparison"),
+        xaxis_title=ui_text.get("time_period", "Time Period"),
+        yaxis_title=ui_text.get("annualized_return", "Annualized Return (%)"),
+        height=500,
+        title_x=0.5,
+        hovermode='x unified'
     )
     
     # Add reference line at 0%
@@ -254,6 +337,7 @@ def create_scenario_heatmap(asset_data, ui_text):
     
     # Create performance matrix
     performance_matrix = []
+    
     for asset in assets:
         row = []
         for scenario in scenarios:
@@ -295,86 +379,62 @@ def create_scenario_heatmap(asset_data, ui_text):
     
     return fig
 
-def create_allocation_pie():
-    """Create sample portfolio allocation pie chart"""
+def display_performance_table_with_date(performance_data, ui_text):
+    """Display performance table with prominent data date"""
     
-    # Sample allocation data
-    allocation_data = {
-        'Asset': ['Global Equities', 'Government Bonds', 'High Yield Bonds', 'REITs', 'Gold', 'Commodities'],
-        'Allocation': [45, 30, 10, 8, 4, 3]
+    # Create nice display table
+    perf_display = {
+        ui_text.get("period", "Period"): [
+            f"20 {ui_text.get('years', 'Years') if 'English' in st.session_state.get('language', 'English') else 'Anni'}",
+            f"10 {ui_text.get('years', 'Years') if 'English' in st.session_state.get('language', 'English') else 'Anni'}",
+            f"5 {ui_text.get('years', 'Years') if 'English' in st.session_state.get('language', 'English') else 'Anni'}",
+            f"1 {ui_text.get('year', 'Year') if 'English' in st.session_state.get('language', 'English') else 'Anno'}"
+        ],
+        ui_text.get("return", "Return"): [
+            performance_data.get("20_anni", "N/A"),
+            performance_data.get("10_anni", "N/A"),
+            performance_data.get("5_anni", "N/A"),
+            performance_data.get("1_anno", "N/A")
+        ]
     }
     
-    df = pd.DataFrame(allocation_data)
+    df_perf = pd.DataFrame(perf_display)
+    st.dataframe(df_perf, hide_index=True, use_container_width=True)
     
-    fig = px.pie(
-        df, 
-        values='Allocation', 
-        names='Asset',
-        title="Sample Conservative Portfolio Allocation (%)"
-    )
+    # Reference index and data date
+    ref_index = performance_data.get('indice_riferimento', 'N/A')
+    data_date = performance_data.get('data_calcolo', 'Date not specified')
     
-    fig.update_layout(title_x=0.5, height=400)
-    
-    return fig
+    st.caption(f"📚 **{ui_text.get('reference_index', 'Reference Index')}:** {ref_index}")
+    st.caption(f"📅 **{ui_text.get('calculation_date', 'Calculation Date')}:** {data_date}")
 
-def create_performance_comparison_chart(asset_data, selected_assets, ui_text):
-    """Create comparison chart for multiple assets"""
+def create_comparison_table_with_dates(asset_data, selected_assets, ui_text):
+    """Create comparison table without showing individual data dates"""
     
-    if len(selected_assets) <= 1:
-        return None
-    
-    periods = ["1_anno", "5_anni", "10_anni", "20_anni"]
-    period_labels = {
-        "1_anno": ui_text.get("years_1", "1Y"),
-        "5_anni": ui_text.get("years_5", "5Y"), 
-        "10_anni": ui_text.get("years_10", "10Y"),
-        "20_anni": ui_text.get("years_20", "20Y")
-    }
-    
-    fig = go.Figure()
-    
+    comparison_data = []
     for asset_name in selected_assets:
         if asset_name in asset_data and "performance_storica" in asset_data[asset_name]:
-            performance_data = asset_data[asset_name]["performance_storica"]
-            
-            performance_values = []
-            labels = []
-            
-            for period in periods:
-                if period in performance_data:
-                    try:
-                        # Remove % sign and convert to float
-                        value = float(performance_data[period].replace('%', ''))
-                        performance_values.append(value)
-                        labels.append(period_labels[period])
-                    except (ValueError, AttributeError):
-                        continue
-            
-            if performance_values:
-                fig.add_trace(go.Scatter(
-                    x=labels,
-                    y=performance_values,
-                    mode='lines+markers',
-                    name=asset_name,
-                    line=dict(width=3),
-                    marker=dict(size=8)
-                ))
+            perf_data = asset_data[asset_name]["performance_storica"]
+            comparison_data.append({
+                "Asset": asset_name,
+                "1Y": perf_data.get("1_anno", "N/A"),
+                "5Y": perf_data.get("5_anni", "N/A"),
+                "10Y": perf_data.get("10_anni", "N/A"),
+                "20Y": perf_data.get("20_anni", "N/A"),
+                ui_text.get("reference", "Reference"): perf_data.get("indice_riferimento", "N/A")
+            })
     
-    fig.update_layout(
-        title=ui_text.get("performance_comparison", "Performance Comparison"),
-        xaxis_title=ui_text.get("time_period", "Time Period"),
-        yaxis_title=ui_text.get("annualized_return", "Annualized Return (%)"),
-        height=500,
-        title_x=0.5,
-        hovermode='x unified'
-    )
+    if comparison_data:
+        comparison_df = pd.DataFrame(comparison_data)
+        st.dataframe(comparison_df, hide_index=True, use_container_width=True)
     
-    # Add reference line at 0%
-    fig.add_hline(y=0, line_dash="dash", line_color="rgba(255, 0, 0, 0.5)")
-    
-    return fig
+    return comparison_data
 
 def main():
+    # Store language in session state
+    if 'language' not in st.session_state:
+        st.session_state.language = "English"
+    
     # Display data source info
     if MODULAR_DATA_AVAILABLE:
         st.sidebar.success("✅ Using modular data structure")
@@ -386,8 +446,9 @@ def main():
     language = st.sidebar.selectbox(
         "Select Language | Seleziona Lingua",
         ["English", "Italiano"],
-        index=0
+        index=0 if st.session_state.language == "English" else 1
     )
+    st.session_state.language = language
     
     # Get data based on language
     try:
@@ -409,7 +470,7 @@ def main():
         equity_count = len([k for k in asset_data.keys() if any(word in k.lower() for word in ['equity', 'azioni', 'momentum', 'quality', 'value', 'small', 'emerging', 'dividend'])])
         st.metric("📈 Equity Strategies", equity_count)
     with col3:
-        bond_count = len([k for k in asset_data.keys() if any(word in k.lower() for word in ['bond', 'obblig', 'yield', 'inflation', 'convert', 'subordin'])])
+        bond_count = len([k for k in asset_data.keys() if any(word in k.lower() for word in ['bond', 'obblig', 'yield', 'inflation', 'convert', 'subordin', 'government', 'corporate', 'governativ'])])
         st.metric("💰 Bond Types", bond_count)
     with col4:
         alt_count = len([k for k in asset_data.keys() if any(word in k.lower() for word in ['gold', 'oro', 'silver', 'argento', 'commodity', 'materie', 'reit'])])
@@ -466,34 +527,11 @@ def main():
             col_perf1, col_perf2 = st.columns([1, 2])
             
             with col_perf1:
-                # Performance table
-                perf_data = asset_info["performance_storica"]
-                
-                # Create nice display table
-                perf_display = {
-                    ui_text.get("period", "Period"): [
-                        f"20 {ui_text.get('years', 'Years') if 'English' in language else 'Anni'}",
-                        f"10 {ui_text.get('years', 'Years') if 'English' in language else 'Anni'}",
-                        f"5 {ui_text.get('years', 'Years') if 'English' in language else 'Anni'}",
-                        f"1 {ui_text.get('year', 'Year') if 'English' in language else 'Anno'}"
-                    ],
-                    ui_text.get("return", "Return"): [
-                        perf_data.get("20_anni", "N/A"),
-                        perf_data.get("10_anni", "N/A"),
-                        perf_data.get("5_anni", "N/A"),
-                        perf_data.get("1_anno", "N/A")
-                    ]
-                }
-                
-                df_perf = pd.DataFrame(perf_display)
-                st.dataframe(df_perf, hide_index=True, use_container_width=True)
-                
-                # Reference index
-                ref_index = perf_data.get('indice_riferimento', 'N/A')
-                st.caption(f"📚 **{ui_text.get('reference_index', 'Reference Index')}:** {ref_index}")
+                # Performance table with date
+                display_performance_table_with_date(asset_info["performance_storica"], ui_text)
             
             with col_perf2:
-                # Performance chart
+                # Performance chart with date
                 perf_chart = create_performance_chart(asset_info["performance_storica"], selected_asset, ui_text)
                 if perf_chart:
                     st.plotly_chart(perf_chart, use_container_width=True)
@@ -582,23 +620,7 @@ def main():
                     
                     # Comparison table
                     st.markdown("#### " + ui_text.get("performance_comparison_table", "Performance Comparison Table"))
-                    
-                    comparison_data = []
-                    for asset_name in selected_assets:
-                        if asset_name in asset_data and "performance_storica" in asset_data[asset_name]:
-                            perf_data = asset_data[asset_name]["performance_storica"]
-                            comparison_data.append({
-                                "Asset": asset_name,
-                                "1Y": perf_data.get("1_anno", "N/A"),
-                                "5Y": perf_data.get("5_anni", "N/A"),
-                                "10Y": perf_data.get("10_anni", "N/A"),
-                                "20Y": perf_data.get("20_anni", "N/A"),
-                                ui_text.get("reference", "Reference"): perf_data.get("indice_riferimento", "N/A")
-                            })
-                    
-                    if comparison_data:
-                        comparison_df = pd.DataFrame(comparison_data)
-                        st.dataframe(comparison_df, hide_index=True, use_container_width=True)
+                    create_comparison_table_with_dates(asset_data, selected_assets, ui_text)
                 else:
                     st.info(ui_text.get("select_two_assets", "📊 Select at least 2 assets to compare"))
             
@@ -778,6 +800,28 @@ def main():
         st.error(f"❌ Asset '{selected_asset}' not found in database.")
     else:
         st.info("👈 Please select an asset from the sidebar to begin analysis.")
+
+def create_allocation_pie():
+    """Create sample portfolio allocation pie chart"""
+    
+    # Sample allocation data
+    allocation_data = {
+        'Asset': ['Global Equities', 'Government Bonds', 'High Yield Bonds', 'REITs', 'Gold', 'Commodities'],
+        'Allocation': [45, 30, 10, 8, 4, 3]
+    }
+    
+    df = pd.DataFrame(allocation_data)
+    
+    fig = px.pie(
+        df, 
+        values='Allocation', 
+        names='Asset',
+        title="Sample Conservative Portfolio Allocation (%)"
+    )
+    
+    fig.update_layout(title_x=0.5, height=400)
+    
+    return fig
 
 if __name__ == "__main__":
     main()
