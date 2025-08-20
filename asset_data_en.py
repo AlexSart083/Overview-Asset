@@ -1,13 +1,14 @@
-# Enhanced asset_data_en.py with historical performance data
+# Enhanced asset_data_en.py with historical performance data - CORRECTED VERSION
 ASSET_DATA_EN = {
     "Global Equities (Market Cap)": {
         "descrizione": "Globally diversified equity investments weighted by market capitalization, representing ownership stakes in the world's largest publicly traded companies.",
         "performance_storica": {
-            "20_anni": "7.0%",  # Approx MSCI World since 2005
-            "10_anni": "10.6%", # Based on search results
-            "5_anni": "14.4%",  # Based on search results  
-            "1_anno": "14.9%",  # Based on search results
-            "indice_riferimento": "MSCI World Index"
+            "20_anni": "7.0%",
+            "10_anni": "10.6%",
+            "5_anni": "14.4%",
+            "1_anno": "14.9%",
+            "indice_riferimento": "MSCI World Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Long-term growth potential",
@@ -42,7 +43,8 @@ ASSET_DATA_EN = {
             "10_anni": "12.8%",
             "5_anni": "16.2%",
             "1_anno": "18.5%",
-            "indice_riferimento": "MSCI World Momentum Index"
+            "indice_riferimento": "MSCI World Momentum Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Exploits established market trends",
@@ -75,7 +77,8 @@ ASSET_DATA_EN = {
             "10_anni": "11.2%",
             "5_anni": "13.8%",
             "1_anno": "12.4%",
-            "indice_riferimento": "MSCI World Quality Index"
+            "indice_riferimento": "MSCI World Quality Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Lower volatility than general market",
@@ -109,7 +112,8 @@ ASSET_DATA_EN = {
             "10_anni": "8.9%",
             "5_anni": "11.5%",
             "1_anno": "13.7%",
-            "indice_riferimento": "MSCI World Value Index"
+            "indice_riferimento": "MSCI World Value Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Value recovery potential",
@@ -143,7 +147,8 @@ ASSET_DATA_EN = {
             "10_anni": "9.4%",
             "5_anni": "11.2%",
             "1_anno": "10.8%",
-            "indice_riferimento": "MSCI World Minimum Volatility Index"
+            "indice_riferimento": "MSCI World Minimum Volatility Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Significantly reduced volatility",
@@ -176,7 +181,8 @@ ASSET_DATA_EN = {
             "10_anni": "11.8%",
             "5_anni": "13.4%",
             "1_anno": "15.2%",
-            "indice_riferimento": "MSCI World Small Cap Index"
+            "indice_riferimento": "MSCI World Small Cap Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Higher growth potential",
@@ -206,11 +212,12 @@ ASSET_DATA_EN = {
     "Emerging Markets": {
         "descrizione": "Equities from companies located in developing countries with rapidly growing economies.",
         "performance_storica": {
-            "20_anni": "4.3%",  # Based on search results showing EM underperformance
-            "10_anni": "6.1%",  # Based on search results
-            "5_anni": "5.6%",   # Based on search results
-            "1_anno": "15.9%",  # Based on search results
-            "indice_riferimento": "MSCI Emerging Markets Index"
+            "20_anni": "4.3%",
+            "10_anni": "6.1%",
+            "5_anni": "5.6%",
+            "1_anno": "15.9%",
+            "indice_riferimento": "MSCI Emerging Markets Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Higher growth potential than developed markets",
@@ -240,11 +247,12 @@ ASSET_DATA_EN = {
     "Gold": {
         "descrizione": "Precious metal considered a store of value and hedge against currency debasement and geopolitical instability.",
         "performance_storica": {
-            "20_anni": "8.4%",  # Based on search results 2004-2024
-            "10_anni": "4.2%",  # Conservative estimate based on recent performance
-            "5_anni": "7.8%",   # Based on recent strong performance
-            "1_anno": "27.0%",  # Based on search results showing strong 2024-2025
-            "indice_riferimento": "Gold Spot Price (USD)"
+            "20_anni": "8.4%",
+            "10_anni": "4.2%",
+            "5_anni": "7.8%",
+            "1_anno": "27.0%",
+            "indice_riferimento": "Gold Spot Price (USD)",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Historical inflation hedge",
@@ -278,7 +286,8 @@ ASSET_DATA_EN = {
             "10_anni": "2.1%",
             "5_anni": "9.2%",
             "1_anno": "32.5%",
-            "indice_riferimento": "Silver Spot Price (USD)"
+            "indice_riferimento": "Silver Spot Price (USD)",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Dual demand: investment and industrial",
@@ -312,7 +321,8 @@ ASSET_DATA_EN = {
             "10_anni": "3.2%",
             "5_anni": "8.1%",
             "1_anno": "12.4%",
-            "indice_riferimento": "Bloomberg Commodity Index"
+            "indice_riferimento": "Bloomberg Commodity Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Inflation protection",
@@ -346,7 +356,8 @@ ASSET_DATA_EN = {
             "10_anni": "8.4%",
             "5_anni": "5.8%",
             "1_anno": "11.2%",
-            "indice_riferimento": "FTSE Nareit All REITs Index"
+            "indice_riferimento": "FTSE Nareit All REITs Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Regular dividend income",
@@ -374,30 +385,33 @@ ASSET_DATA_EN = {
     },
 
     "Bonds 0-1 Years": {
-        "descrizione": "Government and corporate debt securities with very short-term maturity within one year, minimal duration risk.",
+        "descrizione": "Government and corporate debt securities with very short-term maturity within one year. European government bonds offer maximum credit safety while corporates provide additional spread but with higher credit risk.",
         "performance_storica": {
             "20_anni": "2.8%",
             "10_anni": "1.2%",
             "5_anni": "2.1%",
             "1_anno": "4.8%",
-            "indice_riferimento": "3-Month Treasury Bill Rate"
+            "indice_riferimento": "Euro Short-Term Rate (€STR) / Euro Corporate 0-1Y Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Minimal interest rate risk",
-            "High liquidity",
+            "High liquidity (especially government bonds)",
             "Low volatility",
-            "Capital protection",
-            "Frequent reinvestment at current rates"
+            "Capital protection (government bonds virtually risk-free)",
+            "Frequent reinvestment at current rates",
+            "Corporate: additional spread for extra yield"
         ],
         "punti_debolezza": [
-            "Very low yields",
+            "Very low yields (especially government bonds)",
             "No inflation protection if real rates negative",
             "Reinvestment risk",
+            "Corporate: credit risk and spread risk",
             "Opportunity cost in rising rate environments"
         ],
         "scenari": {
-            "Economic growth": "Stable performance but low yields",
-            "Recession": "Relative outperformance for stability",
+            "Economic growth": "Government: stable performance but low yields; Corporate: benefit from spread tightening",
+            "Recession": "Government: outperformance from flight-to-quality; Corporate: under pressure from credit risk",
             "High inflation": "Negative performance from negative real rates",
             "Restrictive policies": "Gradual benefits from reinvestment",
             "Expansive policies": "Stable performance but declining yields"
@@ -407,32 +421,34 @@ ASSET_DATA_EN = {
     },
 
     "Bonds 1-3 Years": {
-        "descrizione": "Government and corporate debt securities with short-term maturity offering limited duration and good risk/return compromise.",
+        "descrizione": "Government and corporate debt securities with short-term maturity. European government bonds offer the risk-free benchmark, while corporates add credit spread with limited duration.",
         "performance_storica": {
             "20_anni": "3.2%",
             "10_anni": "1.8%",
             "5_anni": "2.4%",
             "1_anno": "4.2%",
-            "indice_riferimento": "2-Year Treasury Note"
+            "indice_riferimento": "Euro Government 1-3Y Index / Euro Corporate 1-3Y Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Contained interest rate risk",
             "Higher yields than very short-term",
             "Good liquidity",
             "Moderate volatility",
-            "Effective diversification"
+            "Effective diversification",
+            "Corporate: attractive spread pickup vs government"
         ],
         "punti_debolezza": [
-            "Interest rate sensitivity",
-            "Still limited yields",
-            "Credit risk for corporates",
+            "Interest rate sensitivity (limited but present)",
+            "Still limited yields for government bonds",
+            "Corporate: credit risk and spread widening risk",
             "Negative performance with rapid rate rises"
         ],
         "scenari": {
-            "Economic growth": "Moderately negative performance",
-            "Recession": "Positive performance (flight to quality)",
-            "High inflation": "Negative but limited performance",
-            "Restrictive policies": "Contained negative pressure",
+            "Economic growth": "Government: moderately negative performance; Corporate: outperformance from credit improvement",
+            "Recession": "Government: positive performance (flight to quality); Corporate: negative performance from credit risk",
+            "High inflation": "Negative but limited performance for both",
+            "Restrictive policies": "Contained negative pressure, corporates more vulnerable",
             "Expansive policies": "Moderately positive performance"
         },
         "allocazione_range": "15-35% for risk/return balance",
@@ -440,100 +456,109 @@ ASSET_DATA_EN = {
     },
 
     "Bonds 3-7 Years": {
-        "descrizione": "Government and corporate debt securities with medium-term maturity offering higher yields but with greater rate sensitivity.",
+        "descrizione": "Government and corporate debt securities with medium-term maturity. Segment where the difference between government (risk-free rate) and corporate (credit spread) becomes more significant with increased duration.",
         "performance_storica": {
             "20_anni": "4.1%",
             "10_anni": "2.8%",
             "5_anni": "1.2%",
             "1_anno": "2.8%",
-            "indice_riferimento": "5-Year Treasury Note"
+            "indice_riferimento": "Euro Government 3-7Y Index / Euro Corporate 3-7Y Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "More interesting yields",
             "Duration/yield sweet spot",
             "Portfolio diversification",
             "Still good liquidity",
+            "Corporate: significant spreads for extra yield",
             "Potential capital gains if rates fall"
         ],
         "punti_debolezza": [
             "Significant interest rate sensitivity",
             "Moderate-high volatility",
             "Duration risk",
+            "Corporate: sensitivity to credit cycle and spread volatility",
             "Negative performance with rising rates"
         ],
         "scenari": {
-            "Economic growth": "Negative performance from rate rise expectations",
-            "Recession": "Strong positive performance",
-            "High inflation": "Significantly negative performance",
-            "Restrictive policies": "Significant negative pressure",
-            "Expansive policies": "Positive performance"
+            "Economic growth": "Government: negative performance from rate rise expectations; Corporate: mixed performance (rates negative, credit positive)",
+            "Recession": "Government: strongly positive performance; Corporate: negative performance from credit deterioration",
+            "High inflation": "Significantly negative performance for both",
+            "Restrictive policies": "Significant negative pressure, corporates doubly vulnerable",
+            "Expansive policies": "Positive performance, corporate outperformance"
         },
         "allocazione_range": "10-25% for yield with controlled risk",
         "correlazioni": "Negative correlation with equities, high rate sensitivity"
     },
 
     "Bonds 7-10 Years": {
-        "descrizione": "Government and corporate debt securities with medium-long term maturity with significant duration and greater sensitivity to monetary policy expectations.",
+        "descrizione": "Government and corporate debt securities with medium-long term maturity. European government bonds represent the duration benchmark, while corporates offer substantial spreads but with significant credit risk amplified by duration.",
         "performance_storica": {
             "20_anni": "4.8%",
             "10_anni": "3.2%",
             "5_anni": "0.8%",
             "1_anno": "1.4%",
-            "indice_riferimento": "10-Year Treasury Note"
+            "indice_riferimento": "Euro Government 7-10Y Index / Euro Corporate 7-10Y Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Potentially attractive yields",
             "Strong potential capital gains if rates fall",
             "Significant diversification vs equities",
-            "Deflationary hedge",
+            "Government: perfect deflationary hedge",
+            "Corporate: attractive spreads for duration risk compensation",
             "Benchmark for many pension funds"
         ],
         "punti_debolezza": [
             "High interest rate sensitivity",
             "Significant volatility",
             "High duration risk",
+            "Corporate: amplification of credit risk with duration",
             "Very negative performance with inflation/rising rates"
         ],
         "scenari": {
-            "Economic growth": "Significantly negative performance",
-            "Recession": "Very positive performance (+10-20%)",
-            "High inflation": "Very negative performance (-10-20%)",
-            "Restrictive policies": "Very negative performance",
-            "Expansive policies": "Strong positive performance"
+            "Economic growth": "Government: significantly negative performance; Corporate: very negative performance (rates + spreads)",
+            "Recession": "Government: excellent performance (+10-20%); Corporate: negative performance from default risk",
+            "High inflation": "Very negative performance (-10-20%) for both",
+            "Restrictive policies": "Very negative performance, corporates particularly vulnerable",
+            "Expansive policies": "Strongly positive performance, corporate outperformance"
         },
         "allocazione_range": "5-20% for duration diversification",
         "correlazioni": "Strong negative correlation with equities, negative correlation with rates"
     },
 
     "Bonds >10 Years": {
-        "descrizione": "Government and corporate debt securities with long-term maturity with maximum duration and maximum sensitivity to interest rate changes.",
+        "descrizione": "Government and corporate debt securities with long-term maturity. Government bonds offer maximum duration sensitivity for deflationary hedging, while corporates concentrate credit and duration risk with very high spreads.",
         "performance_storica": {
             "20_anni": "5.2%",
             "10_anni": "4.1%",
             "5_anni": "-0.2%",
             "1_anno": "0.8%",
-            "indice_riferimento": "30-Year Treasury Bond"
+            "indice_riferimento": "Euro Government >10Y Index / Euro Corporate >10Y Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Potentially highest yields",
             "Maximum potential capital gains",
             "Maximum diversification vs equities",
-            "Deflation/recession hedge",
+            "Government: optimal deflation/recession hedge",
+            "Corporate: maximum spreads to compensate risks",
             "Matching long-term liabilities"
         ],
         "punti_debolezza": [
             "Very high volatility",
             "Maximum duration risk",
             "Extreme rate sensitivity",
-            "Distant reinvestment risk",
-            "Potentially lower liquidity"
+            "Corporate: maximum concentration of credit risk",
+            "Potentially lower liquidity",
+            "Distant reinvestment risk"
         ],
         "scenari": {
-            "Economic growth": "Very negative performance",
-            "Recession": "Exceptional performance (+15-30%)",
-            "High inflation": "Disastrous performance (-15-30%)",
-            "Restrictive policies": "Very negative performance",
-            "Expansive policies": "Excellent performance"
+            "Economic growth": "Government: very negative performance; Corporate: disastrous performance",
+            "Recession": "Government: exceptional performance (+15-30%); Corporate: very negative performance from default risk",
+            "High inflation": "Disastrous performance (-15-30%) for both",
+            "Restrictive policies": "Very negative performance, corporates extremely vulnerable",
+            "Expansive policies": "Excellent performance, corporate outperformance if credit holds"
         },
         "allocazione_range": "0-15% only for investors with specific objectives",
         "correlazioni": "Maximum negative correlation with equities, perfect inverse with rates"
@@ -546,7 +571,8 @@ ASSET_DATA_EN = {
             "10_anni": "5.4%",
             "5_anni": "4.2%",
             "1_anno": "8.9%",
-            "indice_riferimento": "Bloomberg High Yield Corporate Bond Index"
+            "indice_riferimento": "Bloomberg Pan-European High Yield Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Significantly higher yields",
@@ -574,13 +600,14 @@ ASSET_DATA_EN = {
     },
 
     "Inflation Linked Bonds": {
-        "descrizione": "Bonds whose principal and coupons are indexed to inflation, designed to protect the investor's purchasing power (TIPS, inflation-linked gilts).",
+        "descrizione": "Bonds whose principal and coupons are indexed to inflation, designed to protect the investor's purchasing power (Euro inflation-linked bonds, TIPS equivalent).",
         "performance_storica": {
             "20_anni": "3.8%",
             "10_anni": "2.1%",
             "5_anni": "3.4%",
             "1_anno": "1.8%",
-            "indice_riferimento": "Treasury Inflation-Protected Securities (TIPS)"
+            "indice_riferimento": "Euro Inflation-Linked Government Bond Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Direct inflation protection",
@@ -614,7 +641,8 @@ ASSET_DATA_EN = {
             "10_anni": "7.2%",
             "5_anni": "8.4%",
             "1_anno": "12.1%",
-            "indice_riferimento": "Refinitiv Global Convertible Bond Index"
+            "indice_riferimento": "Refinitiv Europe Convertible Bond Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Participation in equity upside",
@@ -642,13 +670,14 @@ ASSET_DATA_EN = {
     },
 
     "Subordinated Bonds": {
-        "descrizione": "Debt securities that in case of liquidation are repaid after senior creditors, offering higher yields for greater risk (Tier 2, AT1).",
+        "descrizione": "Debt securities that in case of liquidation are repaid after senior creditors, offering higher yields for greater risk (European Tier 2, AT1, subordinated bank bonds).",
         "performance_storica": {
             "20_anni": "5.2%",
             "10_anni": "4.8%",
             "5_anni": "3.1%",
             "1_anno": "7.4%",
-            "indice_riferimento": "Bank Subordinated Debt Index"
+            "indice_riferimento": "European Bank Subordinated Debt Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "Significantly higher yields",
@@ -682,7 +711,8 @@ ASSET_DATA_EN = {
             "10_anni": "9.2%",
             "5_anni": "10.4%",
             "1_anno": "11.8%",
-            "indice_riferimento": "MSCI World High Dividend Yield Index"
+            "indice_riferimento": "MSCI World High Dividend Yield Index",
+            "data_calcolo": "Data as of December 31, 2024"
         },
         "punti_forza": [
             "High and regular current income",
