@@ -30,65 +30,38 @@ REQUIRED_PERFORMANCE_FIELDS = [
     "indice_riferimento"
 ]
 
-# Import main loader functions with error handling
-try:
-    from .loader import (
-        load_all_assets, 
-        load_ui_text, 
-        validate_asset_data,
-        get_asset_categories,
-        normalize_language,
-        debug_language_loading
-    )
-    
-    __all__ = [
-        "load_all_assets",
-        "load_ui_text", 
-        "validate_asset_data",
-        "get_asset_categories",
-        "normalize_language",
-        "debug_language_loading",
-        "SUPPORTED_LANGUAGES",
-        "ASSET_CATEGORIES",
-        "REQUIRED_ASSET_FIELDS",
-        "REQUIRED_PERFORMANCE_FIELDS"
-    ]
-    
-except ImportError as e:
-    # Fallback if loader has issues
-    print(f"Warning: Could not import from loader: {e}")
-    
-    def load_all_assets(language="english"):
-        """Fallback function"""
-        return {}
-    
-    def load_ui_text(language="english"):
-        """Fallback function"""
-        return {}
-    
-    def validate_asset_data(asset_data):
-        """Fallback function"""
-        return True
-    
-    def get_asset_categories(language="english"):
-        """Fallback function"""
-        return {}
-    
-    def normalize_language(language):
-        """Fallback function"""
-        return "english"
-    
-    def debug_language_loading(language):
-        """Fallback function"""
-        return {"error": "Loader not available"}
-    
-    __all__ = [
-        "load_all_assets",
-        "load_ui_text", 
-        "validate_asset_data",
-        "get_asset_categories",
-        "normalize_language",
-        "debug_language_loading",
-        "SUPPORTED_LANGUAGES",
-        "ASSET_CATEGORIES"
-    ]
+# Simple fallback functions that can be imported without circular dependencies
+def get_fallback_assets(language="english"):
+    """Simple fallback for assets"""
+    return {}
+
+def get_fallback_ui_text(language="english"):
+    """Simple fallback for UI text"""
+    return {
+        "title": "Financial Asset Analyzer" if language == "english" else "Analizzatore Asset Finanziari",
+        "subtitle": "Educational analysis of different financial assets" if language == "english" else "Analisi educativa di diversi asset finanziari",
+        "sidebar_title": "Asset Selection" if language == "english" else "Selezione Asset",
+        "language_label": "Language" if language == "english" else "Lingua",
+        "asset_label": "Select Asset" if language == "english" else "Seleziona Asset",
+        "analysis_title": "Asset Analysis: " if language == "english" else "Analisi Asset: ",
+        "description_header": "📖 Description" if language == "english" else "📖 Descrizione",
+        "performance_header": "📊 Historical Performance (Annualized)" if language == "english" else "📊 Performance Storica (Annualizzata)",
+        "strengths_header": "✅ Strengths" if language == "english" else "✅ Punti di Forza",
+        "weaknesses_header": "⚠️ Weaknesses" if language == "english" else "⚠️ Punti di Debolezza",
+        "scenarios_header": "📊 Market Scenarios Performance" if language == "english" else "📊 Performance negli Scenari di Mercato",
+        "allocation_header": "💼 Indicative Allocation Range" if language == "english" else "💼 Range di Allocazione Indicativo",
+        "correlations_header": "🔗 Correlations with Other Assets" if language == "english" else "🔗 Correlazioni con Altri Asset",
+        "summary_header": "📝 Educational Summary" if language == "english" else "📝 Riassunto Educativo",
+        "warning": "⚠️ **Important Disclaimer**: This information is for educational purposes only and does not constitute personalized financial advice." if language == "english" else "⚠️ **Importante Disclaimer**: Queste informazioni sono a scopo puramente educativo e non costituiscono consigli finanziari personalizzati.",
+        "performance_note": "📌 **Note**: Historical performance data is based on relevant market indices and is not a guarantee of future results." if language == "english" else "📌 **Nota**: I dati di performance storica sono basati su indici di mercato rilevanti e non garantiscono risultati futuri."
+    }
+
+# Export the constants and fallback functions
+__all__ = [
+    "SUPPORTED_LANGUAGES",
+    "ASSET_CATEGORIES", 
+    "REQUIRED_ASSET_FIELDS",
+    "REQUIRED_PERFORMANCE_FIELDS",
+    "get_fallback_assets",
+    "get_fallback_ui_text"
+]
