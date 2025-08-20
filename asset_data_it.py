@@ -1,4 +1,4 @@
-# Enhanced asset_data_it.py with historical performance data
+# Enhanced asset_data_it.py with historical performance data - VERSIONE CORRETTA
 ASSET_DATA_IT = {
     "Azioni Globali (Market Cap)": {
         "descrizione": "Investimenti azionari diversificati a livello mondiale ponderati per capitalizzazione di mercato, che rappresentano quote di proprietà nelle maggiori aziende quotate globalmente.",
@@ -7,7 +7,8 @@ ASSET_DATA_IT = {
             "10_anni": "10.6%",
             "5_anni": "14.4%",
             "1_anno": "14.9%",
-            "indice_riferimento": "MSCI World Index"
+            "indice_riferimento": "MSCI World Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Potenziale di crescita a lungo termine",
@@ -42,7 +43,8 @@ ASSET_DATA_IT = {
             "10_anni": "12.8%",
             "5_anni": "16.2%",
             "1_anno": "18.5%",
-            "indice_riferimento": "MSCI World Momentum Index"
+            "indice_riferimento": "MSCI World Momentum Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Sfrutta trend di mercato consolidati",
@@ -75,7 +77,8 @@ ASSET_DATA_IT = {
             "10_anni": "11.2%",
             "5_anni": "13.8%",
             "1_anno": "12.4%",
-            "indice_riferimento": "MSCI World Quality Index"
+            "indice_riferimento": "MSCI World Quality Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Minore volatilità rispetto al mercato generale",
@@ -109,7 +112,8 @@ ASSET_DATA_IT = {
             "10_anni": "8.9%",
             "5_anni": "11.5%",
             "1_anno": "13.7%",
-            "indice_riferimento": "MSCI World Value Index"
+            "indice_riferimento": "MSCI World Value Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Potenziale di recupero di valore",
@@ -143,7 +147,8 @@ ASSET_DATA_IT = {
             "10_anni": "9.4%",
             "5_anni": "11.2%",
             "1_anno": "10.8%",
-            "indice_riferimento": "MSCI World Minimum Volatility Index"
+            "indice_riferimento": "MSCI World Minimum Volatility Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Volatilità significativamente ridotta",
@@ -176,7 +181,8 @@ ASSET_DATA_IT = {
             "10_anni": "11.8%",
             "5_anni": "13.4%",
             "1_anno": "15.2%",
-            "indice_riferimento": "MSCI World Small Cap Index"
+            "indice_riferimento": "MSCI World Small Cap Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Maggiore potenziale di crescita",
@@ -210,7 +216,8 @@ ASSET_DATA_IT = {
             "10_anni": "6.1%",
             "5_anni": "5.6%",
             "1_anno": "15.9%",
-            "indice_riferimento": "MSCI Emerging Markets Index"
+            "indice_riferimento": "MSCI Emerging Markets Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Potenziale di crescita superiore ai mercati sviluppati",
@@ -244,7 +251,8 @@ ASSET_DATA_IT = {
             "10_anni": "4.2%",
             "5_anni": "7.8%",
             "1_anno": "27.0%",
-            "indice_riferimento": "Prezzo Spot Oro (USD)"
+            "indice_riferimento": "Prezzo Spot Oro (USD)",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Copertura storica contro l'inflazione",
@@ -278,7 +286,8 @@ ASSET_DATA_IT = {
             "10_anni": "2.1%",
             "5_anni": "9.2%",
             "1_anno": "32.5%",
-            "indice_riferimento": "Prezzo Spot Argento (USD)"
+            "indice_riferimento": "Prezzo Spot Argento (USD)",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Doppia domanda: investimento e industriale",
@@ -312,7 +321,8 @@ ASSET_DATA_IT = {
             "10_anni": "3.2%",
             "5_anni": "8.1%",
             "1_anno": "12.4%",
-            "indice_riferimento": "Bloomberg Commodity Index"
+            "indice_riferimento": "Bloomberg Commodity Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Protezione dall'inflazione",
@@ -346,7 +356,8 @@ ASSET_DATA_IT = {
             "10_anni": "8.4%",
             "5_anni": "5.8%",
             "1_anno": "11.2%",
-            "indice_riferimento": "FTSE Nareit All REITs Index"
+            "indice_riferimento": "FTSE Nareit All REITs Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Reddito regolare da dividendi",
@@ -374,30 +385,33 @@ ASSET_DATA_IT = {
     },
 
     "Obbligazioni 0-1 anni": {
-        "descrizione": "Titoli di debito governativi e corporate a brevissimo termine con scadenza entro un anno, minimal duration risk.",
+        "descrizione": "Titoli di debito governativi e corporate a brevissimo termine con scadenza entro un anno. I governativi europei offrono massima sicurezza creditizia mentre i corporate offrono spread aggiuntivi ma con rischio di credito superiore.",
         "performance_storica": {
             "20_anni": "2.8%",
             "10_anni": "1.2%",
             "5_anni": "2.1%",
             "1_anno": "4.8%",
-            "indice_riferimento": "Tasso BOT 3 mesi"
+            "indice_riferimento": "Euro Short-Term Rate (€STR) / Euro Corporate 0-1Y Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Rischio di tasso di interesse minimo",
-            "Alta liquidità",
+            "Alta liquidità (specialmente governativi)",
             "Bassa volatilità",
-            "Protezione del capitale",
-            "Reinvestimento frequente ai tassi correnti"
+            "Protezione del capitale (governativi praticamente risk-free)",
+            "Reinvestimento frequente ai tassi correnti",
+            "Corporate: spread aggiuntivo per extra-rendimento"
         ],
         "punti_debolezza": [
-            "Rendimenti molto bassi",
+            "Rendimenti molto bassi (specialmente governativi)",
             "Nessuna protezione dall'inflazione se tassi reali negativi",
             "Rischio di reinvestimento",
+            "Corporate: rischio di credito e spread risk",
             "Opportunità costo in ambienti di tassi crescenti"
         ],
         "scenari": {
-            "Crescita economica": "Performance stabile ma rendimenti bassi",
-            "Recessione": "Outperformance relativa per stabilità",
+            "Crescita economica": "Governativi: performance stabile ma rendimenti bassi; Corporate: beneficiano da spread tightening",
+            "Recessione": "Governativi: outperformance per flight-to-quality; Corporate: sotto pressione per rischio credito",
             "Inflazione elevata": "Performance negativa per tassi reali negativi",
             "Politiche restrittive": "Benefici graduali dal reinvestimento",
             "Politiche espansive": "Performance stabile ma rendimenti in calo"
@@ -407,32 +421,34 @@ ASSET_DATA_IT = {
     },
 
     "Obbligazioni 1-3 anni": {
-        "descrizione": "Titoli di debito governativi e corporate a breve termine con duration limitata e buon compromesso rischio/rendimento.",
+        "descrizione": "Titoli di debito governativi e corporate a breve termine. I governativi europei offrono il benchmark risk-free, mentre i corporate aggiungono spread creditizio con duration limitata.",
         "performance_storica": {
             "20_anni": "3.2%",
             "10_anni": "1.8%",
             "5_anni": "2.4%",
             "1_anno": "4.2%",
-            "indice_riferimento": "BTP 2 anni"
+            "indice_riferimento": "Euro Government 1-3Y Index / Euro Corporate 1-3Y Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Rischio di tasso contenuto",
             "Rendimenti superiori al brevissimo termine",
             "Buona liquidità",
             "Volatilità moderata",
-            "Diversificazione efficace"
+            "Diversificazione efficace",
+            "Corporate: attractive spread pickup vs governativi"
         ],
         "punti_debolezza": [
-            "Sensibilità ai tassi di interesse",
-            "Rendimenti ancora limitati",
-            "Rischio di credito per corporate",
+            "Sensibilità ai tassi di interesse (limitata ma presente)",
+            "Rendimenti ancora limitati per governativi",
+            "Corporate: rischio di credito e spread widening risk",
             "Performance negativa con rialzi rapidi dei tassi"
         ],
         "scenari": {
-            "Crescita economica": "Performance moderatamente negativa",
-            "Recessione": "Performance positiva (flight to quality)",
-            "Inflazione elevata": "Performance negativa ma limitata",
-            "Politiche restrittive": "Pressione negativa contenuta",
+            "Crescita economica": "Governativi: performance moderatamente negativa; Corporate: outperformance per miglioramento credito",
+            "Recessione": "Governativi: performance positiva (flight to quality); Corporate: performance negativa per rischio credito",
+            "Inflazione elevata": "Performance negativa ma limitata per entrambi",
+            "Politiche restrittive": "Pressione negativa contenuta, corporate più vulnerabili",
             "Politiche espansive": "Performance moderatamente positiva"
         },
         "allocazione_range": "15-35% per bilanciamento rischio/rendimento",
@@ -440,100 +456,109 @@ ASSET_DATA_IT = {
     },
 
     "Obbligazioni 3-7 anni": {
-        "descrizione": "Titoli di debito governativi e corporate a medio termine che offrono rendimenti più elevati ma con maggiore sensibilità ai tassi.",
+        "descrizione": "Titoli di debito governativi e corporate a medio termine. Segmento dove la differenza tra governativi (risk-free rate) e corporate (credit spread) diventa più significativa con l'aumento della duration.",
         "performance_storica": {
             "20_anni": "4.1%",
             "10_anni": "2.8%",
             "5_anni": "1.2%",
             "1_anno": "2.8%",
-            "indice_riferimento": "BTP 5 anni"
+            "indice_riferimento": "Euro Government 3-7Y Index / Euro Corporate 3-7Y Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Rendimenti più interessanti",
             "Sweet spot duration/rendimento",
             "Diversificazione del portafoglio",
             "Liquidità ancora buona",
+            "Corporate: spread significativi per extra-rendimento",
             "Potenziali capital gain se tassi scendono"
         ],
         "punti_debolezza": [
             "Sensibilità significativa ai tassi di interesse",
             "Volatilità moderata-alta",
             "Rischio di duration",
+            "Corporate: sensibilità al credit cycle e spread volatility",
             "Performance negativa con rialzo tassi"
         ],
         "scenari": {
-            "Crescita economica": "Performance negativa per aspettative rialzo tassi",
-            "Recessione": "Performance fortemente positiva",
-            "Inflazione elevata": "Performance significativamente negativa",
-            "Politiche restrittive": "Pressione negativa significativa",
-            "Politiche espansive": "Performance positiva"
+            "Crescita economica": "Governativi: performance negativa per aspettative rialzo tassi; Corporate: performance mista (tassi negativi, credit positivo)",
+            "Recessione": "Governativi: performance fortemente positiva; Corporate: performance negativa per deterioramento credito",
+            "Inflazione elevata": "Performance significativamente negativa per entrambi",
+            "Politiche restrittive": "Pressione negativa significativa, corporate doppiamente vulnerabili",
+            "Politiche espansive": "Performance positiva, corporate outperformance"
         },
         "allocazione_range": "10-25% per rendimento con rischio controllato",
         "correlazioni": "Correlazione negativa con azioni, alta sensibilità ai tassi"
     },
 
     "Obbligazioni 7-10 anni": {
-        "descrizione": "Titoli di debito governativi e corporate a medio-lungo termine con duration significativa e maggiore sensibilità alle aspettative di politica monetaria.",
+        "descrizione": "Titoli di debito governativi e corporate a medio-lungo termine. I governativi europei rappresentano il benchmark duration, mentre i corporate offrono spread sostanziali ma con significativo rischio di credito amplificato dalla duration.",
         "performance_storica": {
             "20_anni": "4.8%",
             "10_anni": "3.2%",
             "5_anni": "0.8%",
             "1_anno": "1.4%",
-            "indice_riferimento": "BTP 10 anni"
+            "indice_riferimento": "Euro Government 7-10Y Index / Euro Corporate 7-10Y Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Rendimenti potenzialmente attraenti",
             "Forti capital gain potenziali se tassi scendono",
             "Diversificazione significativa vs azioni",
-            "Copertura deflazionistica",
+            "Governativi: copertura deflazionistica perfetta",
+            "Corporate: spread interessanti per duration risk compensation",
             "Benchmark per molti fondi pensione"
         ],
         "punti_debolezza": [
             "Alta sensibilità ai tassi di interesse",
             "Volatilità significativa",
             "Rischio di duration elevato",
+            "Corporate: amplificazione del rischio credito con la duration",
             "Performance molto negativa con inflazione/rialzo tassi"
         ],
         "scenari": {
-            "Crescita economica": "Performance significativamente negativa",
-            "Recessione": "Performance molto positiva (+10-20%)",
-            "Inflazione elevata": "Performance molto negativa (-10-20%)",
-            "Politiche restrittive": "Performance molto negativa",
-            "Politiche espansive": "Performance fortemente positiva"
+            "Crescita economica": "Governativi: performance significativamente negativa; Corporate: performance molto negativa (tassi + spread)",
+            "Recessione": "Governativi: performance eccellente (+10-20%); Corporate: performance negativa per rischio default",
+            "Inflazione elevata": "Performance molto negativa (-10-20%) per entrambi",
+            "Politiche restrittive": "Performance molto negativa, corporate particolarmente vulnerabili",
+            "Politiche espansive": "Performance fortemente positiva, corporate outperformance"
         },
         "allocazione_range": "5-20% per diversificazione duration",
         "correlazioni": "Correlazione negativa forte con azioni, correlazione negativa con tassi"
     },
 
     "Obbligazioni >10 anni": {
-        "descrizione": "Titoli di debito governativi e corporate a lungo termine con duration massima e massima sensibilità alle variazioni dei tassi di interesse.",
+        "descrizione": "Titoli di debito governativi e corporate a lungo termine. I governativi offrono massima sensibilità duration per copertura deflazionistica, mentre i corporate concentrano rischio di credito e duration con spread molto elevati.",
         "performance_storica": {
             "20_anni": "5.2%",
             "10_anni": "4.1%",
             "5_anni": "-0.2%",
             "1_anno": "0.8%",
-            "indice_riferimento": "BTP 30 anni"
+            "indice_riferimento": "Euro Government >10Y Index / Euro Corporate >10Y Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Rendimenti potenzialmente più alti",
             "Massimi capital gain potenziali",
             "Diversificazione massima vs azioni",
-            "Copertura deflazione/recessione",
+            "Governativi: copertura deflazione/recessione ottimale",
+            "Corporate: spread massimi per compensare i rischi",
             "Matching long-term liabilities"
         ],
         "punti_debolezza": [
             "Volatilità molto elevata",
             "Rischio di duration massimo",
             "Sensibilità estrema ai tassi",
-            "Rischio reinvestimento lontano",
-            "Liquidità potenzialmente inferiore"
+            "Corporate: concentrazione massima del rischio credito",
+            "Liquidità potenzialmente inferiore",
+            "Rischio reinvestimento lontano"
         ],
         "scenari": {
-            "Crescita economica": "Performance molto negativa",
-            "Recessione": "Performance eccezionale (+15-30%)",
-            "Inflazione elevata": "Performance disastrosa (-15-30%)",
-            "Politiche restrittive": "Performance molto negativa",
-            "Politiche espansive": "Performance eccellente"
+            "Crescita economica": "Governativi: performance molto negativa; Corporate: performance disastrosa",
+            "Recessione": "Governativi: performance eccezionale (+15-30%); Corporate: performance molto negativa per rischio default",
+            "Inflazione elevata": "Performance disastrosa (-15-30%) per entrambi",
+            "Politiche restrittive": "Performance molto negativa, corporate estremamente vulnerabili",
+            "Politiche espansive": "Performance eccellente, corporate outperformance se credit regge"
         },
         "allocazione_range": "0-15% solo per investitori con obiettivi specifici",
         "correlazioni": "Correlazione negativa massima con azioni, inversa perfetta con tassi"
@@ -546,7 +571,8 @@ ASSET_DATA_IT = {
             "10_anni": "5.4%",
             "5_anni": "4.2%",
             "1_anno": "8.9%",
-            "indice_riferimento": "Bloomberg High Yield Corporate Bond Index"
+            "indice_riferimento": "Bloomberg Pan-European High Yield Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Rendimenti significativamente più alti",
@@ -574,13 +600,14 @@ ASSET_DATA_IT = {
     },
 
     "Bond Inflation Linked": {
-        "descrizione": "Obbligazioni il cui capitale e cedole sono indicizzati all'inflazione, progettate per proteggere il potere d'acquisto dell'investitore (TIPS, BTP€i).",
+        "descrizione": "Obbligazioni il cui capitale e cedole sono indicizzati all'inflazione, progettate per proteggere il potere d'acquisto dell'investitore (BTP€i, OATi, Bund-i).",
         "performance_storica": {
             "20_anni": "3.8%",
             "10_anni": "2.1%",
             "5_anni": "3.4%",
             "1_anno": "1.8%",
-            "indice_riferimento": "BTP€i / TIPS Index"
+            "indice_riferimento": "Euro Inflation-Linked Government Bond Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Protezione diretta dall'inflazione",
@@ -614,7 +641,8 @@ ASSET_DATA_IT = {
             "10_anni": "7.2%",
             "5_anni": "8.4%",
             "1_anno": "12.1%",
-            "indice_riferimento": "Refinitiv Global Convertible Bond Index"
+            "indice_riferimento": "Refinitiv Europe Convertible Bond Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Partecipazione all'upside azionario",
@@ -642,13 +670,14 @@ ASSET_DATA_IT = {
     },
 
     "Obbligazioni Subordinate": {
-        "descrizione": "Titoli di debito che in caso di liquidazione vengono rimborsati dopo i creditori senior, offrendo rendimenti più alti per il maggiore rischio (Tier 2, AT1).",
+        "descrizione": "Titoli di debito che in caso di liquidazione vengono rimborsati dopo i creditori senior, offrendo rendimenti più alti per il maggiore rischio (Tier 2, AT1, subordinate bancarie europee).",
         "performance_storica": {
             "20_anni": "5.2%",
             "10_anni": "4.8%",
             "5_anni": "3.1%",
             "1_anno": "7.4%",
-            "indice_riferimento": "Bank Subordinated Debt Index"
+            "indice_riferimento": "European Bank Subordinated Debt Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Rendimenti significativamente superiori",
@@ -682,7 +711,8 @@ ASSET_DATA_IT = {
             "10_anni": "9.2%",
             "5_anni": "10.4%",
             "1_anno": "11.8%",
-            "indice_riferimento": "MSCI World High Dividend Yield Index"
+            "indice_riferimento": "MSCI World High Dividend Yield Index",
+            "data_calcolo": "Dati al 31 Dicembre 2024"
         },
         "punti_forza": [
             "Reddito corrente elevato e regolare",
