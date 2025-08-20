@@ -41,8 +41,14 @@ def get_language_data(language):
     """Get data and UI text based on selected language"""
     if MODULAR_DATA_AVAILABLE:
         try:
-            asset_data = load_all_assets(language.lower())
-            ui_text = load_ui_text(language.lower())
+            # Normalize language input
+            if language == "Italiano":
+                normalized_lang = "italian"
+            else:
+                normalized_lang = "english"
+            
+            asset_data = load_all_assets(normalized_lang)
+            ui_text = load_ui_text(normalized_lang)
             
             # Validate data integrity
             validate_asset_data(asset_data)
@@ -51,6 +57,13 @@ def get_language_data(language):
         except Exception as e:
             logger.error(f"Error loading modular data: {e}")
             st.error(f"❌ Error loading data: {e}")
+            
+            # Show debug information in sidebar for troubleshooting
+            if st.sidebar.button("🔧 Debug Info"):
+                from data.loader import debug_language_loading
+                debug_info = debug_language_loading(language)
+                st.sidebar.json(debug_info)
+            
             st.stop()
     else:
         # Legacy fallback
@@ -63,7 +76,12 @@ def categorize_assets(asset_data, language):
     """Categorize assets by type for better organization"""
     if MODULAR_DATA_AVAILABLE:
         try:
-            return get_asset_categories(language.lower())
+            # Normalize language input for categories
+            if language == "Italiano":
+                normalized_lang = "italian"
+            else:
+                normalized_lang = "english"
+            return get_asset_categories(normalized_lang)
         except Exception as e:
             logger.warning(f"Error getting categories from modular data: {e}")
     
