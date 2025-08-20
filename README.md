@@ -1,194 +1,119 @@
-# Financial Asset Analyzer - Streamlit App
+# Financial Asset Analyzer - Streamlit App (Modular Version)
 
-An educational web application for analyzing different financial assets, available in both English and Italian.
+Un'applicazione web educativa per analizzare diversi asset finanziari, ora con **struttura modulare migliorata** per una gestione più semplice e scalabile.
 
-## 📁 File Structure
+## 🚀 **Nuova Struttura Modulare**
+
+### 📁 Struttura File
 
 ```
-your-app-folder/
+financial-asset-analyzer/
 │
-├── app.py                 # Main Streamlit application
-├── asset_data_en.py       # Asset data and UI text in English  
-├── asset_data_it.py       # Asset data and UI text in Italian
-├── requirements.txt       # Python dependencies
-└── README.md             # This file
+├── app.py                          # Main Streamlit application
+├── requirements.txt                # Python dependencies
+├── README.md                      # Questa documentazione
+│
+├── data/                          # 📂 Cartella dati modulare
+│   ├── __init__.py               # Package init
+│   ├── loader.py                 # 🔧 Funzioni caricamento dati
+│   │
+│   ├── english/                  # 🇺🇸 Dati in inglese
+│   │   ├── __init__.py
+│   │   ├── equity_assets_en.py   # Azioni e strategie azionarie
+│   │   ├── bond_assets_en.py     # Obbligazioni
+│   │   ├── alternative_assets_en.py # Asset alternativi
+│   │   └── ui_text_en.py         # Testi interfaccia
+│   │
+│   └── italian/                  # 🇮🇹 Dati in italiano
+│       ├── __init__.py
+│       ├── equity_assets_it.py   # Azioni e strategie azionarie
+│       ├── bond_assets_it.py     # Obbligazioni
+│       ├── alternative_assets_it.py # Asset alternativi
+│       └── ui_text_it.py         # Testi interfaccia
+│
+└── legacy/                       # 📜 File legacy (opzionale)
+    ├── asset_data_en.py         # Dati originali inglese
+    └── asset_data_it.py         # Dati originali italiano
 ```
 
-## 🚀 Local Development
+## 🎯 **Vantaggi della Nuova Struttura**
 
-1. **Create a virtual environment:**
+### ✅ **Modularità**
+- **File più piccoli e gestibili**: Ogni categoria di asset in file separati
+- **Manutenzione semplificata**: Facile trovare e modificare dati specifici
+- **Scalabilità**: Aggiungere nuovi asset o categorie è più semplice
+
+### ✅ **Organizzazione Linguistica**
+- **Separazione netta**: Inglese e italiano in cartelle separate
+- **Facile traduzione**: Aggiungere nuove lingue è immediato
+- **Meno errori**: Ridotto rischio di mescolare traduzioni
+
+### ✅ **Compatibilità**
+- **Fallback automatico**: Se i file modulari non sono disponibili, usa quelli legacy
+- **Migrazione graduale**: Puoi passare alla nuova struttura quando vuoi
+- **Zero downtime**: L'app continua a funzionare durante la transizione
+
+## 📊 **Divisione Asset per Categoria**
+
+### 🔢 **Equity Assets** (`equity_assets_xx.py`)
+- Global Equities (Market Cap)
+- Momentum Equities
+- Quality Equities
+- Value Equities
+- Minimum Volatility Equities
+- Small Cap Equities
+- Emerging Markets
+- High Dividend Equities
+
+### 💰 **Bond Assets** (`bond_assets_xx.py`)
+- Bonds 0-1 Years
+- Bonds 1-3 Years
+- Bonds 3-7 Years
+- Bonds 7-10 Years
+- Bonds >10 Years
+- High Yield Bonds
+- Inflation Linked Bonds
+- Convertible Bonds
+- Subordinated Bonds
+
+### 🏢 **Alternative Assets** (`alternative_assets_xx.py`)
+- Gold
+- Silver
+- Commodities
+- REITs
+
+## 🚀 **Installazione e Avvio**
+
+### 1. **Setup Ambiente**
 ```bash
+# Clona/scarica i file del progetto
+git clone <your-repo> financial-asset-analyzer
+cd financial-asset-analyzer
+
+# Crea ambiente virtuale
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
-2. **Install dependencies:**
-```bash
+# Installa dipendenze
 pip install -r requirements.txt
 ```
 
-3. **Run the app locally:**
+### 2. **Avvio Applicazione**
 ```bash
 streamlit run app.py
 ```
 
-## 🌐 Streamlit Cloud Deployment
+### 3. **Verifica Struttura**
+- ✅ **Modular**: Se vedi "✅ Using modular data structure" nella sidebar
+- ⚠️ **Legacy**: Se vedi "⚠️ Using legacy data structure"
 
-### Step 1: Prepare your GitHub Repository
+## 🔧 **Come Aggiungere Nuovi Asset**
 
-1. Create a new GitHub repository
-2. Upload all the files:
-   - `app.py`
-   - `asset_data_en.py`
-   - `asset_data_it.py` 
-   - `requirements.txt`
-   - `README.md`
+### Per la Struttura Modulare:
 
-### Step 2: Deploy on Streamlit Cloud
-
-1. Go to [share.streamlit.io](https://share.streamlit.io/)
-2. Sign in with your GitHub account
-3. Click "New app"
-4. Select your repository and branch
-5. Set main file path to `app.py`
-6. Click "Deploy!"
-
-### Step 3: Configuration (Optional)
-
-Create a `config.toml` file in `.streamlit/` folder for custom configuration:
-
-```toml
-[theme]
-primaryColor = "#FF6B6B"
-backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#F0F2F6"
-textColor = "#262730"
-
-[server]
-headless = true
-port = 8501
-```
-
-## ✨ Features
-
-- **Bilingual Support**: Complete English and Italian translation
-- **Interactive Analysis**: Detailed breakdown of 6 major asset classes
-- **Visual Analytics**: Heatmaps and charts for better understanding
-- **Educational Focus**: Clear disclaimers and educational content
-- **Responsive Design**: Works on desktop and mobile devices
-
-## 📊 Analyzed Assets
-
-### English Version:
-- Global Equities
-- Emerging Markets  
-- Government Bonds
-- Gold
-- Commodities
-- REITs
-
-### Italian Version:
-- Azioni Globali
-- Mercati Emergenti
-- Obbligazioni Governative
-- Oro
-- Materie Prime
-- REIT
-
-## 🔧 Customization
-
-### Adding New Assets
-
-1. **Update `asset_data_en.py`** - Add new asset with English data
-2. **Update `asset_data_it.py`** - Add corresponding Italian translation
-3. **Maintain structure**: Follow the existing data structure
-
-### Modifying UI Text
-
-- Edit `UI_TEXT_EN` in `asset_data_en.py` for English interface
-- Edit `UI_TEXT_IT` in `asset_data_it.py` for Italian interface
-
-### Adding New Market Scenarios
-
-To add new market scenarios (e.g., "Stagflation", "Currency Crisis"):
-
-1. Update the `scenari` dictionary in both language files
-2. Add corresponding performance descriptions
-3. Update the `performance_mapping` in `app.py` if needed
-
-## 📈 Data Structure Example
+1. **Identifica la categoria** (equity, bond, alternative)
+2. **Apri il file appropriato** (es. `data/english/equity_assets_en.py`)
+3. **Aggiungi il nuovo asset** seguendo la struttura esistente:
 
 ```python
-"Asset Name": {
-    "descrizione": "Asset description...",
-    "punti_forza": ["Strength 1", "Strength 2", ...],
-    "punti_debolezza": ["Weakness 1", "Weakness 2", ...],
-    "scenari": {
-        "Scenario 1": "Performance description",
-        "Scenario 2": "Performance description",
-        ...
-    },
-    "allocazione_range": "X-Y% allocation guidance",
-    "correlazioni": "Correlation information"
-}
-```
-
-## 🛠️ Troubleshooting
-
-### Common Issues:
-
-1. **Import Error**: Make sure all files are in the same directory
-2. **Missing Dependencies**: Run `pip install -r requirements.txt`
-3. **Streamlit Cloud Build Fails**: Check that all imports are correct and files are uploaded
-
-### Performance Optimization:
-
-- Data is loaded once and cached
-- Plotly charts are optimized for web display
-- Minimal external dependencies
-
-## 🔒 Security & Disclaimers
-
-- **Educational Purpose Only**: App includes prominent disclaimers
-- **No Financial Advice**: Clear warnings about not providing personalized advice
-- **Data Sources**: All data is for educational demonstration only
-
-## 📝 License
-
-This application is for educational purposes. Make sure to:
-- Add appropriate disclaimers for your jurisdiction
-- Verify all financial information before publication
-- Consider consulting with financial professionals for accuracy
-
-## 🤝 Contributing
-
-To contribute or suggest improvements:
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## 📞 Support
-
-For issues with:
-- **Streamlit deployment**: Check [Streamlit documentation](https://docs.streamlit.io/)
-- **Code issues**: Review the error logs in Streamlit Cloud
-- **Data accuracy**: This is educational data only - verify with official sources
-
-## 🔄 Updates and Maintenance
-
-### Regular Updates Needed:
-- Market scenario descriptions
-- Asset allocation ranges  
-- Correlation information
-- UI improvements
-
-### Version History:
-- v1.0: Initial release with 6 asset classes
-- v1.1: Added bilingual support
-- v1.2: Enhanced visualizations
-
----
-
-**Happy Analyzing! 📊✨**
+"Nuovo
