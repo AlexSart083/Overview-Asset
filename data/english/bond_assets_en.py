@@ -8,6 +8,77 @@ BOND_ASSETS_EN = {
     "Bonds 0-1 Years": {
         "descrizione": "Government and corporate debt securities with very short-term maturity within one year. European government bonds offer maximum credit safety while corporates provide additional spread but with higher credit risk.",
         "performance_storica": {
+            "20_anni": "2.8%",
+            "10_anni": "1.2%",
+            "5_anni": "2.1%",
+            "1_anno": "4.8%",
+            "indice_riferimento": "Euro Short-Term Rate (€STR) / Euro Corporate 0-1Y Index",
+            "data_calcolo": "Data as of December 31, 2024"
+        },
+        "punti_forza": [
+            "Minimal interest rate risk",
+            "High liquidity (especially government bonds)",
+            "Low volatility",
+            "Capital protection (government bonds virtually risk-free)",
+            "Frequent reinvestment at current rates",
+            "Corporate: additional spread for extra yield"
+        ],
+        "punti_debolezza": [
+            "Very low yields (especially government bonds)",
+            "No inflation protection if real rates negative",
+            "Reinvestment risk",
+            "Corporate: credit risk and spread risk",
+            "Opportunity cost in rising rate environments"
+        ],
+        "scenari": {
+            "Economic growth": "Government: stable performance but low yields; Corporate: benefit from spread tightening",
+            "Recession": "Government: outperformance from flight-to-quality; Corporate: under pressure from credit risk",
+            "High inflation": "Negative performance from negative real rates",
+            "Restrictive policies": "Gradual benefits from reinvestment",
+            "Expansive policies": "Stable performance but declining yields"
+        },
+        "allocazione_range": "10-30% for liquidity and stability",
+        "correlazioni": "Very low correlation with equities, high correlation with short-term rates"
+    },
+
+    "Bonds 1-3 Years": {
+        "descrizione": "Government and corporate debt securities with short-term maturity. European government bonds offer the risk-free benchmark, while corporates add credit spread with limited duration.",
+        "performance_storica": {
+            "20_anni": "3.2%",
+            "10_anni": "1.8%",
+            "5_anni": "2.4%",
+            "1_anno": "4.2%",
+            "indice_riferimento": "Euro Government 1-3Y Index / Euro Corporate 1-3Y Index",
+            "data_calcolo": "Data as of December 31, 2024"
+        },
+        "punti_forza": [
+            "Contained interest rate risk",
+            "Higher yields than very short-term",
+            "Good liquidity",
+            "Moderate volatility",
+            "Effective diversification",
+            "Corporate: attractive spread pickup vs government"
+        ],
+        "punti_debolezza": [
+            "Interest rate sensitivity (limited but present)",
+            "Still limited yields for government bonds",
+            "Corporate: credit risk and spread widening risk",
+            "Negative performance with rapid rate rises"
+        ],
+        "scenari": {
+            "Economic growth": "Government: moderately negative performance; Corporate: outperformance from credit improvement",
+            "Recession": "Government: positive performance (flight to quality); Corporate: negative performance from credit risk",
+            "High inflation": "Negative but limited performance for both",
+            "Restrictive policies": "Contained negative pressure, corporates more vulnerable",
+            "Expansive policies": "Moderately positive performance"
+        },
+        "allocazione_range": "15-35% for risk/return balance",
+        "correlazioni": "Moderate negative correlation with equities"
+    },
+
+    "Bonds 3-7 Years": {
+        "descrizione": "Government and corporate debt securities with medium-term maturity. Segment where the difference between government (risk-free rate) and corporate (credit spread) becomes more significant with increased duration.",
+        "performance_storica": {
             "20_anni": "4.1%",
             "10_anni": "2.8%",
             "5_anni": "1.2%",
@@ -253,75 +324,4 @@ BOND_ASSETS_EN = {
         "allocazione_range": "2-8% for sophisticated investors who understand risks",
         "correlazioni": "High correlation with financial sector, moderate with equities"
     }
-}": "2.8%",
-            "10_anni": "1.2%",
-            "5_anni": "2.1%",
-            "1_anno": "4.8%",
-            "indice_riferimento": "Euro Short-Term Rate (€STR) / Euro Corporate 0-1Y Index",
-            "data_calcolo": "Data as of December 31, 2024"
-        },
-        "punti_forza": [
-            "Minimal interest rate risk",
-            "High liquidity (especially government bonds)",
-            "Low volatility",
-            "Capital protection (government bonds virtually risk-free)",
-            "Frequent reinvestment at current rates",
-            "Corporate: additional spread for extra yield"
-        ],
-        "punti_debolezza": [
-            "Very low yields (especially government bonds)",
-            "No inflation protection if real rates negative",
-            "Reinvestment risk",
-            "Corporate: credit risk and spread risk",
-            "Opportunity cost in rising rate environments"
-        ],
-        "scenari": {
-            "Economic growth": "Government: stable performance but low yields; Corporate: benefit from spread tightening",
-            "Recession": "Government: outperformance from flight-to-quality; Corporate: under pressure from credit risk",
-            "High inflation": "Negative performance from negative real rates",
-            "Restrictive policies": "Gradual benefits from reinvestment",
-            "Expansive policies": "Stable performance but declining yields"
-        },
-        "allocazione_range": "10-30% for liquidity and stability",
-        "correlazioni": "Very low correlation with equities, high correlation with short-term rates"
-    },
-
-    "Bonds 1-3 Years": {
-        "descrizione": "Government and corporate debt securities with short-term maturity. European government bonds offer the risk-free benchmark, while corporates add credit spread with limited duration.",
-        "performance_storica": {
-            "20_anni": "3.2%",
-            "10_anni": "1.8%",
-            "5_anni": "2.4%",
-            "1_anno": "4.2%",
-            "indice_riferimento": "Euro Government 1-3Y Index / Euro Corporate 1-3Y Index",
-            "data_calcolo": "Data as of December 31, 2024"
-        },
-        "punti_forza": [
-            "Contained interest rate risk",
-            "Higher yields than very short-term",
-            "Good liquidity",
-            "Moderate volatility",
-            "Effective diversification",
-            "Corporate: attractive spread pickup vs government"
-        ],
-        "punti_debolezza": [
-            "Interest rate sensitivity (limited but present)",
-            "Still limited yields for government bonds",
-            "Corporate: credit risk and spread widening risk",
-            "Negative performance with rapid rate rises"
-        ],
-        "scenari": {
-            "Economic growth": "Government: moderately negative performance; Corporate: outperformance from credit improvement",
-            "Recession": "Government: positive performance (flight to quality); Corporate: negative performance from credit risk",
-            "High inflation": "Negative but limited performance for both",
-            "Restrictive policies": "Contained negative pressure, corporates more vulnerable",
-            "Expansive policies": "Moderately positive performance"
-        },
-        "allocazione_range": "15-35% for risk/return balance",
-        "correlazioni": "Moderate negative correlation with equities"
-    },
-
-    "Bonds 3-7 Years": {
-        "descrizione": "Government and corporate debt securities with medium-term maturity. Segment where the difference between government (risk-free rate) and corporate (credit spread) becomes more significant with increased duration.",
-        "performance_storica": {
-            "20_anni
+}
