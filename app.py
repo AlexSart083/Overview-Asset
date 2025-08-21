@@ -1250,6 +1250,9 @@ def create_yearly_performance_chart(performance_data, asset_name, ui_text):
     years = []
     returns = []
     
+    # Debug: Print what we're getting
+    st.sidebar.write("🔍 Debug - Raw Data Keys:", list(yearly_data.keys())[:5])
+    
     # Get data in chronological order (most recent first)
     for i in range(1, 21):
         year_key = f"anno_{i}"
@@ -1261,6 +1264,9 @@ def create_yearly_performance_chart(performance_data, asset_name, ui_text):
                 returns.append(value)
             except (ValueError, AttributeError):
                 continue
+    
+    # Debug: Print what we're plotting
+    st.sidebar.write("🔍 Debug - Years to plot:", years[:5])
     
     if not returns:
         return None
@@ -1313,7 +1319,8 @@ def create_yearly_performance_chart(performance_data, asset_name, ui_text):
             showgrid=True, 
             gridcolor='lightgray',
             # Reverse the x-axis so most recent year (2024) is on the left
-            autorange='reversed'
+            autorange='reversed',
+            type='category'  # Ensure years are treated as categories
         ),
         yaxis=dict(showgrid=True, gridcolor='lightgray')
     )
@@ -1403,7 +1410,8 @@ def create_yearly_comparison_chart(asset_data, selected_assets, ui_text):
             showgrid=True, 
             gridcolor='lightgray',
             # Reverse the x-axis so most recent year (2024) is on the left
-            autorange='reversed'
+            autorange='reversed',
+            type='category'  # Ensure years are treated as categories
         ),
         yaxis=dict(showgrid=True, gridcolor='lightgray'),
         legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01)
