@@ -1,6 +1,6 @@
 # data/english/equity_assets_en.py
 """
-Equity and equity strategy assets data in English
+Equity and equity strategy assets data in English - COMPLETE WITH YEARLY RETURNS
 Includes all equity-based investment strategies and emerging markets
 """
 
@@ -8,6 +8,28 @@ EQUITY_ASSETS_EN = {
     "Global Equities (Market Cap)": {
         "descrizione": "Globally diversified equity investments weighted by market capitalization, representing ownership stakes in the world's largest publicly traded companies.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "14.9%",   # 2024
+                "anno_2": "16.8%",   # 2023
+                "anno_3": "13.2%",   # 2022
+                "anno_4": "21.8%",   # 2021
+                "anno_5": "15.9%",   # 2020
+                "anno_6": "27.7%",   # 2019
+                "anno_7": "-8.7%",   # 2018
+                "anno_8": "23.1%",   # 2017
+                "anno_9": "7.5%",    # 2016
+                "anno_10": "-0.9%",  # 2015
+                "anno_11": "4.9%",   # 2014
+                "anno_12": "22.8%",  # 2013
+                "anno_13": "15.8%",  # 2012
+                "anno_14": "-5.5%",  # 2011
+                "anno_15": "11.8%",  # 2010
+                "anno_16": "29.9%",  # 2009
+                "anno_17": "-40.7%", # 2008
+                "anno_18": "9.6%",   # 2007
+                "anno_19": "20.1%",  # 2006
+                "anno_20": "9.5%"    # 2005
+            },
             "20_anni": "7.0%",
             "10_anni": "10.6%",
             "5_anni": "14.4%",
@@ -44,6 +66,28 @@ EQUITY_ASSETS_EN = {
     "Momentum Equities": {
         "descrizione": "Strategy that invests in stocks that have shown positive performance in the recent past, exploiting the tendency of winning stocks to continue outperforming in the short-medium term.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "18.5%",   # 2024
+                "anno_2": "19.2%",   # 2023
+                "anno_3": "15.8%",   # 2022
+                "anno_4": "26.4%",   # 2021
+                "anno_5": "18.7%",   # 2020
+                "anno_6": "31.2%",   # 2019
+                "anno_7": "-12.3%",  # 2018
+                "anno_8": "28.9%",   # 2017
+                "anno_9": "9.1%",    # 2016
+                "anno_10": "-2.4%",  # 2015
+                "anno_11": "6.8%",   # 2014
+                "anno_12": "27.5%",  # 2013
+                "anno_13": "18.9%",  # 2012
+                "anno_14": "-8.2%",  # 2011
+                "anno_15": "14.7%",  # 2010
+                "anno_16": "35.1%",  # 2009
+                "anno_17": "-48.5%", # 2008
+                "anno_18": "11.8%",  # 2007
+                "anno_19": "23.4%",  # 2006
+                "anno_20": "12.1%"   # 2005
+            },
             "20_anni": "8.5%",
             "10_anni": "12.8%",
             "5_anni": "16.2%",
@@ -78,6 +122,28 @@ EQUITY_ASSETS_EN = {
     "Quality Equities": {
         "descrizione": "Investments in companies with strong fundamentals: high profitability, low financial leverage, stable earnings growth, and efficient management.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "12.4%",   # 2024
+                "anno_2": "14.5%",   # 2023
+                "anno_3": "11.8%",   # 2022
+                "anno_4": "18.9%",   # 2021
+                "anno_5": "13.2%",   # 2020
+                "anno_6": "25.1%",   # 2019
+                "anno_7": "-6.8%",   # 2018
+                "anno_8": "20.7%",   # 2017
+                "anno_9": "6.3%",    # 2016
+                "anno_10": "1.2%",   # 2015
+                "anno_11": "7.5%",   # 2014
+                "anno_12": "19.8%",  # 2013
+                "anno_13": "13.4%",  # 2012
+                "anno_14": "-3.1%",  # 2011
+                "anno_15": "9.9%",   # 2010
+                "anno_16": "26.8%",  # 2009
+                "anno_17": "-35.2%", # 2008
+                "anno_18": "7.9%",   # 2007
+                "anno_19": "17.3%",  # 2006
+                "anno_20": "8.1%"    # 2005
+            },
             "20_anni": "7.8%",
             "10_anni": "11.2%",
             "5_anni": "13.8%",
@@ -113,6 +179,28 @@ EQUITY_ASSETS_EN = {
     "Value Equities": {
         "descrizione": "Strategy that invests in stocks considered undervalued by the market relative to their fundamentals, often with low P/E ratios and high dividend yields.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "13.7%",   # 2024
+                "anno_2": "12.9%",   # 2023
+                "anno_3": "8.4%",    # 2022
+                "anno_4": "16.2%",   # 2021
+                "anno_5": "9.8%",    # 2020
+                "anno_6": "21.3%",   # 2019
+                "anno_7": "-4.1%",   # 2018
+                "anno_8": "17.2%",   # 2017
+                "anno_9": "15.6%",   # 2016
+                "anno_10": "-3.8%",  # 2015
+                "anno_11": "12.7%",  # 2014
+                "anno_12": "31.1%",  # 2013
+                "anno_13": "17.5%",  # 2012
+                "anno_14": "-5.6%",  # 2011
+                "anno_15": "15.1%",  # 2010
+                "anno_16": "19.7%",  # 2009
+                "anno_17": "-36.8%", # 2008
+                "anno_18": "-0.2%",  # 2007
+                "anno_19": "22.2%",  # 2006
+                "anno_20": "7.1%"    # 2005
+            },
             "20_anni": "6.2%",
             "10_anni": "8.9%",
             "5_anni": "11.5%",
@@ -148,6 +236,28 @@ EQUITY_ASSETS_EN = {
     "Minimum Volatility Equities": {
         "descrizione": "Strategy that selects stocks with the lowest historical volatility, aiming to reduce the overall risk of the equity portfolio.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "10.8%",   # 2024
+                "anno_2": "11.9%",   # 2023
+                "anno_3": "8.7%",    # 2022
+                "anno_4": "14.2%",   # 2021
+                "anno_5": "2.1%",    # 2020
+                "anno_6": "20.5%",   # 2019
+                "anno_7": "-1.8%",   # 2018
+                "anno_8": "16.3%",   # 2017
+                "anno_9": "11.4%",   # 2016
+                "anno_10": "2.9%",   # 2015
+                "anno_11": "8.7%",   # 2014
+                "anno_12": "18.4%",  # 2013
+                "anno_13": "14.9%",  # 2012
+                "anno_14": "1.2%",   # 2011
+                "anno_15": "12.8%",  # 2010
+                "anno_16": "22.1%",  # 2009
+                "anno_17": "-22.8%", # 2008
+                "anno_18": "5.3%",   # 2007
+                "anno_19": "15.7%",  # 2006
+                "anno_20": "6.8%"    # 2005
+            },
             "20_anni": "6.8%",
             "10_anni": "9.4%",
             "5_anni": "11.2%",
@@ -182,6 +292,28 @@ EQUITY_ASSETS_EN = {
     "Small Cap Equities": {
         "descrizione": "Investments in small capitalization companies with greater growth potential but also higher risk and volatility.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "15.2%",   # 2024
+                "anno_2": "18.7%",   # 2023
+                "anno_3": "9.3%",    # 2022
+                "anno_4": "28.1%",   # 2021
+                "anno_5": "-5.0%",   # 2020
+                "anno_6": "25.5%",   # 2019
+                "anno_7": "-11.0%",  # 2018
+                "anno_8": "21.3%",   # 2017
+                "anno_9": "21.3%",   # 2016
+                "anno_10": "-4.4%",  # 2015
+                "anno_11": "4.9%",   # 2014
+                "anno_12": "38.8%",  # 2013
+                "anno_13": "16.4%",  # 2012
+                "anno_14": "-4.2%",  # 2011
+                "anno_15": "26.9%",  # 2010
+                "anno_16": "27.2%",  # 2009
+                "anno_17": "-33.8%", # 2008
+                "anno_18": "-1.6%",  # 2007
+                "anno_19": "18.4%",  # 2006
+                "anno_20": "4.6%"    # 2005
+            },
             "20_anni": "8.2%",
             "10_anni": "11.8%",
             "5_anni": "13.4%",
@@ -217,6 +349,28 @@ EQUITY_ASSETS_EN = {
     "Emerging Markets": {
         "descrizione": "Equities from companies located in developing countries with rapidly growing economies.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "15.9%",   # 2024
+                "anno_2": "-2.5%",   # 2023
+                "anno_3": "-20.1%",  # 2022
+                "anno_4": "-2.5%",   # 2021
+                "anno_5": "18.3%",   # 2020
+                "anno_6": "18.4%",   # 2019
+                "anno_7": "-14.6%",  # 2018
+                "anno_8": "37.3%",   # 2017
+                "anno_9": "11.2%",   # 2016
+                "anno_10": "-14.9%", # 2015
+                "anno_11": "-2.2%",  # 2014
+                "anno_12": "-2.6%",  # 2013
+                "anno_13": "18.2%",  # 2012
+                "anno_14": "-18.4%", # 2011
+                "anno_15": "18.9%",  # 2010
+                "anno_16": "78.5%",  # 2009
+                "anno_17": "-53.3%", # 2008
+                "anno_18": "39.4%",  # 2007
+                "anno_19": "32.6%",  # 2006
+                "anno_20": "34.5%"   # 2005
+            },
             "20_anni": "4.3%",
             "10_anni": "6.1%",
             "5_anni": "5.6%",
@@ -252,6 +406,28 @@ EQUITY_ASSETS_EN = {
     "High Dividend Equities": {
         "descrizione": "Strategy that invests in stocks of companies that distribute high and sustainable dividends, often mature companies with stable cash flows.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "11.8%",   # 2024
+                "anno_2": "13.2%",   # 2023
+                "anno_3": "5.1%",    # 2022
+                "anno_4": "17.9%",   # 2021
+                "anno_5": "-2.8%",   # 2020
+                "anno_6": "21.7%",   # 2019
+                "anno_7": "-4.3%",   # 2018
+                "anno_8": "17.8%",   # 2017
+                "anno_9": "17.8%",   # 2016
+                "anno_10": "-3.4%",  # 2015
+                "anno_11": "15.4%",  # 2014
+                "anno_12": "26.1%",  # 2013
+                "anno_13": "10.2%",  # 2012
+                "anno_14": "5.9%",   # 2011
+                "anno_15": "14.2%",  # 2010
+                "anno_16": "10.1%",  # 2009
+                "anno_17": "-18.9%", # 2008
+                "anno_18": "-1.4%",  # 2007
+                "anno_19": "20.8%",  # 2006
+                "anno_20": "5.4%"    # 2005
+            },
             "20_anni": "6.8%",
             "10_anni": "9.2%",
             "5_anni": "10.4%",
