@@ -1,6 +1,6 @@
 # data/english/bond_assets_en.py
 """
-Bond and fixed income assets data in English
+Bond and fixed income assets data in English - COMPLETE WITH YEARLY RETURNS
 Clear separation between government and corporate bonds
 """
 
@@ -9,6 +9,28 @@ BOND_ASSETS_EN = {
     "Government Bonds 0-1 Years": {
         "descrizione": "European government debt securities with very short-term maturity within one year. They represent the ultimate risk-free benchmark with virtually zero credit risk but very contained yields.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "4.2%",    # 2024
+                "anno_2": "3.8%",    # 2023
+                "anno_3": "1.9%",    # 2022
+                "anno_4": "-0.1%",   # 2021
+                "anno_5": "-0.3%",   # 2020
+                "anno_6": "-0.2%",   # 2019
+                "anno_7": "-0.1%",   # 2018
+                "anno_8": "-0.4%",   # 2017
+                "anno_9": "-0.3%",   # 2016
+                "anno_10": "0.1%",   # 2015
+                "anno_11": "0.2%",   # 2014
+                "anno_12": "0.3%",   # 2013
+                "anno_13": "0.8%",   # 2012
+                "anno_14": "1.4%",   # 2011
+                "anno_15": "0.8%",   # 2010
+                "anno_16": "1.2%",   # 2009
+                "anno_17": "4.2%",   # 2008
+                "anno_18": "4.1%",   # 2007
+                "anno_19": "3.6%",   # 2006
+                "anno_20": "2.8%"    # 2005
+            },
             "20_anni": "2.5%",
             "10_anni": "0.8%",
             "5_anni": "1.8%",
@@ -45,6 +67,28 @@ BOND_ASSETS_EN = {
     "Government Bonds 1-3 Years": {
         "descrizione": "European government bonds with short-term maturity offering the optimal balance between safety and yield in the government segment, maintaining zero credit risk.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "3.8%",    # 2024
+                "anno_2": "2.9%",    # 2023
+                "anno_3": "-1.2%",   # 2022
+                "anno_4": "-0.5%",   # 2021
+                "anno_5": "0.8%",    # 2020
+                "anno_6": "0.9%",    # 2019
+                "anno_7": "0.6%",    # 2018
+                "anno_8": "-0.2%",   # 2017
+                "anno_9": "-0.1%",   # 2016
+                "anno_10": "0.4%",   # 2015
+                "anno_11": "1.2%",   # 2014
+                "anno_12": "1.8%",   # 2013
+                "anno_13": "2.9%",   # 2012
+                "anno_14": "3.8%",   # 2011
+                "anno_15": "3.1%",   # 2010
+                "anno_16": "4.2%",   # 2009
+                "anno_17": "5.8%",   # 2008
+                "anno_18": "4.9%",   # 2007
+                "anno_19": "3.7%",   # 2006
+                "anno_20": "3.2%"    # 2005
+            },
             "20_anni": "3.0%",
             "10_anni": "1.5%",
             "5_anni": "2.2%",
@@ -80,6 +124,28 @@ BOND_ASSETS_EN = {
     "Government Bonds 3-7 Years": {
         "descrizione": "European government bonds with medium-term maturity representing the sweet spot of the government curve, offering more interesting yields while maintaining absolute credit safety.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "2.2%",    # 2024
+                "anno_2": "-3.1%",   # 2023
+                "anno_3": "-8.4%",   # 2022
+                "anno_4": "-2.8%",   # 2021
+                "anno_5": "4.1%",    # 2020
+                "anno_6": "6.8%",    # 2019
+                "anno_7": "1.2%",    # 2018
+                "anno_8": "1.8%",    # 2017
+                "anno_9": "3.4%",    # 2016
+                "anno_10": "1.9%",   # 2015
+                "anno_11": "8.1%",   # 2014
+                "anno_12": "2.4%",   # 2013
+                "anno_13": "7.8%",   # 2012
+                "anno_14": "9.7%",   # 2011
+                "anno_15": "4.1%",   # 2010
+                "anno_16": "8.9%",   # 2009
+                "anno_17": "7.2%",   # 2008
+                "anno_18": "1.8%",   # 2007
+                "anno_19": "2.1%",   # 2006
+                "anno_20": "4.7%"    # 2005
+            },
             "20_anni": "3.8%",
             "10_anni": "2.5%",
             "5_anni": "0.9%",
@@ -115,6 +181,28 @@ BOND_ASSETS_EN = {
     "Government Bonds 7-10 Years": {
         "descrizione": "European government bonds with medium-long term maturity representing the ultimate duration benchmark, offering maximum deflationary hedge in the government segment.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "1.0%",    # 2024
+                "anno_2": "-5.8%",   # 2023
+                "anno_3": "-14.2%",  # 2022
+                "anno_4": "-4.1%",   # 2021
+                "anno_5": "8.9%",    # 2020
+                "anno_6": "9.7%",    # 2019
+                "anno_7": "2.1%",    # 2018
+                "anno_8": "2.8%",    # 2017
+                "anno_9": "4.8%",    # 2016
+                "anno_10": "1.2%",   # 2015
+                "anno_11": "12.9%",  # 2014
+                "anno_12": "1.8%",   # 2013
+                "anno_13": "11.4%",  # 2012
+                "anno_14": "14.2%",  # 2011
+                "anno_15": "6.8%",   # 2010
+                "anno_16": "12.1%",  # 2009
+                "anno_17": "8.9%",   # 2008
+                "anno_18": "1.2%",   # 2007
+                "anno_19": "1.8%",   # 2006
+                "anno_20": "6.2%"    # 2005
+            },
             "20_anni": "4.5%",
             "10_anni": "3.0%",
             "5_anni": "0.5%",
@@ -150,6 +238,28 @@ BOND_ASSETS_EN = {
     "Government Bonds >10 Years": {
         "descrizione": "European government bonds with long-term maturity offering maximum duration sensitivity and representing the ultimate hedge against extreme deflationary scenarios.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "0.5%",    # 2024
+                "anno_2": "-7.9%",   # 2023
+                "anno_3": "-18.1%",  # 2022
+                "anno_4": "-5.2%",   # 2021
+                "anno_5": "12.1%",   # 2020
+                "anno_6": "11.8%",   # 2019
+                "anno_7": "2.8%",    # 2018
+                "anno_8": "3.2%",    # 2017
+                "anno_9": "6.1%",    # 2016
+                "anno_10": "0.8%",   # 2015
+                "anno_11": "15.8%",  # 2014
+                "anno_12": "1.2%",   # 2013
+                "anno_13": "14.9%",  # 2012
+                "anno_14": "17.8%",  # 2011
+                "anno_15": "8.2%",   # 2010
+                "anno_16": "14.8%",  # 2009
+                "anno_17": "10.1%",  # 2008
+                "anno_18": "0.8%",   # 2007
+                "anno_19": "1.4%",   # 2006
+                "anno_20": "7.8%"    # 2005
+            },
             "20_anni": "4.9%",
             "10_anni": "3.8%",
             "5_anni": "-0.5%",
@@ -188,6 +298,28 @@ BOND_ASSETS_EN = {
     "Corporate Bonds 0-1 Years": {
         "descrizione": "European corporate bonds with very short-term maturity offering attractive credit spreads with minimal duration, ideal for enhancing yield while maintaining low volatility.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "5.4%",    # 2024
+                "anno_2": "4.8%",    # 2023
+                "anno_3": "2.1%",    # 2022
+                "anno_4": "0.2%",    # 2021
+                "anno_5": "0.8%",    # 2020
+                "anno_6": "1.2%",    # 2019
+                "anno_7": "0.8%",    # 2018
+                "anno_8": "0.3%",    # 2017
+                "anno_9": "0.6%",    # 2016
+                "anno_10": "0.9%",   # 2015
+                "anno_11": "1.4%",   # 2014
+                "anno_12": "1.8%",   # 2013
+                "anno_13": "2.9%",   # 2012
+                "anno_14": "3.2%",   # 2011
+                "anno_15": "2.1%",   # 2010
+                "anno_16": "4.8%",   # 2009
+                "anno_17": "6.9%",   # 2008
+                "anno_18": "4.2%",   # 2007
+                "anno_19": "3.8%",   # 2006
+                "anno_20": "3.1%"    # 2005
+            },
             "20_anni": "3.2%",
             "10_anni": "1.6%",
             "5_anni": "2.5%",
@@ -224,6 +356,28 @@ BOND_ASSETS_EN = {
     "Corporate Bonds 1-3 Years": {
         "descrizione": "European corporate bonds with short-term maturity combining attractive credit spreads with limited duration, offering the best risk/return ratio in the corporate segment.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "4.8%",    # 2024
+                "anno_2": "3.9%",    # 2023
+                "anno_3": "-0.4%",   # 2022
+                "anno_4": "-0.2%",   # 2021
+                "anno_5": "2.8%",    # 2020
+                "anno_6": "2.4%",    # 2019
+                "anno_7": "1.2%",    # 2018
+                "anno_8": "1.8%",    # 2017
+                "anno_9": "2.1%",    # 2016
+                "anno_10": "1.8%",   # 2015
+                "anno_11": "3.9%",   # 2014
+                "anno_12": "3.2%",   # 2013
+                "anno_13": "6.8%",   # 2012
+                "anno_14": "4.1%",   # 2011
+                "anno_15": "6.2%",   # 2010
+                "anno_16": "9.1%",   # 2009
+                "anno_17": "-2.8%",  # 2008
+                "anno_18": "3.1%",   # 2007
+                "anno_19": "2.8%",   # 2006
+                "anno_20": "3.9%"    # 2005
+            },
             "20_anni": "3.8%",
             "10_anni": "2.4%",
             "5_anni": "2.8%",
@@ -260,6 +414,28 @@ BOND_ASSETS_EN = {
     "Corporate Bonds 3-7 Years": {
         "descrizione": "European corporate bonds with medium-term maturity where credit spreads become more significant, offering superior yields but with greater credit risk exposure amplified by duration.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "3.2%",    # 2024
+                "anno_2": "-1.8%",   # 2023
+                "anno_3": "-7.2%",   # 2022
+                "anno_4": "-1.4%",   # 2021
+                "anno_5": "6.8%",    # 2020
+                "anno_6": "7.9%",    # 2019
+                "anno_7": "-0.9%",   # 2018
+                "anno_8": "3.1%",    # 2017
+                "anno_9": "4.8%",    # 2016
+                "anno_10": "0.8%",   # 2015
+                "anno_11": "9.4%",   # 2014
+                "anno_12": "4.1%",   # 2013
+                "anno_13": "12.8%",  # 2012
+                "anno_14": "7.9%",   # 2011
+                "anno_15": "8.1%",   # 2010
+                "anno_16": "18.2%",  # 2009
+                "anno_17": "-8.4%",  # 2008
+                "anno_18": "1.9%",   # 2007
+                "anno_19": "2.4%",   # 2006
+                "anno_20": "5.1%"    # 2005
+            },
             "20_anni": "4.5%",
             "10_anni": "3.2%",
             "5_anni": "1.6%",
@@ -296,6 +472,28 @@ BOND_ASSETS_EN = {
     "Corporate Bonds 7-10 Years": {
         "descrizione": "European corporate bonds with medium-long term maturity concentrating maximum credit risk with high duration, suitable only for investors who understand the risk/return complexity.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "1.8%",    # 2024
+                "anno_2": "-4.2%",   # 2023
+                "anno_3": "-12.1%",  # 2022
+                "anno_4": "-2.8%",   # 2021
+                "anno_5": "9.4%",    # 2020
+                "anno_6": "10.8%",   # 2019
+                "anno_7": "-1.9%",   # 2018
+                "anno_8": "4.1%",    # 2017
+                "anno_9": "6.8%",    # 2016
+                "anno_10": "-0.2%",  # 2015
+                "anno_11": "12.4%",  # 2014
+                "anno_12": "5.9%",   # 2013
+                "anno_13": "18.1%",  # 2012
+                "anno_14": "8.4%",   # 2011
+                "anno_15": "11.2%",  # 2010
+                "anno_16": "24.8%",  # 2009
+                "anno_17": "-14.2%", # 2008
+                "anno_18": "0.8%",   # 2007
+                "anno_19": "2.1%",   # 2006
+                "anno_20": "6.8%"    # 2005
+            },
             "20_anni": "5.1%",
             "10_anni": "3.8%",
             "5_anni": "1.2%",
@@ -333,6 +531,28 @@ BOND_ASSETS_EN = {
     "Corporate Bonds >10 Years": {
         "descrizione": "European corporate bonds with long-term maturity representing the most complex and risky asset in the fixed income segment, combining extreme duration with maximum credit risk.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "1.2%",    # 2024
+                "anno_2": "-6.8%",   # 2023
+                "anno_3": "-16.4%",  # 2022
+                "anno_4": "-4.1%",   # 2021
+                "anno_5": "12.8%",   # 2020
+                "anno_6": "13.9%",   # 2019
+                "anno_7": "-2.1%",   # 2018
+                "anno_8": "5.2%",    # 2017
+                "anno_9": "8.4%",    # 2016
+                "anno_10": "-1.8%",  # 2015
+                "anno_11": "16.2%",  # 2014
+                "anno_12": "7.1%",   # 2013
+                "anno_13": "22.4%",  # 2012
+                "anno_14": "9.8%",   # 2011
+                "anno_15": "14.1%",  # 2010
+                "anno_16": "31.2%",  # 2009
+                "anno_17": "-21.8%", # 2008
+                "anno_18": "-0.4%",  # 2007
+                "anno_19": "1.8%",   # 2006
+                "anno_20": "8.9%"    # 2005
+            },
             "20_anni": "5.5%",
             "10_anni": "4.5%",
             "5_anni": "0.2%",
@@ -371,6 +591,28 @@ BOND_ASSETS_EN = {
     "High Yield Bonds": {
         "descrizione": "High-yield corporate bonds issued by companies with lower credit ratings (junk bonds), offering higher yields to compensate for greater credit risk.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "8.9%",    # 2024
+                "anno_2": "5.8%",    # 2023
+                "anno_3": "-11.2%",  # 2022
+                "anno_4": "5.3%",    # 2021
+                "anno_5": "7.1%",    # 2020
+                "anno_6": "14.4%",   # 2019
+                "anno_7": "-2.1%",   # 2018
+                "anno_8": "7.5%",    # 2017
+                "anno_9": "17.5%",   # 2016
+                "anno_10": "-4.5%",  # 2015
+                "anno_11": "2.5%",   # 2014
+                "anno_12": "7.4%",   # 2013
+                "anno_13": "15.8%",  # 2012
+                "anno_14": "4.4%",   # 2011
+                "anno_15": "15.1%",  # 2010
+                "anno_16": "57.5%",  # 2009
+                "anno_17": "-26.2%", # 2008
+                "anno_18": "-1.6%",  # 2007
+                "anno_19": "11.9%",  # 2006
+                "anno_20": "2.7%"    # 2005
+            },
             "20_anni": "6.8%",
             "10_anni": "5.4%",
             "5_anni": "4.2%",
@@ -406,6 +648,28 @@ BOND_ASSETS_EN = {
     "Inflation Linked Bonds": {
         "descrizione": "Bonds whose principal and coupons are indexed to inflation, designed to protect the investor's purchasing power (Euro inflation-linked bonds, TIPS equivalent).",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "1.8%",    # 2024
+                "anno_2": "5.4%",    # 2023
+                "anno_3": "1.2%",    # 2022
+                "anno_4": "3.8%",    # 2021
+                "anno_5": "7.9%",    # 2020
+                "anno_6": "4.1%",    # 2019
+                "anno_7": "0.8%",    # 2018
+                "anno_8": "2.1%",    # 2017
+                "anno_9": "0.4%",    # 2016
+                "anno_10": "-0.7%",  # 2015
+                "anno_11": "6.8%",   # 2014
+                "anno_12": "-1.2%",  # 2013
+                "anno_13": "1.8%",   # 2012
+                "anno_14": "13.5%",  # 2011
+                "anno_15": "2.3%",   # 2010
+                "anno_16": "11.4%",  # 2009
+                "anno_17": "2.1%",   # 2008
+                "anno_18": "1.2%",   # 2007
+                "anno_19": "0.9%",   # 2006
+                "anno_20": "1.6%"    # 2005
+            },
             "20_anni": "3.8%",
             "10_anni": "2.1%",
             "5_anni": "3.4%",
@@ -441,6 +705,28 @@ BOND_ASSETS_EN = {
     "Convertible Bonds": {
         "descrizione": "Bonds that can be converted into shares of the issuing company under predetermined conditions, offering hybrid debt/equity characteristics.",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "12.1%",   # 2024
+                "anno_2": "1.8%",    # 2023
+                "anno_3": "-15.4%",  # 2022
+                "anno_4": "7.9%",    # 2021
+                "anno_5": "32.0%",   # 2020
+                "anno_6": "15.8%",   # 2019
+                "anno_7": "-8.9%",   # 2018
+                "anno_8": "14.5%",   # 2017
+                "anno_9": "4.2%",    # 2016
+                "anno_10": "-3.1%",  # 2015
+                "anno_11": "9.5%",   # 2014
+                "anno_12": "21.6%",  # 2013
+                "anno_13": "17.8%",  # 2012
+                "anno_14": "-9.4%",  # 2011
+                "anno_15": "15.2%",  # 2010
+                "anno_16": "38.9%",  # 2009
+                "anno_17": "-35.7%", # 2008
+                "anno_18": "-3.1%",  # 2007
+                "anno_19": "4.8%",   # 2006
+                "anno_20": "3.2%"    # 2005
+            },
             "20_anni": "5.8%",
             "10_anni": "7.2%",
             "5_anni": "8.4%",
@@ -476,6 +762,28 @@ BOND_ASSETS_EN = {
     "Subordinated Bonds": {
         "descrizione": "Debt securities that in case of liquidation are repaid after senior creditors, offering higher yields for greater risk (European Tier 2, AT1, subordinated bank bonds).",
         "performance_storica": {
+            "rendimenti_annuali": {
+                "anno_1": "7.4%",    # 2024
+                "anno_2": "8.2%",    # 2023
+                "anno_3": "-9.1%",   # 2022
+                "anno_4": "3.8%",    # 2021
+                "anno_5": "-2.4%",   # 2020
+                "anno_6": "9.7%",    # 2019
+                "anno_7": "-5.2%",   # 2018
+                "anno_8": "6.1%",    # 2017
+                "anno_9": "8.9%",    # 2016
+                "anno_10": "2.1%",   # 2015
+                "anno_11": "11.4%",  # 2014
+                "anno_12": "12.8%",  # 2013
+                "anno_13": "19.4%",  # 2012
+                "anno_14": "-8.7%",  # 2011
+                "anno_15": "13.5%",  # 2010
+                "anno_16": "45.2%",  # 2009
+                "anno_17": "-18.9%", # 2008
+                "anno_18": "-0.8%",  # 2007
+                "anno_19": "1.4%",   # 2006
+                "anno_20": "2.9%"    # 2005
+            },
             "20_anni": "5.2%",
             "10_anni": "4.8%",
             "5_anni": "3.1%",
