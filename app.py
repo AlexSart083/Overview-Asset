@@ -463,7 +463,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
-    main()import streamlit as st
+    main()
+import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
