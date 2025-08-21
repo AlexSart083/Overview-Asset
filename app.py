@@ -203,8 +203,219 @@ def create_asset_selector(asset_data, categories, ui_text):
     
     return selected_asset
 
-def create_performance_chart(performance_data, asset_name, ui_text):
-    """Create performance visualization chart with data date"""
+# ===== NEW YEARLY PERFORMANCE CHART FUNCTIONS =====
+
+def create_yearly_performance_chart(performance_data, asset_name, ui_text):
+    """Create yearly performance visualization chart (year 1 to 20)"""
+    
+    if "rendimenti_annuali" not in performance_data:
+        # Fallback to old chart if yearly data not available
+        return create_performance_chart_legacy(performance_data, asset_name, ui_text)
+    
+    yearly_data = performance_data["rendimenti_annuali"]
+    
+    years = []
+    returns = []
+    
+    # Get data in chronological order (most recent first)
+    for i in range(1, 21):
+        year_key = f"anno_{i}"
+        if year_key in yearly_data:
+            try:
+                value = float(yearly_data[year_key].replace('%', ''))
+                years.append(f"Y{i}")
+                returns.append(value)
+            except (ValueError, AttributeError):
+                continue
+    
+    if not returns:
+        return None
+    
+    fig = go.Figure()
+    
+    # Main line with colored markers based on performance
+    colors = ['green' if x >= 0 else 'red' for x in returns]
+    
+    fig.add_trace(go.Scatter(
+        x=years,
+        y=returns,
+        mode='lines+markers',
+        name=asset_name,
+        line=dict(width=3, color='steelblue'),
+        marker=dict(size=8, color=colors, line=dict(width=1, color='darkblue')),
+        hovertemplate="<b>Year %{x}</b><br>Return: %{y}%<extra></extra>"
+    ))
+    
+    # 5-year moving average
+    if len(returns) >= 5:
+        moving_avg_5 = []
+        for i in range(len(returns)):
+            if i >= 4:
+                avg = sum(returns[i-4:i+1]) / 5
+                moving_avg_5.append(avg)
+            else:
+                moving_avg_5.append(None)
+        
+        fig.add_trace(go.Scatter(
+            x=years,
+            y=moving_avg_5,
+            mode='lines',
+            name='5Y Moving Average',
+            line=dict(width=2, color='orange', dash='dash'),
+            hovertemplate="<b>5Y Avg - Year %{x}</b><br>%{y:.1f}%<extra></extra>"
+        ))
+    
+    # Enhanced layout
+    fig.update_layout(
+        title=f"📈 Historical Yearly Returns - {asset_name}",
+        xaxis_title="Year (most recent first)",
+        yaxis_title="Annualized Return (%)",
+        height=500,
+        title_x=0.5,
+        hovermode='x unified',
+        legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
+        plot_bgcolor='rgba(240,240,240,0.3)',
+        xaxis=dict(showgrid=True, gridcolor='lightgray'),
+        yaxis=dict(showgrid=True, gridcolor='lightgray')
+    )
+    
+    # Reference lines
+    fig.add_hline(y=0, line_dash="dash", line_color="rgba(255, 0, 0, 0.5)")
+    
+    overall_avg = sum(returns) / len(returns)
+    fig.add_hline(
+        y=overall_avg, 
+        line_dash="dot", 
+        line_color="green",
+        annotation_text=f"20Y Avg: {overall_avg:.1f}%",
+        annotation_position="top right"
+    )
+    
+    # Add data date annotation
+    data_date = performance_data.get('data_calcolo', 'Date not specified')
+    fig.add_annotation(
+        x=0.99,
+        y=0.01,
+        xref="paper",
+        yref="paper",
+        text=f"📅 {data_date}",
+        showarrow=False,
+        font=dict(size=10, color="gray"),
+        xanchor="right",
+        yanchor="bottom"
+    )
+    
+    return fig
+
+def create_yearly_comparison_chart(asset_data, selected_assets, ui_text):
+    """Create yearly comparison chart for multiple assets"""
+    
+    if len(selected_assets) <= 1:
+        return None
+    
+    fig = go.Figure()
+    
+    colors = ['steelblue', 'orange', 'green', 'red', 'purple', 'brown', 'pink']
+    
+    for idx, asset_name in enumerate(selected_assets[:7]):  # Limit to 7 assets for readability
+        if asset_name in asset_data and "performance_storica" in asset_data[asset_name]:
+            performance_data = asset_data[asset_name]["performance_storica"]
+            
+            if "rendimenti_annuali" not in performance_data:
+                continue
+                
+            yearly_data = performance_data["rendimenti_annuali"]
+            
+            years = []
+            returns = []
+            
+            for i in range(1, 21):
+                year_key = f"anno_{i}"
+                if year_key in yearly_data:
+                    try:
+                        value = float(yearly_data[year_key].replace('%', ''))
+                        years.append(f"Y{i}")
+                        returns.append(value)
+                    except (ValueError, AttributeError):
+                        continue
+            
+            if returns:
+                fig.add_trace(go.Scatter(
+                    x=years,
+                    y=returns,
+                    mode='lines+markers',
+                    name=asset_name,
+                    line=dict(width=3, color=colors[idx % len(colors)]),
+                    marker=dict(size=6),
+                    hovertemplate=f"<b>{asset_name}</b><br>Year %{{x}}: %{{y}}%<extra></extra>"
+                ))
+    
+    fig.update_layout(
+        title="📊 Yearly Returns Comparison - Selected Assets",
+        xaxis_title="Year (most recent first)",
+        yaxis_title="Annualized Return (%)",
+        height=600,
+        title_x=0.5,
+        hovermode='x unified',
+        plot_bgcolor='rgba(240,240,240,0.3)',
+        xaxis=dict(showgrid=True, gridcolor='lightgray'),
+        yaxis=dict(showgrid=True, gridcolor='lightgray'),
+        legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01)
+    )
+    
+    fig.add_hline(y=0, line_dash="dash", line_color="rgba(255, 0, 0, 0.5)")
+    
+    return fig
+
+def display_yearly_performance_table(performance_data, ui_text):
+    """Display yearly performance table with statistics"""
+    
+    if "rendimenti_annuali" not in performance_data:
+        # Fallback to old table
+        return display_performance_table_with_date(performance_data, ui_text)
+    
+    yearly_data = performance_data["rendimenti_annuali"]
+    
+    # Recent 10 years
+    recent_data = []
+    for i in range(1, 11):
+        year_key = f"anno_{i}"
+        if year_key in yearly_data:
+            recent_data.append({
+                "Year": f"Y{i}",
+                "Return": yearly_data[year_key]
+            })
+    
+    if recent_data:
+        st.subheader("📊 Recent 10 Years Performance")
+        df_yearly = pd.DataFrame(recent_data)
+        st.dataframe(df_yearly, hide_index=True, use_container_width=True)
+        
+        # Statistics
+        numeric_returns = []
+        for item in recent_data:
+            try:
+                numeric_returns.append(float(item["Return"].replace('%', '')))
+            except:
+                continue
+        
+        if numeric_returns:
+            col1, col2, col3, col4 = st.columns(4)
+            
+            with col1:
+                st.metric("10Y Average", f"{sum(numeric_returns)/len(numeric_returns):.1f}%")
+            with col2:
+                st.metric("Best Year", f"{max(numeric_returns):.1f}%")
+            with col3:
+                st.metric("Worst Year", f"{min(numeric_returns):.1f}%")
+            with col4:
+                volatility = np.std(numeric_returns)
+                st.metric("Volatility", f"{volatility:.1f}%")
+
+# ===== LEGACY FUNCTIONS FOR BACKWARD COMPATIBILITY =====
+
+def create_performance_chart_legacy(performance_data, asset_name, ui_text):
+    """Legacy performance chart for backward compatibility"""
     
     periods = ["20_anni", "10_anni", "5_anni", "1_anno"]
     period_labels = {
@@ -275,128 +486,6 @@ def create_performance_chart(performance_data, asset_name, ui_text):
     
     return fig
 
-def create_performance_comparison_chart(asset_data, selected_assets, ui_text):
-    """Create comparison chart for multiple assets without data dates"""
-    
-    if len(selected_assets) <= 1:
-        return None
-    
-    periods = ["1_anno", "5_anni", "10_anni", "20_anni"]
-    period_labels = {
-        "1_anno": ui_text.get("years_1", "1Y"),
-        "5_anni": ui_text.get("years_5", "5Y"), 
-        "10_anni": ui_text.get("years_10", "10Y"),
-        "20_anni": ui_text.get("years_20", "20Y")
-    }
-    
-    fig = go.Figure()
-    
-    for asset_name in selected_assets:
-        if asset_name in asset_data and "performance_storica" in asset_data[asset_name]:
-            performance_data = asset_data[asset_name]["performance_storica"]
-            
-            performance_values = []
-            labels = []
-            
-            for period in periods:
-                if period in performance_data:
-                    try:
-                        # Remove % sign and convert to float
-                        value = float(performance_data[period].replace('%', ''))
-                        performance_values.append(value)
-                        labels.append(period_labels[period])
-                    except (ValueError, AttributeError):
-                        continue
-            
-            if performance_values:
-                fig.add_trace(go.Scatter(
-                    x=labels,
-                    y=performance_values,
-                    mode='lines+markers',
-                    name=asset_name,
-                    line=dict(width=3),
-                    marker=dict(size=8),
-                    hovertemplate=f"<b>{asset_name}</b><br>%{{x}}: %{{y}}%<extra></extra>"
-                ))
-    
-    fig.update_layout(
-        title=ui_text.get("performance_comparison", "Performance Comparison"),
-        xaxis_title=ui_text.get("time_period", "Time Period"),
-        yaxis_title=ui_text.get("annualized_return", "Annualized Return (%)"),
-        height=500,
-        title_x=0.5,
-        hovermode='x unified'
-    )
-    
-    # Add reference line at 0%
-    fig.add_hline(y=0, line_dash="dash", line_color="rgba(255, 0, 0, 0.5)")
-    
-    return fig
-
-def create_scenario_heatmap(asset_data, ui_text):
-    """Create heatmap showing asset performance across different scenarios"""
-    
-    # Performance mapping (simplified for visualization)
-    performance_mapping = {
-        "Strong positive": 3, "Positive": 2, "Mixed": 1, 
-        "Moderate negative": -1, "Negative": -2, "Significant negative": -3,
-        "Fortemente positiva": 3, "Positiva": 2, "Mista": 1,
-        "Moderatamente negativa": -1, "Negativa": -2, "Significativamente negativa": -3,
-        "Performance positiva": 2, "Performance negativa": -2, "Performance mista": 1,
-        "Performance fortemente positiva": 3, "Performance moderatamente negativa": -1,
-        "Outperformance": 2, "Underperformance": -2, "Strong": 3
-    }
-    
-    assets = list(asset_data.keys())
-    if not assets:
-        return None
-        
-    scenarios = list(list(asset_data.values())[0]["scenari"].keys())
-    
-    # Create performance matrix
-    performance_matrix = []
-    
-    for asset in assets:
-        row = []
-        for scenario in scenarios:
-            scenario_text = asset_data[asset]["scenari"][scenario]
-            # Simple mapping based on key words
-            score = 0
-            for key, value in performance_mapping.items():
-                if key.lower() in scenario_text.lower():
-                    score = value
-                    break
-            # Fallback mapping based on +/- signs
-            if score == 0:
-                if "+" in scenario_text:
-                    score = 2
-                elif "-" in scenario_text:
-                    score = -2
-                else:
-                    score = 1
-            row.append(score)
-        performance_matrix.append(row)
-    
-    # Create heatmap
-    fig = px.imshow(
-        performance_matrix,
-        x=scenarios,
-        y=assets,
-        color_continuous_scale="RdYlGn",
-        aspect="auto",
-        title=ui_text.get("heatmap_title", "Asset Performance Heatmap by Market Scenario")
-    )
-    
-    fig.update_layout(
-        title_x=0.5,
-        height=600,
-        xaxis_title=ui_text.get("market_scenarios", "Market Scenarios"),
-        yaxis_title=ui_text.get("assets", "Assets"),
-        font=dict(size=10)
-    )
-    
-    return fig
-
 def display_performance_table_with_date(performance_data, ui_text):
     """Display performance table with prominent data date"""
     
@@ -426,27 +515,138 @@ def display_performance_table_with_date(performance_data, ui_text):
     st.caption(f"📚 **{ui_text.get('reference_index', 'Reference Index')}:** {ref_index}")
     st.caption(f"📅 **{ui_text.get('calculation_date', 'Calculation Date')}:** {data_date}")
 
-def create_comparison_table_with_dates(asset_data, selected_assets, ui_text):
-    """Create comparison table without showing individual data dates"""
+# ===== SPECIALIZED CHART FUNCTIONS =====
+
+def create_crisis_performance_chart(asset_data, selected_assets, ui_text):
+    """Create chart showing performance during major crisis years"""
     
-    comparison_data = []
+    # Crisis years identified from historical data
+    crisis_years = {
+        "2008 Financial Crisis": "anno_17",
+        "2020 COVID": "anno_5", 
+        "2022 Rate Shock": "anno_3"
+    }
+    
+    fig = go.Figure()
+    
+    colors = ['steelblue', 'orange', 'green', 'red', 'purple']
+    
+    for idx, asset_name in enumerate(selected_assets[:5]):
+        if asset_name in asset_data and "performance_storica" in asset_data[asset_name]:
+            performance_data = asset_data[asset_name]["performance_storica"]
+            
+            if "rendimenti_annuali" not in performance_data:
+                continue
+                
+            yearly_data = performance_data["rendimenti_annuali"]
+            
+            crisis_performance = []
+            crisis_labels = []
+            
+            for crisis_name, year_key in crisis_years.items():
+                if year_key in yearly_data:
+                    try:
+                        perf = float(yearly_data[year_key].replace('%', ''))
+                        crisis_performance.append(perf)
+                        crisis_labels.append(crisis_name)
+                    except (ValueError, AttributeError):
+                        continue
+            
+            if crisis_performance:
+                fig.add_trace(go.Bar(
+                    x=crisis_labels,
+                    y=crisis_performance,
+                    name=asset_name,
+                    text=[f"{p:.1f}%" for p in crisis_performance],
+                    textposition='auto',
+                    marker_color=colors[idx % len(colors)]
+                ))
+    
+    fig.update_layout(
+        title="🔥 Performance During Major Crises",
+        yaxis_title="Performance (%)",
+        height=500,
+        title_x=0.5,
+        barmode='group',
+        plot_bgcolor='rgba(240,240,240,0.3)',
+        xaxis=dict(showgrid=True, gridcolor='lightgray'),
+        yaxis=dict(showgrid=True, gridcolor='lightgray')
+    )
+    
+    fig.add_hline(y=0, line_dash="dash", line_color="red")
+    
+    return fig
+
+def create_volatility_comparison_chart(asset_data, selected_assets, ui_text):
+    """Create chart comparing volatility across assets"""
+    
+    volatility_data = []
+    
     for asset_name in selected_assets:
         if asset_name in asset_data and "performance_storica" in asset_data[asset_name]:
-            perf_data = asset_data[asset_name]["performance_storica"]
-            comparison_data.append({
-                "Asset": asset_name,
-                "1Y": perf_data.get("1_anno", "N/A"),
-                "5Y": perf_data.get("5_anni", "N/A"),
-                "10Y": perf_data.get("10_anni", "N/A"),
-                "20Y": perf_data.get("20_anni", "N/A"),
-                ui_text.get("reference", "Reference"): perf_data.get("indice_riferimento", "N/A")
-            })
+            performance_data = asset_data[asset_name]["performance_storica"]
+            
+            if "rendimenti_annuali" in performance_data:
+                yearly_data = performance_data["rendimenti_annuali"]
+                returns = []
+                
+                for year_key in yearly_data.keys():
+                    try:
+                        ret = float(yearly_data[year_key].replace('%', ''))
+                        returns.append(ret)
+                    except (ValueError, AttributeError):
+                        continue
+                
+                if returns:
+                    volatility = np.std(returns)
+                    avg_return = np.mean(returns)
+                    volatility_data.append({
+                        "Asset": asset_name,
+                        "Volatility": volatility,
+                        "Average Return": avg_return
+                    })
     
-    if comparison_data:
-        comparison_df = pd.DataFrame(comparison_data)
-        st.dataframe(comparison_df, hide_index=True, use_container_width=True)
+    if not volatility_data:
+        return None
     
-    return comparison_data
+    df_vol = pd.DataFrame(volatility_data)
+    
+    fig = go.Figure()
+    
+    fig.add_trace(go.Scatter(
+        x=df_vol["Volatility"],
+        y=df_vol["Average Return"],
+        mode='markers+text',
+        text=df_vol["Asset"],
+        textposition="top center",
+        marker=dict(
+            size=12,
+            color=df_vol["Average Return"],
+            colorscale='RdYlGn',
+            showscale=True,
+            colorbar=dict(title="Avg Return (%)")
+        ),
+        hovertemplate="<b>%{text}</b><br>Volatility: %{x:.1f}%<br>Avg Return: %{y:.1f}%<extra></extra>"
+    ))
+    
+    fig.update_layout(
+        title="⚖️ Risk-Return Profile (20Y Historical Data)",
+        xaxis_title="Volatility (%)",
+        yaxis_title="Average Annual Return (%)",
+        height=500,
+        title_x=0.5,
+        plot_bgcolor='rgba(240,240,240,0.3)',
+        xaxis=dict(showgrid=True, gridcolor='lightgray'),
+        yaxis=dict(showgrid=True, gridcolor='lightgray')
+    )
+    
+    # Add quadrant lines
+    fig.add_hline(y=0, line_dash="dash", line_color="gray", opacity=0.5)
+    fig.add_vline(x=df_vol["Volatility"].median(), line_dash="dash", line_color="gray", opacity=0.5)
+    
+    return fig
+
+# ===== MAIN APPLICATION LOGIC =====
 
 def main():
     # Store language in session state
@@ -513,7 +713,7 @@ def main():
             ui_text.get("choose_assets", "Choose assets:"),
             list(asset_data.keys()),
             default=[selected_asset] if selected_asset else [],
-            max_selections=5
+            max_selections=7
         )
     else:
         selected_assets = [selected_asset] if selected_asset else []
@@ -537,24 +737,25 @@ def main():
         st.subheader(ui_text["description_header"])
         st.markdown(f"**{asset_info['descrizione']}**")
         
-        # Historical Performance Section
+        # Historical Performance Section - UPDATED WITH NEW CHARTS
         if "performance_storica" in asset_info:
             st.subheader(ui_text["performance_header"])
             
-            # Display performance table and chart side by side
-            col_perf1, col_perf2 = st.columns([1, 2])
-            
-            with col_perf1:
-                # Performance table with date
+            # NEW: Yearly performance chart if data available
+            yearly_chart = create_yearly_performance_chart(asset_info["performance_storica"], selected_asset, ui_text)
+            if yearly_chart:
+                st.plotly_chart(yearly_chart, use_container_width=True)
+                
+                # NEW: Yearly performance table
+                display_yearly_performance_table(asset_info["performance_storica"], ui_text)
+            else:
+                # Fallback to legacy chart
+                legacy_chart = create_performance_chart_legacy(asset_info["performance_storica"], selected_asset, ui_text)
+                if legacy_chart:
+                    st.plotly_chart(legacy_chart, use_container_width=True)
+                
+                # Legacy table
                 display_performance_table_with_date(asset_info["performance_storica"], ui_text)
-            
-            with col_perf2:
-                # Performance chart with date
-                perf_chart = create_performance_chart(asset_info["performance_storica"], selected_asset, ui_text)
-                if perf_chart:
-                    st.plotly_chart(perf_chart, use_container_width=True)
-                else:
-                    st.info("📊 Performance chart data not available")
             
             # Performance note
             st.info(ui_text["performance_note"])
@@ -619,42 +820,46 @@ def main():
         
         st.markdown("---")
         
-        # Enhanced visualizations
+        # Enhanced visualizations - UPDATED WITH NEW CHARTS
         st.subheader(ui_text["visualization_title"])
         
         # Create tabs for different visualizations
         if comparison_mode and len(selected_assets) > 1:
-            tab1, tab2, tab3 = st.tabs([
+            tab1, tab2, tab3, tab4 = st.tabs([
                 "📊 " + ui_text.get("performance_comparison", "Performance Comparison"),
-                "🗺️ " + ui_text.get("all_assets_heatmap", "All Assets Heatmap"),
+                "🔥 Crisis Analysis",
+                "⚖️ Risk-Return Profile", 
                 "🥧 " + ui_text.get("sample_portfolio", "Sample Portfolio")
             ])
             
             with tab1:
-                # Performance comparison
-                comparison_chart = create_performance_comparison_chart(asset_data, selected_assets, ui_text)
-                if comparison_chart:
-                    st.plotly_chart(comparison_chart, use_container_width=True)
-                    
-                    # Comparison table
-                    st.markdown("#### " + ui_text.get("performance_comparison_table", "Performance Comparison Table"))
-                    create_comparison_table_with_dates(asset_data, selected_assets, ui_text)
+                # NEW: Yearly comparison chart
+                yearly_comparison = create_yearly_comparison_chart(asset_data, selected_assets, ui_text)
+                if yearly_comparison:
+                    st.plotly_chart(yearly_comparison, use_container_width=True)
+                    st.caption("💡 Green markers = positive years, Red markers = negative years")
                 else:
-                    st.info(ui_text.get("select_two_assets", "📊 Select at least 2 assets to compare"))
+                    st.info("📊 Yearly comparison data not available for selected assets")
             
             with tab2:
-                # Heatmap
-                try:
-                    heatmap_fig = create_scenario_heatmap(asset_data, ui_text)
-                    if heatmap_fig:
-                        st.plotly_chart(heatmap_fig, use_container_width=True)
-                        st.caption(ui_text.get("green_positive", "💡 Green = Positive performance, Red = Negative performance"))
-                    else:
-                        st.info("📊 Heatmap data not available")
-                except Exception as e:
-                    st.error(f"Error creating heatmap: {e}")
+                # NEW: Crisis performance analysis
+                crisis_chart = create_crisis_performance_chart(asset_data, selected_assets, ui_text)
+                if crisis_chart:
+                    st.plotly_chart(crisis_chart, use_container_width=True)
+                    st.caption("🔥 Performance during major market crises (2008 Financial Crisis, 2020 COVID, 2022 Rate Shock)")
+                else:
+                    st.info("📊 Crisis analysis data not available")
             
             with tab3:
+                # NEW: Risk-return scatter plot
+                risk_return_chart = create_volatility_comparison_chart(asset_data, selected_assets, ui_text)
+                if risk_return_chart:
+                    st.plotly_chart(risk_return_chart, use_container_width=True)
+                    st.caption("⚖️ Higher up = better returns, Further right = higher risk")
+                else:
+                    st.info("📊 Risk-return analysis requires yearly data")
+            
+            with tab4:
                 # Sample allocation
                 try:
                     pie_fig = create_allocation_pie()
@@ -665,23 +870,11 @@ def main():
                 
         else:
             tab1, tab2 = st.tabs([
-                "🗺️ " + ui_text.get("all_assets_heatmap", "All Assets Heatmap"),
-                "🥧 " + ui_text.get("sample_portfolio", "Sample Portfolio")
+                "🥧 " + ui_text.get("sample_portfolio", "Sample Portfolio"),
+                "📚 Educational Resources"
             ])
             
             with tab1:
-                # Heatmap
-                try:
-                    heatmap_fig = create_scenario_heatmap(asset_data, ui_text)
-                    if heatmap_fig:
-                        st.plotly_chart(heatmap_fig, use_container_width=True)
-                        st.caption(ui_text.get("green_positive", "💡 Green = Positive performance, Red = Negative performance"))
-                    else:
-                        st.info("📊 Heatmap data not available")
-                except Exception as e:
-                    st.error(f"Error creating heatmap: {e}")
-            
-            with tab2:
                 # Sample allocation
                 try:
                     pie_fig = create_allocation_pie()
@@ -689,6 +882,23 @@ def main():
                     st.caption(ui_text.get("educational_example", "💡 This is just an educational example - not investment advice"))
                 except Exception as e:
                     st.error(f"Error creating allocation chart: {e}")
+            
+            with tab2:
+                # Educational content expanded
+                st.markdown("### 📚 Understanding Investment Performance")
+                st.markdown("""
+                **Key Concepts:**
+                - **Annualized Returns**: Average yearly performance over the time period
+                - **Volatility**: How much returns vary from year to year (risk measure)
+                - **Drawdown**: Maximum peak-to-trough decline during a period
+                - **Correlation**: How assets move relative to each other
+                
+                **Reading the Charts:**
+                - Green = Positive performance years
+                - Red = Negative performance years
+                - Moving averages smooth out short-term noise
+                - Crisis years show how assets behave during stress
+                """)
         
         st.markdown("---")
         
@@ -696,23 +906,6 @@ def main():
         st.subheader(ui_text["summary_header"])
         
         summary_text = f"""
-        ### {ui_text.get('key_takeaways', '🎯 Key Takeaways for')} {selected_asset}
-        
-        **{selected_asset}** rappresenta un asset con caratteristiche specifiche che lo rendono adatto 
-        a determinati obiettivi di investimento. La sua performance varia significativamente in base 
-        agli scenari macroeconomici, rendendo importante comprenderne il comportamento nel contesto 
-        di un portafoglio diversificato.
-        
-        #### {ui_text.get('key_points', '📚 Punti chiave da ricordare:')}
-        - **{ui_text.get('diversification_key', '🎯 Diversificazione è fondamentale')}**
-        - **{ui_text.get('time_horizon', '⏰ L\'orizzonte temporale influenza la scelta')}**
-        - **{ui_text.get('correlations_change', '🔄 Le correlazioni cambiano nei momenti di stress')}**
-        - **{ui_text.get('risk_return', '⚖️ Rischio e rendimento vanno sempre valutati insieme')}**
-        - **{ui_text.get('past_performance', '📊 Le performance passate non garantiscono risultati futuri')}**
-        
-        #### {ui_text.get('important_note', '🚨 Importante:')}
-        {ui_text.get('educational_purpose', 'Questa analisi è puramente educativa.')}
-        """ if language == "Italiano" else f"""
         ### {ui_text.get('key_takeaways', '🎯 Key Takeaways for')} {selected_asset}
         
         **{selected_asset}** represents an asset with specific characteristics that make it suitable 
@@ -728,6 +921,23 @@ def main():
         
         #### {ui_text.get('important_note', '🚨 Important:')}
         {ui_text.get('educational_purpose', 'This analysis is purely educational.')}
+        """ if language == "English" else f"""
+        ### {ui_text.get('key_takeaways', '🎯 Punti chiave per')} {selected_asset}
+        
+        **{selected_asset}** rappresenta un asset con caratteristiche specifiche che lo rendono adatto 
+        a determinati obiettivi di investimento. La sua performance varia significativamente in base 
+        agli scenari macroeconomici, rendendo importante comprenderne il comportamento nel contesto 
+        di un portafoglio diversificato.
+        
+        #### {ui_text.get('key_points', '📚 Punti chiave da ricordare:')}
+        - **{ui_text.get('diversification_key', '🎯 La diversificazione è fondamentale')}**
+        - **{ui_text.get('time_horizon', '⏰ L\'orizzonte temporale influenza la scelta')}**
+        - **{ui_text.get('correlations_change', '🔄 Le correlazioni cambiano nei momenti di stress')}**
+        - **{ui_text.get('risk_return', '⚖️ Rischio e rendimento vanno sempre valutati insieme')}**
+        - **{ui_text.get('past_performance', '📊 Le performance passate non garantiscono risultati futuri')}**
+        
+        #### {ui_text.get('important_note', '🚨 Importante:')}
+        {ui_text.get('educational_purpose', 'Questa analisi è puramente educativa.')}
         """
         
         st.markdown(summary_text)
