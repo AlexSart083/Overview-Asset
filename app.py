@@ -37,6 +37,55 @@ except ImportError as e:
         st.error("❌ Data files not found. Please ensure data files are available.")
         st.stop()
 
+# European Interest Rates and Inflation Historical Data (2005-2024)
+EUROPEAN_RATES_DATA = {
+    "anni": [f"anno_{i}" for i in range(1, 21)],  # Y1 = 2024, Y20 = 2005
+    "tassi_ecb": {
+        "anno_1": "4.5%",    # 2024 - Tassi alti post-inflazione
+        "anno_2": "4.0%",    # 2023 - Picco restrittivo
+        "anno_3": "2.5%",    # 2022 - Inizio rialzi
+        "anno_4": "0.0%",    # 2021 - Zero bound
+        "anno_5": "0.0%",    # 2020 - COVID response
+        "anno_6": "0.0%",    # 2019 - Dovish
+        "anno_7": "0.0%",    # 2018 - Fine QE
+        "anno_8": "0.0%",    # 2017 - QE in corso
+        "anno_9": "0.0%",    # 2016 - Negative rates
+        "anno_10": "0.0%",   # 2015 - QE start
+        "anno_11": "0.1%",   # 2014 - Near zero
+        "anno_12": "0.5%",   # 2013 - Crisi eurozona
+        "anno_13": "1.0%",   # 2012 - Draghi "whatever it takes"
+        "anno_14": "1.5%",   # 2011 - Eurocrisis peak
+        "anno_15": "1.0%",   # 2010 - Crisi greca
+        "anno_16": "1.0%",   # 2009 - Crisis response
+        "anno_17": "2.5%",   # 2008 - Pre-crisis cuts
+        "anno_18": "4.0%",   # 2007 - Pre-crisis high
+        "anno_19": "3.5%",   # 2006 - Rising cycle
+        "anno_20": "2.5%"    # 2005 - Moderate
+    },
+    "inflazione_hicp": {
+        "anno_1": "2.4%",    # 2024 - Normalizzazione
+        "anno_2": "5.4%",    # 2023 - Ancora elevata
+        "anno_3": "8.4%",    # 2022 - Picco post-COVID
+        "anno_4": "2.6%",    # 2021 - Recovery
+        "anno_5": "0.3%",    # 2020 - COVID deflation
+        "anno_6": "1.2%",    # 2019 - Target miss
+        "anno_7": "1.8%",    # 2018 - Near target
+        "anno_8": "1.5%",    # 2017 - Below target
+        "anno_9": "0.2%",    # 2016 - Deflation fears
+        "anno_10": "0.0%",   # 2015 - Deflation risk
+        "anno_11": "0.4%",   # 2014 - Low inflation
+        "anno_12": "1.4%",   # 2013 - Below target
+        "anno_13": "2.5%",   # 2012 - Eurozone stress
+        "anno_14": "3.1%",   # 2011 - Commodity spike
+        "anno_15": "1.6%",   # 2010 - Recovery
+        "anno_16": "-0.3%",  # 2009 - Deflation
+        "anno_17": "3.3%",   # 2008 - Commodity boom
+        "anno_18": "2.1%",   # 2007 - ECB target
+        "anno_19": "2.2%",   # 2006 - Above target
+        "anno_20": "2.2%"    # 2005 - Target level
+    }
+}
+
 def get_language_data(language):
     """Get data and UI text based on selected language"""
     if MODULAR_DATA_AVAILABLE:
@@ -203,7 +252,517 @@ def create_asset_selector(asset_data, categories, ui_text):
     
     return selected_asset
 
-# ===== NEW YEARLY PERFORMANCE CHART FUNCTIONS =====
+# ===== ENHANCED BOND CHART FUNCTIONS =====
+
+def create_enhanced_bond_chart(asset_data, asset_name, ui_text):
+    """Create enhanced bond chart with interest rates and inflation overlay"""
+    
+    if asset_name not in asset_data or "performance_storica" not in asset_data[asset_name]:
+        return None
+    
+    performance_data = asset_data[asset_name]["performance_storica"]
+    
+    # Skip if not bond asset
+    is_bond = any(word in asset_name.lower() for word in 
+                 ["bond", "obblig", "yield", "inflation", "convert", "subordin"])
+    
+    if not is_bond or "rendimenti_annuali" not in performance_data:
+        return None
+    
+    # Extract bond performance data
+    yearly_data = performance_data["rendimenti_annuali"]
+    
+    years = []
+    bond_returns = []
+    ecb_rates = []
+    inflation_rates = []
+    
+    for i in range(1, 21):
+        year_key = f"anno_{i}"
+        
+        if year_key in yearly_data:
+            try:
+                # Bond performance
+                bond_perf = float(yearly_data[year_key].replace('%', ''))
+                bond_returns.append(bond_perf)
+                
+                # ECB rates
+                ecb_rate = float(EUROPEAN_RATES_DATA["tassi_ecb"][year_key].replace('%', ''))
+                ecb_rates.append(ecb_rate)
+                
+                # Inflation
+                inflation = float(EUROPEAN_RATES_DATA["inflazione_hicp"][year_key].replace('%', ''))
+                inflation_rates.append(inflation)
+                
+                years.append(f"Y{i}")
+                
+            except (ValueError, KeyError):
+                continue
+    
+    if not bond_returns:
+        return None
+    
+    # Create subplot with secondary y-axis
+    fig = make_subplots(
+        rows=2, cols=1,
+        subplot_titles=[
+            f"📊 {asset_name} Performance vs Market Environment",
+            "🎯 ECB Policy Rates vs Eurozone Inflation (HICP)"
+        ],
+        vertical_spacing=0.15,
+        specs=[[{"secondary_y": True}],
+               [{"secondary_y": False}]]
+    )
+    
+    # === TOP CHART: Bond Performance vs ECB Rates ===
+    
+    # Bond performance (bars)
+    colors = ['green' if x >= 0 else 'red' for x in bond_returns]
+    fig.add_trace(
+        go.Bar(
+            x=years,
+            y=bond_returns,
+            name=f"{asset_name} Return",
+            marker_color=colors,
+            opacity=0.7,
+            text=[f"{r:.1f}%" for r in bond_returns],
+            textposition='auto',
+            hovertemplate="<b>%{x}</b><br>Bond Return: %{y}%<extra></extra>"
+        ),
+        row=1, col=1
+    )
+    
+    # ECB rates (line on secondary y-axis)
+    fig.add_trace(
+        go.Scatter(
+            x=years,
+            y=ecb_rates,
+            mode='lines+markers',
+            name='ECB Main Rate',
+            line=dict(color='blue', width=3),
+            marker=dict(size=6, color='blue'),
+            yaxis='y2',
+            hovertemplate="<b>%{x}</b><br>ECB Rate: %{y}%<extra></extra>"
+        ),
+        row=1, col=1, secondary_y=True
+    )
+    
+    # === BOTTOM CHART: ECB Rates vs Inflation ===
+    
+    # ECB rates
+    fig.add_trace(
+        go.Scatter(
+            x=years,
+            y=ecb_rates,
+            mode='lines+markers',
+            name='ECB Main Rate',
+            line=dict(color='blue', width=3),
+            marker=dict(size=6, color='blue'),
+            showlegend=False,
+            hovertemplate="<b>%{x}</b><br>ECB Rate: %{y}%<extra></extra>"
+        ),
+        row=2, col=1
+    )
+    
+    # Inflation
+    fig.add_trace(
+        go.Scatter(
+            x=years,
+            y=inflation_rates,
+            mode='lines+markers',
+            name='Eurozone Inflation (HICP)',
+            line=dict(color='orange', width=3),
+            marker=dict(size=6, color='orange'),
+            fill='tonexty',
+            fillcolor='rgba(255,165,0,0.1)',
+            hovertemplate="<b>%{x}</b><br>Inflation: %{y}%<extra></extra>"
+        ),
+        row=2, col=1
+    )
+    
+    # Calculate real rates (ECB rate - inflation) and add as shaded area
+    real_rates = [ecb - inf for ecb, inf in zip(ecb_rates, inflation_rates)]
+    
+    fig.add_trace(
+        go.Scatter(
+            x=years,
+            y=real_rates,
+            mode='lines',
+            name='Real Rate (ECB - Inflation)',
+            line=dict(color='purple', width=2, dash='dash'),
+            hovertemplate="<b>%{x}</b><br>Real Rate: %{y:.1f}%<extra></extra>"
+        ),
+        row=2, col=1
+    )
+    
+    # === ANNOTATIONS AND REFERENCE LINES ===
+    
+    # Add ECB 2% inflation target line
+    fig.add_hline(y=2.0, line_dash="dot", line_color="red", opacity=0.5, 
+                  annotation_text="ECB Target: 2%", row=2, col=1)
+    
+    # Add zero line for real rates
+    fig.add_hline(y=0, line_dash="dash", line_color="gray", opacity=0.5, row=2, col=1)
+    
+    # Zero line for bond performance
+    fig.add_hline(y=0, line_dash="dash", line_color="gray", opacity=0.3, row=1, col=1)
+    
+    # === LAYOUT AND STYLING ===
+    
+    fig.update_layout(
+        title_text=f"📈 {asset_name} - Market Environment Analysis (2005-2024)",
+        title_x=0.5,
+        height=800,
+        showlegend=True,
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        ),
+        plot_bgcolor='rgba(240,240,240,0.1)',
+        paper_bgcolor='white'
+    )
+    
+    # Update x-axes
+    fig.update_xaxes(title_text="Year (most recent first)", showgrid=True, gridcolor='lightgray')
+    
+    # Update y-axes for top chart
+    fig.update_yaxes(title_text="Bond Return (%)", showgrid=True, gridcolor='lightgray', row=1, col=1)
+    fig.update_yaxes(title_text="ECB Rate (%)", showgrid=False, row=1, col=1, secondary_y=True)
+    
+    # Update y-axes for bottom chart  
+    fig.update_yaxes(title_text="Rate/Inflation (%)", showgrid=True, gridcolor='lightgray', row=2, col=1)
+    
+    return fig
+
+def create_bond_correlation_analysis(asset_data, selected_bond_assets, ui_text):
+    """Create correlation analysis between different bond types and rates/inflation"""
+    
+    if len(selected_bond_assets) < 2:
+        return None
+    
+    # Filter only bond assets
+    bond_assets = [asset for asset in selected_bond_assets 
+                  if any(word in asset.lower() for word in 
+                        ["bond", "obblig", "yield", "inflation", "convert", "subordin"])]
+    
+    if len(bond_assets) < 2:
+        return None
+    
+    # Create correlation matrix
+    correlation_data = []
+    
+    # Add ECB rates and inflation as reference
+    ecb_rates_series = []
+    inflation_series = []
+    
+    for i in range(1, 21):
+        year_key = f"anno_{i}"
+        try:
+            ecb_rate = float(EUROPEAN_RATES_DATA["tassi_ecb"][year_key].replace('%', ''))
+            inflation = float(EUROPEAN_RATES_DATA["inflazione_hicp"][year_key].replace('%', ''))
+            ecb_rates_series.append(ecb_rate)
+            inflation_series.append(inflation)
+        except (KeyError, ValueError):
+            continue
+    
+    # Calculate correlations
+    all_series = {
+        "ECB Rates": ecb_rates_series,
+        "Inflation": inflation_series
+    }
+    
+    # Add bond series
+    for asset_name in bond_assets:
+        if asset_name in asset_data and "performance_storica" in asset_data[asset_name]:
+            performance_data = asset_data[asset_name]["performance_storica"]
+            
+            if "rendimenti_annuali" in performance_data:
+                yearly_data = performance_data["rendimenti_annuali"]
+                returns = []
+                
+                for i in range(1, 21):
+                    year_key = f"anno_{i}"
+                    if year_key in yearly_data:
+                        try:
+                            ret = float(yearly_data[year_key].replace('%', ''))
+                            returns.append(ret)
+                        except (ValueError, AttributeError):
+                            continue
+                
+                if len(returns) == len(ecb_rates_series):
+                    all_series[asset_name] = returns
+    
+    # Calculate correlation matrix
+    asset_names = list(all_series.keys())
+    correlation_matrix = []
+    
+    for i, asset1 in enumerate(asset_names):
+        row = []
+        for j, asset2 in enumerate(asset_names):
+            if i == j:
+                correlation = 1.0
+            else:
+                series1 = all_series[asset1]
+                series2 = all_series[asset2]
+                correlation = np.corrcoef(series1, series2)[0, 1]
+            row.append(correlation)
+        correlation_matrix.append(row)
+    
+    # Create heatmap
+    fig = go.Figure(data=go.Heatmap(
+        z=correlation_matrix,
+        x=asset_names,
+        y=asset_names,
+        colorscale='RdBu',
+        zmid=0,
+        text=[[f"{val:.2f}" for val in row] for row in correlation_matrix],
+        texttemplate="%{text}",
+        textfont={"size": 10},
+        hovertemplate="<b>%{y} vs %{x}</b><br>Correlation: %{z:.3f}<extra></extra>"
+    ))
+    
+    fig.update_layout(
+        title="🔗 Bond Correlations with Rates & Inflation",
+        title_x=0.5,
+        height=500,
+        width=600
+    )
+    
+    return fig
+
+def create_duration_sensitivity_chart(asset_data, selected_bond_assets, ui_text):
+    """Create chart showing duration sensitivity to rate changes"""
+    
+    # Duration estimates by bond type (approximate)
+    DURATION_ESTIMATES = {
+        # Government bonds
+        "Government Bonds 0-1 Years": 0.5,
+        "Bond Governativi 0-1 anni": 0.5,
+        "Government Bonds 1-3 Years": 2.0,
+        "Bond Governativi 1-3 anni": 2.0,
+        "Government Bonds 3-7 Years": 5.0,
+        "Bond Governativi 3-7 anni": 5.0,
+        "Government Bonds 7-10 Years": 8.5,
+        "Bond Governativi 7-10 anni": 8.5,
+        "Government Bonds >10 Years": 15.0,
+        "Bond Governativi >10 anni": 15.0,
+        
+        # Corporate bonds
+        "Corporate Bonds 0-1 Years": 0.5,
+        "Bond Corporate 0-1 anni": 0.5,
+        "Corporate Bonds 1-3 Years": 2.0,
+        "Bond Corporate 1-3 anni": 2.0,
+        "Corporate Bonds 3-7 Years": 5.0,
+        "Bond Corporate 3-7 anni": 5.0,
+        "Corporate Bonds 7-10 Years": 8.5,
+        "Bond Corporate 7-10 anni": 8.5,
+        "Corporate Bonds >10 Years": 15.0,
+        "Bond Corporate >10 anni": 15.0,
+        
+        # Specialized bonds
+        "High Yield Bonds": 4.0,
+        "Bond High Yield": 4.0,
+        "Inflation Linked Bonds": 8.0,
+        "Bond Inflation Linked": 8.0,
+        "Convertible Bonds": 3.0,
+        "Bond Convertibili": 3.0,
+        "Subordinated Bonds": 6.0,
+        "Obbligazioni Subordinate": 6.0
+    }
+    
+    bond_assets = [asset for asset in selected_bond_assets 
+                  if any(word in asset.lower() for word in 
+                        ["bond", "obblig", "yield", "inflation", "convert", "subordin"])]
+    
+    if not bond_assets:
+        return None
+    
+    # Calculate average returns and durations
+    duration_data = []
+    
+    for asset_name in bond_assets:
+        if asset_name in asset_data and asset_name in DURATION_ESTIMATES:
+            performance_data = asset_data[asset_name]["performance_storica"]
+            
+            if "rendimenti_annuali" in performance_data:
+                yearly_data = performance_data["rendimenti_annuali"]
+                returns = []
+                
+                for year_key in yearly_data.keys():
+                    try:
+                        ret = float(yearly_data[year_key].replace('%', ''))
+                        returns.append(ret)
+                    except (ValueError, AttributeError):
+                        continue
+                
+                if returns:
+                    avg_return = np.mean(returns)
+                    volatility = np.std(returns)
+                    duration = DURATION_ESTIMATES[asset_name]
+                    
+                    duration_data.append({
+                        "Asset": asset_name,
+                        "Duration": duration,
+                        "Avg Return": avg_return,
+                        "Volatility": volatility
+                    })
+    
+    if not duration_data:
+        return None
+    
+    # Create scatter plot
+    fig = go.Figure()
+    
+    for data_point in duration_data:
+        # Color based on government vs corporate
+        if "Government" in data_point["Asset"] or "Governativ" in data_point["Asset"]:
+            color = 'blue'
+            symbol = 'circle'
+        elif "Corporate" in data_point["Asset"]:
+            color = 'red'
+            symbol = 'square'
+        else:
+            color = 'green'
+            symbol = 'diamond'
+        
+        fig.add_trace(go.Scatter(
+            x=[data_point["Duration"]],
+            y=[data_point["Avg Return"]],
+            mode='markers+text',
+            text=[data_point["Asset"].replace(" ", "<br>")],
+            textposition="top center",
+            marker=dict(
+                size=data_point["Volatility"] * 2,  # Size based on volatility
+                color=color,
+                symbol=symbol,
+                opacity=0.7,
+                line=dict(width=2, color='darkblue')
+            ),
+            name=data_point["Asset"],
+            hovertemplate=f"<b>{data_point['Asset']}</b><br>" +
+                         f"Duration: {data_point['Duration']:.1f} years<br>" +
+                         f"Avg Return: {data_point['Avg Return']:.1f}%<br>" +
+                         f"Volatility: {data_point['Volatility']:.1f}%<extra></extra>",
+            showlegend=False
+        ))
+    
+    fig.update_layout(
+        title="⏱️ Bond Duration vs Return Profile",
+        xaxis_title="Duration (Years) - Interest Rate Sensitivity",
+        yaxis_title="Average Annual Return (%)",
+        height=500,
+        title_x=0.5,
+        plot_bgcolor='rgba(240,240,240,0.1)',
+        annotations=[
+            dict(
+                x=0.02,
+                y=0.98,
+                xref="paper",
+                yref="paper",
+                text="💡 Bubble size = Volatility<br>" +
+                     "🔵 Government  🔴 Corporate  🟢 Specialized",
+                showarrow=False,
+                font=dict(size=10),
+                bgcolor="rgba(255,255,255,0.8)",
+                bordercolor="gray",
+                borderwidth=1
+            )
+        ]
+    )
+    
+    # Add reference lines
+    fig.add_hline(y=0, line_dash="dash", line_color="gray", opacity=0.5)
+    
+    return fig
+
+def display_enhanced_bond_analysis(asset_data, selected_asset, selected_assets, ui_text):
+    """Display enhanced bond analysis with rates and inflation context"""
+    
+    # Check if we're dealing with bonds
+    is_bond_analysis = any(word in selected_asset.lower() for word in 
+                          ["bond", "obblig", "yield", "inflation", "convert", "subordin"])
+    
+    if not is_bond_analysis:
+        return
+    
+    st.markdown("---")
+    st.subheader("🏛️ Bond Market Environment Analysis")
+    
+    # Enhanced bond chart
+    enhanced_chart = create_enhanced_bond_chart(asset_data, selected_asset, ui_text)
+    if enhanced_chart:
+        st.plotly_chart(enhanced_chart, use_container_width=True)
+        
+        # Educational explanation
+        st.info("""
+        **📚 Understanding Bond-Rate Relationships:**
+        
+        - **Inverse Relationship**: Bond prices typically move opposite to interest rates
+        - **Duration Risk**: Longer-term bonds are more sensitive to rate changes  
+        - **Real Returns**: Bond performance relative to inflation determines real purchasing power
+        - **Policy Impact**: ECB rate decisions directly affect bond market dynamics
+        """)
+    
+    # If multiple bonds selected, show correlation analysis
+    if len(selected_assets) > 1:
+        st.markdown("### 🔗 Bond Correlation Analysis")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            corr_chart = create_bond_correlation_analysis(asset_data, selected_assets, ui_text)
+            if corr_chart:
+                st.plotly_chart(corr_chart, use_container_width=True)
+        
+        with col2:
+            duration_chart = create_duration_sensitivity_chart(asset_data, selected_assets, ui_text)
+            if duration_chart:
+                st.plotly_chart(duration_chart, use_container_width=True)
+    
+    # Market environment summary
+    st.markdown("### 📊 Current Market Environment Impact")
+    
+    # Calculate recent trends
+    current_ecb = 4.5  # 2024 level
+    current_inflation = 2.4  # 2024 level
+    real_rate = current_ecb - current_inflation
+    
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.metric("ECB Main Rate", f"{current_ecb}%", 
+                 delta="↑ From 0% (2019-2022)")
+    
+    with col2:
+        st.metric("Eurozone Inflation", f"{current_inflation}%", 
+                 delta="↓ From 8.4% peak (2022)")
+    
+    with col3:
+        st.metric("Real Interest Rate", f"{real_rate:.1f}%", 
+                 delta="Positive (first time since 2008)")
+    
+    # Key insights based on current environment
+    if real_rate > 0:
+        st.success("""
+        **🎯 Current Environment Insights:**
+        - Real rates are positive for the first time in over a decade
+        - Government bonds offer attractive real returns
+        - Duration risk remains significant with rates at cycle highs
+        - Inflation normalization supports bond fundamentals
+        """)
+    else:
+        st.warning("""
+        **⚠️ Current Environment Insights:**
+        - Real rates remain negative, eroding purchasing power
+        - Bonds may struggle to provide inflation protection
+        - Consider inflation-linked alternatives
+        - Monitor ECB policy for directional changes
+        """)
+
+# ===== YEARLY PERFORMANCE CHART FUNCTIONS =====
 
 def create_yearly_performance_chart(performance_data, asset_name, ui_text):
     """Create yearly performance visualization chart (year 1 to 20)"""
@@ -646,6 +1205,28 @@ def create_volatility_comparison_chart(asset_data, selected_assets, ui_text):
     
     return fig
 
+def create_allocation_pie():
+    """Create sample portfolio allocation pie chart"""
+    
+    # Sample allocation data
+    allocation_data = {
+        'Asset': ['Global Equities', 'Government Bonds', 'High Yield Bonds', 'REITs', 'Gold', 'Commodities'],
+        'Allocation': [45, 30, 10, 8, 4, 3]
+    }
+    
+    df = pd.DataFrame(allocation_data)
+    
+    fig = px.pie(
+        df, 
+        values='Allocation', 
+        names='Asset',
+        title="Sample Conservative Portfolio Allocation (%)"
+    )
+    
+    fig.update_layout(title_x=0.5, height=400)
+    
+    return fig
+
 # ===== MAIN APPLICATION LOGIC =====
 
 def main():
@@ -759,6 +1340,10 @@ def main():
             
             # Performance note
             st.info(ui_text["performance_note"])
+        
+        # ENHANCED BOND ANALYSIS - NEW FEATURE
+        if any(word in selected_asset.lower() for word in ["bond", "obblig"]):
+            display_enhanced_bond_analysis(asset_data, selected_asset, selected_assets, ui_text)
         
         st.markdown("---")
         
@@ -1023,33 +1608,87 @@ def main():
                 - Doesn't consider individual taxes or specific fees
                 - Some data may be estimated for longer periods
                 """)
+        
+        # Special section for bonds with rate environment
+        if any(word in selected_asset.lower() for word in ["bond", "obblig"]):
+            with st.expander("🏛️ " + ("Bond Market Context" if language == "English" else "Contesto Mercato Obbligazionario")):
+                if language == "Italiano":
+                    st.markdown("""
+                    **🎯 Contesto Attuale Mercato Obbligazionario:**
+                    
+                    - **Tassi BCE**: Ai massimi dal 2008 (4.5% nel 2024)
+                    - **Inflazione**: In discesa dal picco 8.4% del 2022 a 2.4% nel 2024
+                    - **Tassi Reali**: Positivi per la prima volta dal 2008
+                    - **Duration Risk**: Elevato per le scadenze lunghe
+                    
+                    **💡 Implications per gli Investitori:**
+                    - Bond a breve termine offrono rendimenti reali interessanti
+                    - Bond a lungo termine sensibili a variazioni tassi
+                    - Obbligazioni governative vs corporate: diversa sensibilità creditizia
+                    - Monitoraggio politica BCE cruciale per timing
+                    """)
+                else:
+                    st.markdown("""
+                    **🎯 Current Bond Market Context:**
+                    
+                    - **ECB Rates**: At highest since 2008 (4.5% in 2024)
+                    - **Inflation**: Down from 8.4% peak in 2022 to 2.4% in 2024
+                    - **Real Rates**: Positive for first time since 2008
+                    - **Duration Risk**: High for longer maturities
+                    
+                    **💡 Implications for Investors:**
+                    - Short-term bonds offer attractive real returns
+                    - Long-term bonds sensitive to rate changes
+                    - Government vs corporate bonds: different credit sensitivity
+                    - ECB policy monitoring crucial for timing
+                    """)
     
     elif selected_asset:
         st.error(f"❌ Asset '{selected_asset}' not found in database.")
     else:
+        # Welcome screen with enhanced information
         st.info("👈 Please select an asset from the sidebar to begin analysis.")
+        
+        # Display overview statistics
+        st.markdown("## 🌟 Welcome to Financial Asset Analyzer")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("""
+            ### 📊 What you can analyze:
+            - **Equity Strategies**: Global markets, momentum, quality, value
+            - **Government Bonds**: All duration ranges (0-1Y to >10Y)
+            - **Corporate Bonds**: Investment grade and high yield
+            - **Alternative Assets**: Gold, commodities, REITs
+            """)
+        
+        with col2:
+            st.markdown("""
+            ### 🎯 Key Features:
+            - **Historical Performance**: 20 years of data
+            - **Market Scenarios**: How assets behave in different conditions
+            - **Enhanced Bond Analysis**: Interest rates and inflation context
+            - **Comparison Tools**: Multi-asset analysis
+            """)
+        
+        # Sample chart to show capabilities
+        if st.button("🎬 Show Demo: Bond vs Rates Analysis"):
+            demo_asset = "Bond Governativi 3-7 anni" if language == "Italiano" else "Government Bonds 3-7 Years"
+            if demo_asset in asset_data:
+                demo_chart = create_enhanced_bond_chart(asset_data, demo_asset, ui_text)
+                if demo_chart:
+                    st.plotly_chart(demo_chart, use_container_width=True)
+                    st.success("👆 This is an example of our enhanced bond analysis with ECB rates and inflation context!")
 
-def create_allocation_pie():
-    """Create sample portfolio allocation pie chart"""
-    
-    # Sample allocation data
-    allocation_data = {
-        'Asset': ['Global Equities', 'Government Bonds', 'High Yield Bonds', 'REITs', 'Gold', 'Commodities'],
-        'Allocation': [45, 30, 10, 8, 4, 3]
-    }
-    
-    df = pd.DataFrame(allocation_data)
-    
-    fig = px.pie(
-        df, 
-        values='Allocation', 
-        names='Asset',
-        title="Sample Conservative Portfolio Allocation (%)"
-    )
-    
-    fig.update_layout(title_x=0.5, height=400)
-    
-    return fig
+# Footer
+st.markdown("---")
+st.markdown("""
+<div style='text-align: center; color: gray; font-size: 12px;'>
+📈 Financial Asset Analyzer | Educational Tool for Investment Learning<br>
+⚠️ This application is for educational purposes only - not financial advice
+</div>
+""", unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
