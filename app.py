@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
 import logging
+from bond_calculator import render_bond_calculator_tab
 
 # Configure page
 st.set_page_config(
@@ -697,12 +698,33 @@ def display_enhanced_bond_analysis(asset_data, selected_asset, selected_assets, 
         return
     
     st.markdown("---")
-    st.subheader("🏛️ Bond Market Environment Analysis")
+    st.subheader("🏛️ Analisi Avanzata Obbligazioni" if "italian" in ui_text.get("language", "").lower() else "🏛️ Advanced Bond Analysis")
     
-    # Enhanced bond chart
-    enhanced_chart = create_enhanced_bond_chart(asset_data, selected_asset, ui_text)
-    if enhanced_chart:
-        st.plotly_chart(enhanced_chart, use_container_width=True)
+    # Create tabs for different bond analysis sections
+    tab_duration, tab_environment = st.tabs([
+        "📐 Duration & Convessità" if "italian" in ui_text.get("language", "").lower() else "📐 Duration & Convexity",
+        "🌍 Market Environment" if "italian" in ui_text.get("language", "").lower() else "🌍 Market Environment"
+    ])
+    
+    with tab_duration:
+        # NEW: Duration and Convexity Calculator
+        render_bond_calculator_tab(ui_text)
+    
+    with tab_environment:
+        # Enhanced bond chart (existing functionality)
+        enhanced_chart = create_enhanced_bond_chart(asset_data, selected_asset, ui_text)
+        if enhanced_chart:
+            st.plotly_chart(enhanced_chart, use_container_width=True)
+            
+            # Educational explanation
+            st.info("""
+            **📚 Understanding Bond-Rate Relationships:**
+            
+            - **Inverse Relationship**: Bond prices typically move opposite to interest rates
+            - **Duration Risk**: Longer-term bonds are more sensitive to rate changes  
+            - **Real Returns**: Bond performance relative to inflation determines real purchasing power
+            - **Policy Impact**: ECB rate decisions directly affect bond market dynamics
+            """)
         
         # Educational explanation
         st.info("""
