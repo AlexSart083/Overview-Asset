@@ -6,6 +6,7 @@ from plotly.subplots import make_subplots
 import numpy as np
 import logging
 from bond_calculator import render_bond_calculator_tab
+from bond_spread_table import render_spread_table_tab
 
 # Configure page
 st.set_page_config(
