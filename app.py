@@ -702,13 +702,20 @@ def display_enhanced_bond_analysis(asset_data, selected_asset, selected_assets, 
     st.subheader("🏛️ Analisi Avanzata Obbligazioni" if "italian" in ui_text.get("language", "").lower() else "🏛️ Advanced Bond Analysis")
     
     # Create tabs for different bond analysis sections
-    tab_duration, tab_environment = st.tabs([
-        "📐 Duration & Convessità" if "italian" in ui_text.get("language", "").lower() else "📐 Duration & Convexity",
-        "🌍 Market Environment" if "italian" in ui_text.get("language", "").lower() else "🌍 Market Environment"
+    is_italian = "italian" in ui_text.get("language", "").lower()
+    
+    tab_spreads, tab_duration, tab_environment = st.tabs([
+        "📊 Spread per Scadenza" if is_italian else "📊 Spreads by Maturity",
+        "📐 Duration & Convessità" if is_italian else "📐 Duration & Convexity",
+        "🌍 Contesto di Mercato" if is_italian else "🌍 Market Environment"
     ])
     
+    with tab_spreads:
+        # NEW: Credit Spread Table by Maturity and Rating
+        render_spread_table_tab(ui_text)
+    
     with tab_duration:
-        # NEW: Duration and Convexity Calculator
+        # Duration and Convexity Calculator
         render_bond_calculator_tab(ui_text)
     
     with tab_environment:
